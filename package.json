@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/RockinY/core-api/issues"
   },
-  "homepage": "https://github.com/RockinY/core-api#readme"
+  "homepage": "https://github.com/RockinY/core-api#readme",
+  "devDependencies": {
+    "standard": "^11.0.1"
+  }
 }
