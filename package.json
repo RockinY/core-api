@@ -4,7 +4,10 @@
   "description": "Learning project from fantastic spectrum code base.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rm -rf ./build",
+    "build": "npm run prebuild && backpack build",
+    "dev": "backpack",
+    "start": "node ./build/main"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
+    "backpack-core": "^0.7.0",
     "flow-bin": "^0.70.0",
     "standard": "^11.0.1"
   },
