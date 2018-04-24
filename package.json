@@ -1,0 +1,22 @@
+{
+  "name": "core-api",
+  "version": "0.0.1",
+  "description": "Learning project from fantastic spectrum code base.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RockinY/core-api.git"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "BranLiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RockinY/core-api/issues"
+  },
+  "homepage": "https://github.com/RockinY/core-api#readme"
+}
