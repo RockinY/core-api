@@ -3,6 +3,7 @@ import compression from 'compression'
 import { createServer } from 'http'
 import express from 'express'
 
+require('dotenv').config()
 const debug = require('debug')('api')
 debug('Server starting...')
 debug('logging with debug enabled!')

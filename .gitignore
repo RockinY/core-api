@@ -59,3 +59,6 @@ typings/
 
 # deploy
 build/
+
+# Database
+rethinkdb_data/
