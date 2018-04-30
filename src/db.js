@@ -1,4 +1,4 @@
-import rethinkdbdash from 'rethinkdbdash'
+const rethinkdbdash = require('rethinkdbdash')
 
 var r = rethinkdbdash({
   db: process.env.DATABASE_NAME,
@@ -9,4 +9,4 @@ var r = rethinkdbdash({
   port: process.env.DATABASE_PORT
 })
 
-export default r
+module.exports = r
