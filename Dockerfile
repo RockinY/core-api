@@ -16,6 +16,7 @@ COPY . .
 
 # Build the app
 RUN yarn run build
+RUN yarn run db:migrate
 
 EXPOSE 3000
 
