@@ -26,6 +26,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
     "backpack-core": "^0.7.0",
+    "faker": "^4.1.0",
     "flow-bin": "^0.70.0",
     "standard": "^11.0.1"
   },
