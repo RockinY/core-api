@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
   driver: 'rethinkdbdash',
   db: process.env.NODE_ENV === 'test' ? 'xlab_testing' : process.env.DATABASE_NAME,
