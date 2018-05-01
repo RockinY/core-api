@@ -6,7 +6,8 @@ var r = rethinkdbdash({
   buffer: 5,
   timeoutGb: 60 * 1000,
   host: process.env.DATABASE_HOST,
-  port: process.env.DATABASE_PORT
+  port: process.env.DATABASE_PORT,
+  password: process.env.DATABASE_PASSWORD
 })
 
 module.exports = r
