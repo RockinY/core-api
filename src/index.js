@@ -3,12 +3,16 @@ import compression from 'compression'
 import { createServer } from 'http'
 import express from 'express'
 import toobusy from './middlewares/toobusy.js'
-import addSecurityMiddleware from './middlewares/security'
+import addSecurityMiddleware from './middlewares/security.js'
+import initPassport from './authentication.js'
 
 require('dotenv').config()
 const debug = require('debug')('api')
 debug('Server starting...')
 debug('logging with debug enabled!')
+
+/* ----------- Authentication ----------- */
+initPassport()
 
 /* ----------- API server ----------- */
 const app = express()
