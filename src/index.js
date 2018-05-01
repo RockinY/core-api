@@ -2,6 +2,7 @@
 import compression from 'compression'
 import { createServer } from 'http'
 import express from 'express'
+import toobusy from './middlewares/toobusy.js'
 
 require('dotenv').config()
 const debug = require('debug')('api')
@@ -14,6 +15,8 @@ const app = express()
 /* ----------- Middlewares ----------- */
 // 1. Send all responses as gzip
 app.use(compression())
+// 2. Toobusy situation
+app.use(toobusy)
 
 /* ----------- Routes ----------- */
 app.get('/', (req, res) => res.send('Hello World!'))
