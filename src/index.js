@@ -1,4 +1,5 @@
 // @flow
+import './utils/dotenv'
 import compression from 'compression'
 import { createServer } from 'http'
 import express from 'express'
@@ -14,7 +15,6 @@ import session from './middlewares/session'
 import passport from 'passport'
 import threadParamRedirect from './middlewares/threadParam'
 
-require('dotenv').config()
 const debug = require('debug')('api')
 debug('Server starting...')
 debug('logging with debug enabled!')
