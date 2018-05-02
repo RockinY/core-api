@@ -1,6 +1,6 @@
 // @flow
 import { Router } from 'express'
-import { createSigninRoutes } from './createSigninRoutes'
+import { createSigninRoutes } from './create-signin-routes'
 
 const githubAuthRouter = Router()
 const { main, callbacks } = createSigninRoutes('github', {
