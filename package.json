@@ -30,6 +30,12 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
+    "babel-plugin-syntax-async-generators": "^6.13.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-async-generator-functions": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
     "backpack-core": "^0.7.0",
     "casual": "^1.5.19",
@@ -55,6 +61,8 @@
   },
   "standard": {
     "parser": "babel-eslint",
-    "plugins": [ "flowtype" ]
+    "plugins": [
+      "flowtype"
+    ]
   }
 }
