@@ -29,9 +29,11 @@
   "homepage": "https://github.com/RockinY/core-api#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.3",
     "babel-preset-flow": "^6.23.0",
     "backpack-core": "^0.7.0",
     "casual": "^1.5.19",
+    "eslint-plugin-flowtype": "^2.46.3",
     "faker": "^4.1.0",
     "flow-bin": "^0.70.0",
     "standard": "^11.0.1"
@@ -50,5 +52,9 @@
     "slugg": "^1.2.1",
     "toobusy-js": "^0.5.1",
     "uuid": "^3.2.1"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "plugins": [ "flowtype" ]
   }
 }
