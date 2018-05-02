@@ -14,6 +14,7 @@ import bodyParser from 'body-parser'
 import session from './middlewares/session'
 import passport from 'passport'
 import threadParamRedirect from './middlewares/threadParam'
+import authRoutes from './routes/auth'
 
 const debug = require('debug')('api')
 debug('Server starting...')
@@ -53,6 +54,9 @@ app.use(passport.session())
 app.use(threadParamRedirect)
 
 /* ----------- Routes ----------- */
+// Authentication
+app.use('/auth', authRoutes)
+// Testing
 app.get('/', (req, res) => res.send('Hello World!'))
 
 /* ----------- Create server ----------- */
