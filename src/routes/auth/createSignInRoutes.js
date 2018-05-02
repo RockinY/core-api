@@ -1,12 +1,13 @@
 import passport from 'passport'
+import config from '../../config'
 import { URL } from 'url'
 import { isOfficialUrl } from '../../utils/url'
 import { signCookie, getCookie } from '../../utils/cookie'
 
 const IS_PROD = process.env.NODE_ENV === 'production'
 const FALLBACK_URL = IS_PROD
-  ? 'http://lab.liangboyuan.pub'
-  : 'http://localhost:3000'
+  ? config.domainUrl
+  : config.devDomainUrl
 
 type Strategy = 'github'
 
@@ -33,7 +34,7 @@ export const createSigninRoutes = (
     /* Authenticate and set the response cookie */
     callbacks: [
       passport.authenticate(strategy, {
-        failureRedirect: IS_PROD ? '/' : 'http://localhost:3000/'
+        failureRedirect: IS_PROD ? '/' : config.devDomainUrl
       }),
       (req, res) => {
         const redirectUrl = req.session.redirectUrl
