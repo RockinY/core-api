@@ -1,3 +1,4 @@
+import config from './config'
 const passport = require('passport')
 const { Strategy: GithubStrategy } = require('passport-github2')
 const {
@@ -6,6 +7,10 @@ const {
   saveUserProvider,
   getUserByIndex
 } = require('./models/user')
+
+const baseUrl = process.env.NODE_ENV === 'production'
+  ? config.domainUrl
+  : config.devDomainUrl
 
 const init = () => {
   passport.serializeUser((user, done) => {
@@ -30,7 +35,7 @@ const init = () => {
       {
         clientID: process.env.GITHUB_OAUTH_CLIENT_ID,
         clientSecret: process.env.GITHUB_OAUTH_CLIENT_SECRET,
-        callbackURL: '/auth/github/callback',
+        callbackURL: `${baseUrl}/auth/github/callback`,
         scope: ['user'],
         passReqToCallback: true
       },
