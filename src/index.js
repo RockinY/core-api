@@ -52,6 +52,21 @@ app.use(passport.initialize())
 app.use(passport.session())
 // 11. redirect
 app.use(threadParamRedirect)
+// 12. Catch Error
+app.use(
+  (err, req, res, next) => {
+    if (err) {
+      console.error(err)
+      res
+        .status(500)
+        .send(
+          'Oops, something went wrong! Our engineers have been alerted and will fix this asap.'
+        )
+    } else {
+      return next()
+    }
+  }
+)
 
 /* ----------- Routes ----------- */
 // Authentication
