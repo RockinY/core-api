@@ -15,6 +15,7 @@ import session from './middlewares/session'
 import passport from 'passport'
 import threadParamRedirect from './middlewares/threadParam'
 import authRoutes from './routes/auth'
+import apiRouter from './routes/api'
 
 const debug = require('debug')('api')
 debug('Server starting...')
@@ -71,6 +72,8 @@ app.use(
 /* ----------- Routes ----------- */
 // Authentication
 app.use('/auth', authRoutes)
+// GraphQL
+app.use('/api', apiRouter)
 // Testing
 app.get('/', (req, res) => res.send('Hello World!'))
 
