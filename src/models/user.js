@@ -1,25 +1,7 @@
 // @flow
 import db from '../db.js'
 import { createNewUsersSettings } from './usersSettings.js'
-
-type DBUser = {
-  id: string,
-  email?: string,
-  createdAt: Date,
-  name: string,
-  coverPhoto: string,
-  profilePhoto: string,
-  providerId?: ?string,
-  githubProviderId?: ?string,
-  githubUsername?: ?string,
-  username: ?string,
-  timezone?: ?number,
-  isOnline?: boolean,
-  lastSeen?: ?Date,
-  description?: ?string,
-  website?: ?string,
-  modifiedAt: ?Date
-}
+import type { DBUser } from '../flowtypes'
 
 type GetUserInput = {
   id?: string,
@@ -172,11 +154,31 @@ const storeUser = (user: Object): Promise<DBUser> => {
     .then(([user]) => user)
 }
 
+/* ----------- Batch Operations ----------- */
+
+const getUsers = (userIds: Array<string>): Promise<Array<DBUser>> => {
+  return db
+    .table('users')
+    .getAll(...userIds)
+    .run()
+}
+
+const getUsersByUsername = (
+  usernames: Array<string>
+): Promise<Array<DBUser>> => {
+  return db
+    .table('users')
+    .getAll(...usernames, { index: 'username' })
+    .run()
+}
+
 module.exports = {
   storeUser,
   createOrFindUser,
   saveUserProvider,
   getUser,
   getUserByIndex,
-  getUserByUsername
+  getUserByUsername,
+  getUsers,
+  getUsersByUsername
 }

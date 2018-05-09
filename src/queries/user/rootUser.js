@@ -1,5 +1,5 @@
 // @flow
-import type { GraphQLContext } from '../../types'
+import type { GraphQLContext } from '../../flowtypes'
 
 export default (
   _: any,
