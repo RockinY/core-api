@@ -14,6 +14,7 @@ import bodyParser from 'body-parser'
 import session from './middlewares/session'
 import passport from 'passport'
 import threadParamRedirect from './middlewares/threadParam'
+import Raven from './utils/raven'
 import authRoutes from './routes/auth'
 import apiRouter from './routes/api'
 
@@ -63,6 +64,7 @@ app.use(
         .send(
           'Oops, something went wrong! Our engineers have been alerted and will fix this asap.'
         )
+      Raven.captureException(err)
     } else {
       return next()
     }
@@ -82,3 +84,26 @@ const server = createServer(app)
 
 server.listen(3000)
 debug('Server is running!')
+
+/* ----------- Handle Errors ----------- */
+process.on('unhandleRejection', async err => {
+  console.error('Unhandled rejection', err)
+  try {
+    await new Promise(resolve => Raven.captureException(err, resolve))
+  } catch (err) {
+    console.error('Raven error', err)
+  } finally {
+    process.exit(1)
+  }
+})
+
+process.on('uncaughtException', async err => {
+  console.error('Uncaught exception', err)
+  try {
+    await new Promise(resolve => Raven.captureException(err, resolve))
+  } catch (err) {
+    console.error('Raven error', err)
+  } finally {
+    process.exit(1)
+  }
+})
