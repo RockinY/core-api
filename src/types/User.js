@@ -9,6 +9,7 @@ const User = `
 
   extend type Query {
     user(id: ID, username: LowercaseString): User
+    currentUser: User
   }
 `
 
