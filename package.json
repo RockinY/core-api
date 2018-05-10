@@ -5,7 +5,7 @@
   "scripts": {
     "prebuild": "rm -rf ./build",
     "build": "npm run prebuild && backpack build",
-    "dev": "backpack",
+    "dev": "DEBUG=* backpack",
     "start": "node ./build/main",
     "deploy": "npm run db:migrate && npm run start",
     "db:drop": "npm run rethinkdb:migrate -- down",
