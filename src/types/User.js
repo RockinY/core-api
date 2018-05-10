@@ -6,6 +6,10 @@ const User = `
     description: String
     website: String
   }
+
+  extend type Query {
+    user(id: ID, username: LowercaseString): User
+  }
 `
 
 module.exports = User
