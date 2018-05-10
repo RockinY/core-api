@@ -1,4 +1,4 @@
-const debug = require('debug')('middlewares:logging')
+const debug = require('debug')('api:middlewares:logging')
 
 module.exports = (req, res, next) => {
   debug(`requesting ${req.url}`)

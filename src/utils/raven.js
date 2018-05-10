@@ -1,4 +1,4 @@
-const debug = require('debug')('utils:raven')
+const debug = require('debug')('api:utils:raven')
 
 let Raven
 if (
