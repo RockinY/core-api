@@ -6,10 +6,10 @@ const LowercaseString = new GraphQLScalarType({
   name: 'LowercaseString',
   description: 'Returns all strings in lower case',
   parseValue (value) {
-    return value.toLowercase()
+    return value.toLowerCase()
   },
   serialize (value) {
-    return value.toLowercase()
+    return value.toLowerCase()
   },
   parseLiteral (ast) {
     if (ast.kind === Kind.STRING) {

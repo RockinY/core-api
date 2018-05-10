@@ -18,6 +18,9 @@ const User = require('./types/User')
 // Queries
 const userQueries = require('./queries/user')
 
+// Mutations
+const userMutations = require('./mutations/user')
+
 const Root = `
   type Query {
     dummy: String
@@ -42,7 +45,9 @@ const resolvers = merge(
   {},
   // Queries
   scalars.resolvers,
-  userQueries
+  userQueries,
+  // Mutations
+  userMutations
 )
 
 if (process.env.NODE_ENV === 'development' && debug.enabled) {

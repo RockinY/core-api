@@ -5,12 +5,18 @@
  *
  */
 import LowercaseString from './customScalars/LowercaseString'
+import { GraphQLUpload } from 'apollo-upload-server'
+import GraphQLDate from 'graphql-date'
 
 const typeDefs = `
   scalar LowercaseString
+  scalar Upload
+  scalar Date
 `
 
 const resolvers = {
+  Date: GraphQLDate,
+  Upload: GraphQLUpload,
   LowercaseString: LowercaseString
 }
 

@@ -37,3 +37,11 @@ export type GraphQLContext = {
     [key: string]: Loader
   }
 }
+
+/* ----------- General ----------- */
+export type FileUpload = {
+  filename: string,
+  mimetype: string,
+  encoding: string,
+  stream: any
+}
