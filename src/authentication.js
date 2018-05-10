@@ -13,10 +13,14 @@ const baseUrl = process.env.NODE_ENV === 'production'
   : config.devDomainUrl
 
 const init = () => {
+  // The result of serializer is attached to the req.session..passport.user
+  // req.session.passport.user = USER_ID
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
 
+  // The result of deserializer is attached to the req.user
+  // req.user = USER_OBJECT
   passport.deserializeUser((id, done) => {
     getUser({ id })
       .then(user => {
