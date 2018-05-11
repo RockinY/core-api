@@ -1,4 +1,25 @@
 const User = `
+  type NotificationKindSettings {
+    email: Boolean
+  }
+
+  type NotificationSettingsType {
+    newMessageInThreads: NotificationKindSettings
+    newDirectMessage: NotificationKindSettings
+    newThreadCreated: NotificationKindSettings
+    weeklyDigest: NotificationKindSettings
+    dailyDigest: NotificationKindSettings
+    newMention: NotificationKindSettings
+  }
+
+  type UserNotificationsSettings {
+    types: NotificationSettingsType
+  }
+
+  type UserSettings {
+    notifications: UserNotificationsSettings
+  }
+  
   type User {
     id: ID!
     name: String
@@ -16,6 +37,9 @@ const User = `
     timezone: Int
     totalReputation: Int
     pendingEmail: LowercaseString
+
+    # non-schema fields
+    settings: UserSettings @cost(complexity: 1)
   }
 
   extend type Query {

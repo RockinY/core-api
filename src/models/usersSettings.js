@@ -1,7 +1,7 @@
 // @flow
 import db from '../db'
 
-const createNewUsersSettings = (userId: string): Promise<Object> => {
+export const createNewUsersSettings = (userId: string): Promise<Object> => {
   return db.table('usersSettings').insert({
     userId,
     notifications: {
@@ -29,6 +29,14 @@ const createNewUsersSettings = (userId: string): Promise<Object> => {
   })
 }
 
-module.exports = {
-  createNewUsersSettings
+export const getUsersSettings = (userId: string): Promise<Object> => {
+  return db
+    .table('usersSettings')
+    .getAll(userId, { index: 'userId' })
+    .run()
+    .then(results => {
+      if (results && results.length > 0) {
+        return results[0]
+      }
+    })
 }
