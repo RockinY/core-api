@@ -1,7 +1,7 @@
 // @flow
 import type { GraphQLContext } from '../../flowTypes'
 import type { EditUserInput } from '../../models/user'
-import UserError from '../../utils/UserError'
+import UserError from '../../utils/userError'
 import { getUser, editUser } from '../../models/user'
 
 export default (_: any, args: EditUserInput, { user }: GraphQLContext) => {
