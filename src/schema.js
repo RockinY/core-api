@@ -14,9 +14,11 @@ const logExecutions = require('graphql-log')({
 // Types
 const scalars = require('./types/scalars')
 const User = require('./types/User')
+const Community = require('./types/Community')
 
 // Queries
 const userQueries = require('./queries/user')
+const communityQueries = require('./queries/community')
 
 // Mutations
 const userMutations = require('./mutations/user')
@@ -46,6 +48,7 @@ const resolvers = merge(
   // Queries
   scalars.resolvers,
   userQueries,
+  communityQueries,
   // Mutations
   userMutations
 )
@@ -58,7 +61,8 @@ const schema = makeExecutableSchema({
   typeDefs: [
     scalars.typeDefs,
     Root,
-    User
+    User,
+    Community
   ],
   resolvers
 })

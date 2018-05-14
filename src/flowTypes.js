@@ -19,6 +19,27 @@ export type DBUser = {
   modifiedAt: ?Date
 }
 
+export type DBCommunity = {
+  coverPhoto: string,
+  createdAt: Date,
+  description: string,
+  id: string,
+  name: string,
+  profilePhoto: string,
+  slug: string,
+  website?: ?string,
+  deletedAt?: Date,
+  pinnedThreadId?: string,
+  watercoolerId?: string,
+  creatorId: string,
+  administratorEmail: ?string,
+  hasAnalytics: boolean,
+  hasPrioritySupport: boolean,
+  stripeCustomerId: ?string,
+  pendingAdministratorEmail?: string,
+  ossVerified?: boolean
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,
