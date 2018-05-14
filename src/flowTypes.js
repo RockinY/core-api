@@ -40,6 +40,19 @@ export type DBCommunity = {
   ossVerified?: boolean
 }
 
+export type DBChannel = {
+  communityId: string,
+  createdAt: Date,
+  deletedAt?: Date,
+  description: string,
+  id: string,
+  isDefault: boolean,
+  isPrivate: boolean,
+  name: string,
+  slug: string,
+  archivedAt?: Date
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,
