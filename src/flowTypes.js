@@ -53,6 +53,61 @@ export type DBChannel = {
   archivedAt?: Date
 }
 
+type DBThreadAttachment = {
+  attachmentType: 'photoPreview',
+  data: {
+    name: string,
+    type: string,
+    url: string
+  }
+}
+
+type DBThreadEdits = {
+  attachments?: {
+    photos: Array<DBThreadAttachment>
+  },
+  content: {
+    body?: any,
+    title: string
+  },
+  timestamp: Date
+}
+
+export type DBThread = {
+  id: string,
+  channelId: string,
+  communityId: string,
+  content: {
+    body?: any,
+    tittle: string
+  },
+  createdAt: Date,
+  creatorId: string,
+  isPublished: boolean,
+  isLocked: boolean,
+  lockedBy?: string,
+  lockedAt?: Date,
+  lastActive: Date,
+  modifiedAt?: Date,
+  attachments?: Array<DBThreadAttachment>,
+  edits?: Array<DBThreadEdits>,
+  watercooler?: boolean,
+  type: string
+}
+
+export type DBUsersChannels = {
+  id: string,
+  channelId: string,
+  createdAt: Date,
+  isBlocked: boolean,
+  isMember: boolean,
+  isModerator: boolean,
+  isOwner: boolean,
+  isPending: boolean,
+  receiveNotifications: boolean,
+  userId: string
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,
