@@ -15,6 +15,9 @@ import {
 import {
   __createThreadLoader
 } from './thread'
+import {
+  __createMessageLoader
+} from './message'
 
 const createLoaders = (options?: DataLoaderOptions) => ({
   user: __createUserLoader(options),
@@ -23,7 +26,8 @@ const createLoaders = (options?: DataLoaderOptions) => ({
   community: __createCommunityLoader(options),
   communityBySlug: __createCommunityBySlugLoader(options),
   channel: __createChannelLoader(options),
-  thread: __createThreadLoader(options)
+  thread: __createThreadLoader(options),
+  message: __createMessageLoader(options)
 })
 
 export default createLoaders

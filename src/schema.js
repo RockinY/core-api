@@ -17,12 +17,14 @@ const User = require('./types/User')
 const Community = require('./types/Community')
 const Channel = require('./types/Channel')
 const Thread = require('./types/Thread')
+const Message = require('./types/Message')
 
 // Queries
 const userQueries = require('./queries/user')
 const communityQueries = require('./queries/community')
 const channelQueries = require('./queries/channel')
 const threadQueries = require('./queries/thread')
+const messageQueries = require('./queries/message')
 
 // Mutations
 const userMutations = require('./mutations/user')
@@ -55,6 +57,7 @@ const resolvers = merge(
   communityQueries,
   channelQueries,
   threadQueries,
+  messageQueries,
   // Mutations
   userMutations
 )
@@ -70,7 +73,8 @@ const schema = makeExecutableSchema({
     User,
     Community,
     Channel,
-    Thread
+    Thread,
+    Message
   ],
   resolvers
 })

@@ -108,6 +108,21 @@ export type DBUsersChannels = {
   userId: string
 }
 
+export type DBMessage = {
+  content: {
+    body: string
+  },
+  id: string,
+  messageType: 'text' | 'media' | 'draftjs',
+  senderId: string,
+  deletedAt?: Date,
+  deletedBy?: string,
+  threadId: string,
+  threadType: 'story' | 'directMessageThread',
+  timestamp: Date,
+  parentId?: string
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,
