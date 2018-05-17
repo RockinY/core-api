@@ -123,6 +123,13 @@ export type DBMessage = {
   parentId?: string
 }
 
+export type DBDirectMessageThread = {
+  createdAt: Date,
+  id: string,
+  name?: string,
+  threadLastActive: Date
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,

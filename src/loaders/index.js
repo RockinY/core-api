@@ -18,6 +18,10 @@ import {
 import {
   __createMessageLoader
 } from './message'
+import {
+  __createDirectMessageParticipantsLoader,
+  __createDirectMessageThreadLoader
+} from './directMessageThread'
 
 const createLoaders = (options?: DataLoaderOptions) => ({
   user: __createUserLoader(options),
@@ -27,7 +31,9 @@ const createLoaders = (options?: DataLoaderOptions) => ({
   communityBySlug: __createCommunityBySlugLoader(options),
   channel: __createChannelLoader(options),
   thread: __createThreadLoader(options),
-  message: __createMessageLoader(options)
+  message: __createMessageLoader(options),
+  directMessageThread: __createDirectMessageThreadLoader(options),
+  directMessageParticipants: __createDirectMessageParticipantsLoader(options)
 })
 
 export default createLoaders
