@@ -22,6 +22,9 @@ import {
   __createDirectMessageParticipantsLoader,
   __createDirectMessageThreadLoader
 } from './directMessageThread'
+import {
+  __createNotificationLoader
+} from './notification'
 
 const createLoaders = (options?: DataLoaderOptions) => ({
   user: __createUserLoader(options),
@@ -33,7 +36,8 @@ const createLoaders = (options?: DataLoaderOptions) => ({
   thread: __createThreadLoader(options),
   message: __createMessageLoader(options),
   directMessageThread: __createDirectMessageThreadLoader(options),
-  directMessageParticipants: __createDirectMessageParticipantsLoader(options)
+  directMessageParticipants: __createDirectMessageParticipantsLoader(options),
+  notification: __createNotificationLoader(options)
 })
 
 export default createLoaders

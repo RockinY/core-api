@@ -139,6 +139,36 @@ export type DBReaction = {
   userId: string
 }
 
+export type NotificationEventType =
+  | 'REACTION_CREATED'
+  | 'MESSAGE_CREATED'
+  | 'THREAD_CREATED'
+  | 'THREAD_EDITED'
+  | 'CHANNEL_CREATED'
+  | 'DIRECT_MESSAGE_THREAD_CREATED'
+  | 'USER_JOINED_COMMUNITY'
+  | 'USER_REQUESTED_TO_JOIN_PRIVATE_CHANNEL'
+  | 'USER_APPROVED_TO_JOIN_PRIVATE_CHANNEL'
+  | 'THREAD_LOCKED_BY_OWNER'
+  | 'THREAD_DELETED_BY_OWNER'
+  | 'COMMUNITY_INVITATION'
+
+type NotificationPayload = {
+  id: string,
+  payload: string,
+  type: NotificationPayload
+}
+
+export type DBNotification = {
+  id: string,
+  actors: Array<NotificationPayload>,
+  context: NotificationPayload,
+  createdAt: Date,
+  entities: Array<NotificationPayload>,
+  event: NotificationEventType,
+  modifiedAt: Date
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,
