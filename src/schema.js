@@ -19,6 +19,7 @@ const Channel = require('./types/Channel')
 const Thread = require('./types/Thread')
 const Message = require('./types/Message')
 const DirectMessageThread = require('./types/DirectMessageThread')
+const Reaction = require('./types/Reaction')
 
 // Queries
 const userQueries = require('./queries/user')
@@ -27,6 +28,7 @@ const channelQueries = require('./queries/channel')
 const threadQueries = require('./queries/thread')
 const messageQueries = require('./queries/message')
 const directMessageThreadQueries = require('./queries/directMessageThread')
+const reactionQueries = require('./queries/reaction')
 
 // Mutations
 const userMutations = require('./mutations/user')
@@ -61,6 +63,7 @@ const resolvers = merge(
   threadQueries,
   messageQueries,
   directMessageThreadQueries,
+  reactionQueries,
   // Mutations
   userMutations
 )
@@ -78,7 +81,8 @@ const schema = makeExecutableSchema({
     Channel,
     Thread,
     Message,
-    DirectMessageThread
+    DirectMessageThread,
+    Reaction
   ],
   resolvers
 })

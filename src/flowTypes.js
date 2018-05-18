@@ -130,6 +130,15 @@ export type DBDirectMessageThread = {
   threadLastActive: Date
 }
 
+type ReactionType = 'like'
+export type DBReaction = {
+  id: string,
+  messageId: string,
+  timestamp: Date,
+  type: ReactionType,
+  userId: string
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,

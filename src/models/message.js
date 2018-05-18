@@ -12,3 +12,16 @@ export const getManyMessages = (messageIds: string[]): Promise<Message[]> => {
       return messages.filter(message => message && !message.deletedAt)
     })
 }
+
+export const getMessage = (messageId: string): Promise<Message> => {
+  return db
+    .table('messages')
+    .get(messageId)
+    .run()
+    .then(message => {
+      if (!message || message.deletedAt) {
+        return null
+      }
+      return message
+    })
+}
