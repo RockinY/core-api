@@ -11,9 +11,22 @@ const Community = `
     coverPhoto: String
     reputation: Int
   }
+
+  input CreateCommunityInput {
+    name: String!
+    slug: LowercaseString!
+    description: String!
+    website: String
+    file: Upload
+    coverFile: Upload
+  }
   
   extend type Query {
     community(id: ID, slug: LowercaseString): Community
+  }
+
+  extend type Mutation {
+    createCommunity(input: CreateCommunityInput!): Community
   }
 `
 

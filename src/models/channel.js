@@ -49,3 +49,60 @@ export const getChannelById = async (id: string) => {
 export const getChannels = (channelIds: Array<string>): Promise<Array<DBChannel>> => {
   return channelsByIdsQuery(...channelIds).run()
 }
+
+export type CreateChannelInput = {
+  input: {
+    communityId: string,
+    name: string,
+    description: string,
+    slug: string,
+    isPrivate: boolean,
+    isDefault: boolean
+  }
+}
+
+const createChannel = ({ input }: CreateChannelInput, userId: string): Promise<DBChannel> => {
+  const { communityId, name, slug, description, isPrivate, isDefault } = input
+
+  return db
+    .table('channels')
+    .insert(
+      {
+        communityId,
+        createdAt: new Date(),
+        name,
+        description,
+        slug,
+        isPrivate,
+        isDefault: isDefault === true
+      },
+      { returnChanges: true }
+    )
+    .run()
+    .then(result => result.changes[0].new_val)
+    .then(channel => {
+      // TODO: add track queue
+
+      if (!channel.isPrivate) {
+        // TODO: send channel notification
+      }
+
+      return channel
+    })
+}
+
+export const createGeneralChannel = (communityId: string, userId: string): Promise<DBChannel> => {
+  return createChannel(
+    {
+      input: {
+        name: 'General',
+        slug: 'general',
+        description: 'General Chatter',
+        communityId,
+        isPrivate: false,
+        isDefault: true
+      }
+    },
+    userId
+  )
+}

@@ -1,6 +1,6 @@
 // @flow
 import db from '../db'
-import type { DBUsersChannels } from '../flowTypes'
+import type { DBUsersChannels, DBChannel } from '../flowTypes'
 
 const DEFAULT_USER_CHANNEL_PERMISSIONS = {
   isOwner: false,
@@ -43,7 +43,34 @@ const getUsersPermissionsInChannels = (
     })
 }
 
+const createOwnerInChannel = (channelId: string, userId: string): Promise<DBChannel> => {
+  // TODO: add track queue
+  return db
+    .table('usersChannels')
+    .insert(
+      {
+        channelId,
+        userId,
+        createdAt: new Date(),
+        isOwner: true,
+        isMember: true,
+        isModerator: false,
+        isBlocked: false,
+        isPending: false,
+        receiveNotifications: true
+      },
+      { returnChanges: true }
+    )
+    .run()
+    .then(result => {
+      const join = result.changes[0].new_val
+      return db.table('channels').get(join.channelId).run()
+    })
+}
+
 module.exports = {
+  // Modifies
+  createOwnerInChannel,
   // GET
   getUsersPermissionsInChannels,
   DEFAULT_USER_CHANNEL_PERMISSIONS
