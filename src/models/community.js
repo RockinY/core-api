@@ -2,6 +2,7 @@
 import db from '../db.js'
 import type { DBCommunity, DBUser } from '../flowTypes'
 import { getRandomDefaultPhoto } from '../utils/fakes'
+import { uploadImage } from '../utils/oss'
 
 export const getCommunities = (
   communityIds: Array<string>
@@ -87,6 +88,114 @@ export const createCommunity = ({ input }: CreateCommunityInput, user: DBUser): 
           })
       }
 
-      return community
+      if (file || coverFile) {
+        if (file && !coverFile) {
+          const { coverPhoto } = getRandomDefaultPhoto()
+          return uploadImage(file, 'community', community.id)
+            .then(profilePhoto => {
+              return db
+                .table('communities')
+                .get(community.id)
+                .update(
+                  {
+                    ...community,
+                    profilePhoto,
+                    coverPhoto
+                  },
+                  { returnChanges: 'always' }
+                )
+                .run()
+                .then(result => {
+                  if (result.replaced === 1) {
+                    return result.changes[0].new_val
+                  }
+
+                  if (result.unchanged === 1) {
+                    return result.changes[0].old_val
+                  }
+                })
+            })
+            .catch(err => {
+              console.error(err)
+            })
+        } else if (!file && coverFile) {
+          const { profilePhoto } = getRandomDefaultPhoto()
+          return uploadImage(coverFile, 'communities', community.id)
+            .then(coverPhoto => {
+              return db
+                .table('communities')
+                .get(community.id)
+                .update(
+                  {
+                    ...community,
+                    coverPhoto,
+                    profilePhoto
+                  },
+                  { returnChanges: 'always' }
+                )
+                .run()
+                .then(result => {
+                  if (result.replaced === 1) {
+                    return result.changes[0].new_val
+                  }
+
+                  if (result.unchanged === 1) {
+                    return result.changes[0].old_val
+                  }
+                })
+            })
+            .catch(err => {
+              console.error(err)
+            })
+        } else if (file && coverFile) {
+          const uploadFile = file => {
+            return uploadImage(file, 'communities', community.id).catch(err => {
+              console.error(err)
+            })
+          }
+
+          const uploadCoverFile = coverFile => {
+            return uploadImage(coverFile, 'communities', community.id).catch(
+              err => {
+                console.error(err)
+              }
+            )
+          }
+
+          return Promise.all([
+            uploadFile(file),
+            uploadCoverFile(coverFile)
+          ]).then(([profilePhoto, coverPhoto]) => {
+            return (
+              db
+                .table('communities')
+                .get(community.id)
+                .update(
+                  {
+                    ...community,
+                    coverPhoto,
+                    profilePhoto
+                  },
+                  { returnChanges: 'always' }
+                )
+                .run()
+                // return the resulting community with the profilePhoto set
+                .then(result => {
+                  // if an update happened
+                  if (result.replaced === 1) {
+                    return result.changes[0].new_val
+                  }
+
+                  // an update was triggered from the client, but no data was changed
+                  if (result.unchanged === 1) {
+                    return result.changes[0].old_val
+                  }
+
+                  return null
+                })
+            )
+          })
+        }
+      }
     })
 }
