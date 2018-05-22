@@ -35,6 +35,7 @@ const notificationQueries = require('./queries/notification')
 // Mutations
 const userMutations = require('./mutations/user')
 const communityMutations = require('./mutations/community')
+const channelMutations = require('./mutations/channel')
 
 const Root = `
   type Query {
@@ -70,7 +71,8 @@ const resolvers = merge(
   notificationQueries,
   // Mutations
   userMutations,
-  communityMutations
+  communityMutations,
+  channelMutations
 )
 
 if (process.env.NODE_ENV === 'development' && debug.enabled) {

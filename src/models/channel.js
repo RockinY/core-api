@@ -61,7 +61,7 @@ export type CreateChannelInput = {
   }
 }
 
-const createChannel = ({ input }: CreateChannelInput, userId: string): Promise<DBChannel> => {
+export const createChannel = ({ input }: CreateChannelInput, userId: string): Promise<DBChannel> => {
   const { communityId, name, slug, description, isPrivate, isDefault } = input
 
   return db

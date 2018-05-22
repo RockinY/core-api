@@ -15,6 +15,19 @@ const Channel = `
   extend type Query {
     channel(id: ID, channelSlug: LowercaseString, communitySlug: LowercaseString): Channel @cost(complexity: 1)
   }
+
+  input CreateChannelInput {
+    name: String!
+    slug: LowercaseString!
+    description: String
+    communityId: ID!
+    isPrivate: Boolean
+    isDefault: Boolean
+  }
+
+  extend type Mutation {
+    createChannel(input: CreateChannelInput!): Channel
+  }
 `
 
 module.exports = Channel

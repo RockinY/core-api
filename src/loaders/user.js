@@ -5,6 +5,9 @@ import {
   getUsersByUsername
 } from '../models/user'
 import {
+  getUsersPermissionsInCommunities
+} from '../models/usersCommunities'
+import {
   getUsersPermissionsInChannels
 } from '../models/usersChannels'
 
@@ -21,5 +24,11 @@ export const __createUserByUsernameLoader = createLoader(
 export const __createUserPermissionsInChannelLoader = createLoader(
   usersChannels => getUsersPermissionsInChannels(usersChannels),
   input => `${input.userId}|${input.channelId}`,
+  key => (Array.isArray(key) ? `${key[0]}|${key[1]}` : key)
+)
+
+export const __createUserPermissionsInCommunityLoader = createLoader(
+  usersCommunities => getUsersPermissionsInCommunities(usersCommunities),
+  input => `${input.userId}|${input.communityId}`,
   key => (Array.isArray(key) ? `${key[0]}|${key[1]}` : key)
 )

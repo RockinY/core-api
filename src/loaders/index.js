@@ -3,7 +3,8 @@ import type { DataLoaderOptions } from '../flowtypes'
 import {
   __createUserLoader,
   __createUserByUsernameLoader,
-  __createUserPermissionsInChannelLoader
+  __createUserPermissionsInChannelLoader,
+  __createUserPermissionsInCommunityLoader
 } from './user'
 import {
   __createCommunityLoader,
@@ -28,6 +29,7 @@ import {
 
 const createLoaders = (options?: DataLoaderOptions) => ({
   user: __createUserLoader(options),
+  userPermissionsInCommunity: __createUserPermissionsInCommunityLoader(options),
   userPermissionsInChannel: __createUserPermissionsInChannelLoader(options),
   userByUsername: __createUserByUsernameLoader(options),
   community: __createCommunityLoader(options),
