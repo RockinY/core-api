@@ -79,7 +79,7 @@ export type DBThread = {
   communityId: string,
   content: {
     body?: any,
-    tittle: string
+    title: string
   },
   createdAt: Date,
   creatorId: string,
@@ -167,6 +167,16 @@ export type DBNotification = {
   entities: Array<NotificationPayload>,
   event: NotificationEventType,
   modifiedAt: Date
+}
+
+export type DBUsersThreads = {
+  id: string,
+  createdAt: Date,
+  isParticipant: boolean,
+  receiveNotifications: boolean,
+  threadId: string,
+  userId: string,
+  lastSeen?: Date | number
 }
 
 /* ----------- Loader ----------- */

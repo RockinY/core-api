@@ -39,6 +39,29 @@ const Thread = `
   extend type Query {
     thread(id: ID!): Thread
   }
+
+  input AttachmentInput {
+    attachmentType: String
+    data: String
+  }
+
+  input ThreadContentInput {
+    title: String
+    body: String
+  }
+
+  input ThreadInput {
+    channelId: ID!
+    communityId: ID!
+    type: ThreadType
+    content: ThreadContentInput!
+    attachments: [AttachmentInput]
+    filesToUpload: [Upload]
+  }
+
+  extend type Mutation {
+    publishThread(thread: ThreadInput!): Thread
+  }
 `
 
 module.exports = Thread
