@@ -194,6 +194,20 @@ export type DBUsersThreads = {
   lastSeen?: Date | number
 }
 
+export type DBChannelSettings = {
+  id: string,
+  channelId: string,
+  joinSettings?: {
+    tokenJoinEnabled: boolean,
+    token: string,
+  },
+  slackSettings?: {
+    botLinks: {
+      threadCreated: ?string,
+    },
+  }
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,

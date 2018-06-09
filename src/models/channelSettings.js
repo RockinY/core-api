@@ -1,10 +1,8 @@
 // @flow
-const { db } = require('../db')
+import db from '../db'
 import type { DBChannelSettings, DBChannel } from '../flowTypes'
 import { getChannelById } from './channel'
 import shortid from 'shortid'
-import { events } from 'shared/analytics'
-import { trackQueue } from 'shared/bull/queues'
 
 const defaultSettings = {
   joinSettings: {
@@ -78,12 +76,6 @@ export const enableChannelTokenJoin = (channelId: string, userId: string) => {
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.CHANNEL_JOIN_TOKEN_ENABLED,
-        context: { channelId }
-      })
-
       return await getChannelById(channelId)
     })
 }
@@ -100,12 +92,6 @@ export const disableChannelTokenJoin = (channelId: string, userId: string) => {
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.CHANNEL_JOIN_TOKEN_DISABLED,
-        context: { channelId }
-      })
-
       return await getChannelById(channelId)
     })
 }
@@ -121,12 +107,6 @@ export const resetChannelJoinToken = (channelId: string, userId: string) => {
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.CHANNEL_JOIN_TOKEN_RESET,
-        context: { channelId }
-      })
-
       return await getChannelById(channelId)
     })
 }
@@ -171,12 +151,6 @@ export const updateChannelSlackBotLinks = async ({ channelId, slackChannelId, ev
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.CHANNEL_SLACK_BOT_LINK_UPDATED,
-        context: { channelId }
-      })
-
       return await getChannelById(channelId)
     })
 }
