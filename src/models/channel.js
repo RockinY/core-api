@@ -1,6 +1,5 @@
 // @flow
 import db from '../db'
-import { sendChannelNotificationQueue } from '../utils/bull/queues'
 import type { DBChannel } from '../flowTypes'
 
 const channelsByCommunitiesQuery = (...communityIds: string[]) => {
@@ -246,26 +245,11 @@ const editChannel = async ({ input }: EditChannelInput, userId: string): Promise
     .then(result => {
       // if an update happened
       if (result.replaced === 1) {
-        trackQueue.add({
-          userId,
-          event: events.CHANNEL_EDITED,
-          context: { channelId: channelId }
-        })
-
         return result.changes[0].new_val
       }
 
       // an update was triggered from the client, but no data was changed
       if (result.unchanged === 1) {
-        trackQueue.add({
-          userId,
-          event: events.CHANNEL_EDITED_FAILED,
-          context: { channelId: channelId },
-          properties: {
-            reason: 'no changes'
-          }
-        })
-
         return result.changes[0].old_val
       }
 
@@ -289,13 +273,6 @@ const deleteChannel = (channelId: string, userId: string): Promise<Boolean> => {
       }
     )
     .run()
-    .then(() => {
-      trackQueue.add({
-        userId,
-        event: events.CHANNEL_DELETED,
-        context: { channelId }
-      })
-    })
 }
 
 const getChannelMemberCount = (channelId: string): number => {
@@ -313,12 +290,6 @@ const archiveChannel = (channelId: string, userId: string): Promise<DBChannel> =
     .update({ archivedAt: new Date() }, { returnChanges: 'always' })
     .run()
     .then(result => {
-      trackQueue.add({
-        userId: userId,
-        event: events.CHANNEL_ARCHIVED,
-        context: { channelId }
-      })
-
       return result.changes[0].new_val || result.changes[0].old_val
     })
 }
@@ -330,12 +301,6 @@ const restoreChannel = (channelId: string, userId: string): Promise<DBChannel> =
     .update({ archivedAt: db.literal() }, { returnChanges: 'always' })
     .run()
     .then(result => {
-      trackQueue.add({
-        userId,
-        event: events.CHANNEL_RESTORED,
-        context: { channelId }
-      })
-
       return result.changes[0].new_val || result.changes[0].old_val
     })
 }
@@ -349,14 +314,6 @@ const archiveAllPrivateChannels = async (communityId: string, userId: string) =>
 
   if (!channels || channels.length === 0) return
 
-  const trackingPromises = channels.map(channel => {
-    return trackQueue.add({
-      userId,
-      event: events.CHANNEL_ARCHIVED,
-      context: { channelId: channel.id }
-    })
-  })
-
   const archivePromise = db
     .table('channels')
     .getAll(communityId, { index: 'communityId' })
@@ -364,7 +321,7 @@ const archiveAllPrivateChannels = async (communityId: string, userId: string) =>
     .update({ archivedAt: new Date() })
     .run()
 
-  return await Promise.all([...trackingPromises, archivePromise])
+  return await Promise.all([archivePromise])
 }
 
 module.exports = {

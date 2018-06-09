@@ -12,7 +12,8 @@
     "db:migrate": "npm run rethinkdb:migrate -- up",
     "db:seed": "node src/seed/index.js",
     "db:reset": "yarn run db:drop && yarn run db:migrate && yarn run db:seed",
-    "rethinkdb:migrate": "rethinkdb-migrate -f ./src/migrations/config.js"
+    "rethinkdb:migrate": "rethinkdb-migrate -f ./src/migrations/config.js",
+    "fix": "standard --fix"
   },
   "repository": {
     "type": "git",
