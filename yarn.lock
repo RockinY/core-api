@@ -1710,6 +1710,10 @@ crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
 
+cryptr@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/cryptr/-/cryptr-3.0.0.tgz#4cdb1ac8b0b292c6ac1dcdf503bb27a05e4eba10"
+
 curry2@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/curry2/-/curry2-1.0.3.tgz#38191d55f1060bfea47ca08009385bb878f6612f"
