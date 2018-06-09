@@ -208,6 +208,29 @@ export type DBChannelSettings = {
   }
 }
 
+export type DBCommunitySettings = {
+  id: string,
+  communityId: string,
+  brandedLogin: ?{
+    customMessage: ?string,
+  },
+  slackSettings: ?{
+    connectedAt: ?string,
+    connectedBy: ?string,
+    invitesSentAt: ?string,
+    teamName: ?string,
+    teamId: ?string,
+    scope: ?string,
+    token: ?string,
+    invitesMemberCount: ?string,
+    invitesCustomMessage: ?string,
+  },
+  joinSettings: {
+    tokenJoinEnabled: boolean,
+    token: ?string,
+  }
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,

@@ -1,12 +1,10 @@
 // @flow
 import db from '../db.js'
-import type { DBCommunitySettings, DBCommunity } from 'shared/types'
+import type { DBCommunitySettings, DBCommunity } from '../flowTypes'
 import { getCommunityById } from './community'
 import shortid from 'shortid'
 import axios from 'axios'
-import { decryptString } from 'shared/encryption'
-import { trackQueue } from 'shared/bull/queues'
-import { events } from 'shared/analytics'
+import { decryptString } from '../utils/encryption'
 
 const defaultSettings = {
   brandedLogin: {
@@ -140,11 +138,6 @@ export const enableCommunityBrandedLogin = (communityId: string, userId: string)
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.COMMUNITY_BRANDED_LOGIN_ENABLED,
-        context: { communityId }
-      })
       return await getCommunityById(communityId)
     })
 }
@@ -161,11 +154,6 @@ export const disableCommunityBrandedLogin = (communityId: string, userId: string
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.COMMUNITY_BRANDED_LOGIN_DISABLED,
-        context: { communityId }
-      })
       return await getCommunityById(communityId)
     })
 }
@@ -182,11 +170,6 @@ export const updateCommunityBrandedLoginMessage = (communityId: string, message:
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.COMMUNITY_BRANDED_LOGIN_SETTINGS_SAVED,
-        context: { communityId }
-      })
       return await getCommunityById(communityId)
     })
 }
@@ -224,12 +207,6 @@ export const updateSlackSettingsAfterConnection = async (
           .run()
       })
       .then(async () => {
-        trackQueue.add({
-          userId,
-          event: events.COMMUNITY_SLACK_TEAM_CONNECTED,
-          context: { communityId }
-        })
-
         return await getCommunityById(communityId)
       })
   }
@@ -246,12 +223,6 @@ export const updateSlackSettingsAfterConnection = async (
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.COMMUNITY_SLACK_TEAM_CONNECTED,
-        context: { communityId }
-      })
-
       return await getCommunityById(communityId)
     })
 }
@@ -272,12 +243,6 @@ export const markInitialSlackInvitationsSent = async (
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.COMMUNITY_SLACK_TEAM_INVITES_SENT,
-        context: { communityId }
-      })
-
       return await getCommunityById(communityId)
     })
 }
@@ -363,15 +328,6 @@ const handleSlackChannelResponse = async (data: Object, communityId: string) => 
   ]
 
   if (data.error && errorsToTriggerRest.indexOf(data.error) >= 0) {
-    trackQueue.add({
-      userId: 'ADMIN',
-      event: events.COMMUNITY_SLACK_TEAM_RESET,
-      context: { communityId },
-      properties: {
-        error: data.error
-      }
-    })
-
     return resetSlackSettings(communityId)
   }
 
@@ -393,12 +349,6 @@ export const enableCommunityTokenJoin = (
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.COMMUNITY_JOIN_TOKEN_ENABLED,
-        context: { communityId }
-      })
-
       return await getCommunityById(communityId)
     })
 }
@@ -418,12 +368,6 @@ export const disableCommunityTokenJoin = (
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.COMMUNITY_JOIN_TOKEN_DISABLED,
-        context: { communityId }
-      })
-
       return await getCommunityById(communityId)
     })
 }
@@ -442,12 +386,6 @@ export const resetCommunityJoinToken = (
     })
     .run()
     .then(async () => {
-      trackQueue.add({
-        userId,
-        event: events.COMMUNITY_JOIN_TOKEN_RESET,
-        context: { communityId }
-      })
-
       return await getCommunityById(communityId)
     })
 }
