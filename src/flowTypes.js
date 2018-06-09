@@ -169,6 +169,21 @@ export type DBNotification = {
   modifiedAt: Date
 }
 
+export type DBUsersNotifications = {
+  id: string,
+  createdAt: Date,
+  entityAddedAt: Date,
+  isRead: boolean,
+  isSeen: boolean,
+  notificationId: string,
+  userId: string
+}
+
+export type DBNotificationsJoin = {
+  ...$Exact<DBUsersNotifications>,
+  ...$Exact<DBNotification>
+}
+
 export type DBUsersThreads = {
   id: string,
   createdAt: Date,

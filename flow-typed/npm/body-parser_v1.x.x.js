@@ -1,7 +1,7 @@
 // flow-typed signature: bac0ee66e0653772d037dc47b51a5e1f
 // flow-typed version: da30fe6876/body-parser_v1.x.x/flow_>=v0.25.x
 
-import type { Middleware, $Request, $Response } from "express";
+import type { Middleware, $Request, $Response } from 'express'
 
 declare type bodyParser$Options = {
   inflate?: boolean,
@@ -30,7 +30,7 @@ declare type bodyParser$OptionsUrlencoded = bodyParser$Options & {
   parameterLimit?: number
 };
 
-declare module "body-parser" {
+declare module 'body-parser' {
   declare type Options = bodyParser$Options;
   declare type OptionsText = bodyParser$OptionsText;
   declare type OptionsJson = bodyParser$OptionsJson;

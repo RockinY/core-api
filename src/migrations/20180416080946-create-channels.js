@@ -17,32 +17,32 @@ exports.up = function (r, connection) {
         throw err
       })
   ])
-  .then(() => {
-    return Promise.all([
+    .then(() => {
+      return Promise.all([
       // index channels by communityId
-      r
-        .table('channels')
-        .indexCreate('communityId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      // index channelSettings
-      r
-        .table('channelSettings')
-        .indexCreate('channelId')
-        .run(connection)
-        .catch(err => {
-          console.log()
-          throw err
-        })
-    ])
-  })
-  .catch(err => {
-    console.log(err)
-    throw err
-  })
+        r
+          .table('channels')
+          .indexCreate('communityId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        // index channelSettings
+        r
+          .table('channelSettings')
+          .indexCreate('channelId')
+          .run(connection)
+          .catch(err => {
+            console.log()
+            throw err
+          })
+      ])
+    })
+    .catch(err => {
+      console.log(err)
+      throw err
+    })
 }
 
 exports.down = function (r, connection) {
@@ -62,8 +62,8 @@ exports.down = function (r, connection) {
         throw err
       })
   ])
-  .catch(err => {
-    console.log(err)
-    throw err
-  })
+    .catch(err => {
+      console.log(err)
+      throw err
+    })
 }

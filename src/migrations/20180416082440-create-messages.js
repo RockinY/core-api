@@ -17,38 +17,38 @@ exports.up = function (r, connection) {
         throw err
       })
   ])
-  .then(() => {
-    return Promise.all([
-      r
-        .table('reactions')
-        .indexCreate('messageId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('messages')
-        .indexCreate('threadId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('messages')
-        .indexCreate('threadIdAndTimestamp', [r.row('threadId'), r.row('timestamp')])
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        })
-    ])
-  })
-  .catch(err => {
-    console.log(err)
-    throw err
-  })
+    .then(() => {
+      return Promise.all([
+        r
+          .table('reactions')
+          .indexCreate('messageId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('messages')
+          .indexCreate('threadId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('messages')
+          .indexCreate('threadIdAndTimestamp', [r.row('threadId'), r.row('timestamp')])
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          })
+      ])
+    })
+    .catch(err => {
+      console.log(err)
+      throw err
+    })
 }
 
 exports.down = function (r, connection) {
@@ -68,8 +68,8 @@ exports.down = function (r, connection) {
         throw err
       })
   ])
-  .catch(err => {
-    console.log(err)
-    throw err
-  })
+    .catch(err => {
+      console.log(err)
+      throw err
+    })
 }

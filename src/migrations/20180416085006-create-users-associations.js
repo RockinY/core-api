@@ -38,131 +38,131 @@ exports.up = function (r, connection) {
         throw err
       })
   ])
-  .then(() => {
-    return Promise.all([
+    .then(() => {
+      return Promise.all([
       // index on usersNotifications
-      r
-        .table('usersNotifications')
-        .indexCreate('userId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersNotifications')
-        .indexCreate('notificationId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersNotifications')
-        .indexCreate('userIdAndEntityAddedAt', [r.row('userId'), r.row('entityAddedAt')])
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      // index on usersCommunities join table
-      r
-        .table('usersCommunities')
-        .indexCreate('userId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersCommunities')
-        .indexCreate('communityId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersCommunities')
-        .indexCreate('userIdAndCommunityId', [r.row('userId'), r.row('communityId')])
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      // indexes on usersChannels join table
-      r
-        .table('usersChannels')
-        .indexCreate('userId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersChannels')
-        .indexCreate('channelId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersChannels')
-        .indexCreate('userIdAndChannelId', [r.row('userId'), r.row('channelId')])
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      // indexes on usersThreads
-      r
-        .table('usersThreads')
-        .indexCreate('threadId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersThreads')
-        .indexCreate('userId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersThreads')
-        .indexCreate('userIdAndThreadId', [r.row('userId'), r.row('threadId')])
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      // indexes on usersDirectMessageThreads join table
-      r
-        .table('usersDirectMessageThreads')
-        .indexCreate('userId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        }),
-      r
-        .table('usersDirectMessageThreads')
-        .indexCreate('threadId')
-        .run(connection)
-        .catch(err => {
-          console.log(err)
-          throw err
-        })
-    ])
-  })
-  .catch(err => {
-    console.log(err)
-    throw err
-  })
+        r
+          .table('usersNotifications')
+          .indexCreate('userId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersNotifications')
+          .indexCreate('notificationId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersNotifications')
+          .indexCreate('userIdAndEntityAddedAt', [r.row('userId'), r.row('entityAddedAt')])
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        // index on usersCommunities join table
+        r
+          .table('usersCommunities')
+          .indexCreate('userId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersCommunities')
+          .indexCreate('communityId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersCommunities')
+          .indexCreate('userIdAndCommunityId', [r.row('userId'), r.row('communityId')])
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        // indexes on usersChannels join table
+        r
+          .table('usersChannels')
+          .indexCreate('userId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersChannels')
+          .indexCreate('channelId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersChannels')
+          .indexCreate('userIdAndChannelId', [r.row('userId'), r.row('channelId')])
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        // indexes on usersThreads
+        r
+          .table('usersThreads')
+          .indexCreate('threadId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersThreads')
+          .indexCreate('userId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersThreads')
+          .indexCreate('userIdAndThreadId', [r.row('userId'), r.row('threadId')])
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        // indexes on usersDirectMessageThreads join table
+        r
+          .table('usersDirectMessageThreads')
+          .indexCreate('userId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          }),
+        r
+          .table('usersDirectMessageThreads')
+          .indexCreate('threadId')
+          .run(connection)
+          .catch(err => {
+            console.log(err)
+            throw err
+          })
+      ])
+    })
+    .catch(err => {
+      console.log(err)
+      throw err
+    })
 }
 
 exports.down = function (r, connection) {
@@ -203,8 +203,8 @@ exports.down = function (r, connection) {
         throw err
       })
   ])
-  .catch(err => {
-    console.log(err)
-    throw err
-  })
+    .catch(err => {
+      console.log(err)
+      throw err
+    })
 }

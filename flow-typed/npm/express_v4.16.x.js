@@ -1,8 +1,8 @@
 // flow-typed signature: 106bbf49ff0c0b351c95d483d617ffba
 // flow-typed version: 7fe23c8e85/express_v4.16.x/flow_>=v0.32.x
 
-import type { Server } from "http";
-import type { Socket } from "net";
+import type { Server } from 'http'
+import type { Socket } from 'net'
 
 declare type express$RouterOptions = {
   caseSensitive?: boolean,
@@ -280,7 +280,7 @@ declare type express$UrlEncodedOptions = {
   ) => mixed,
 }
 
-declare module "express" {
+declare module 'express' {
   declare export type RouterOptions = express$RouterOptions;
   declare export type CookieOptions = express$CookieOptions;
   declare export type Middleware = express$Middleware;

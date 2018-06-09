@@ -1,8 +1,7 @@
 // flow-typed signature: 245067da771c6cb1513de4638295bae8
 // flow-typed version: 10d0995436/jsonwebtoken_v8.2.x/flow_>=v0.56.x
 
-declare module "jsonwebtoken" {
-
+declare module 'jsonwebtoken' {
   declare class JsonWebTokenError extends Error {
     name: string;
     message: string;

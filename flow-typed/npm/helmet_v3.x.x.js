@@ -8,7 +8,7 @@ declare type helmet$XssFilterOptions = {
 }
 
 declare type helmet$ReferrerPolicyOptions = {
-  policy?:   'no-referrer' | 'no-referrer-when-downgrade' | 'same-origin' | 'origin' | 'strict-origin' | 'origin-when-cross-origin' | 'strict-origin-when-cross-origin' | 'unsafe-url' | ''
+  policy?: 'no-referrer' | 'no-referrer-when-downgrade' | 'same-origin' | 'origin' | 'strict-origin' | 'origin-when-cross-origin' | 'strict-origin-when-cross-origin' | 'unsafe-url' | ''
 }
 
 declare type helmet$HstsOptions = {
