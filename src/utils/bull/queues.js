@@ -9,7 +9,7 @@ import {
 
 exports.QUEUE_NAMES = {
   // notifications
-  sendChannelNotificationQueue: CHANNEL_NOTIFICATION,
+  sendChannelNotificationQueue: CHANNEL_NOTIFICATION
 }
 
 EventEmitter.defaultMaxListeners = Object.keys(exports.QUEUE_NAMES).length + EventEmitter.defaultMaxListeners
