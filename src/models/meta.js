@@ -14,7 +14,7 @@ const saveUserCommunityPermissions = (
     .filter({ communityId })
     .update(
       {
-        ...permissions,
+        ...permissions
       },
       { returnChanges: true }
     )

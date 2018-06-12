@@ -119,7 +119,7 @@ const checkForExistingDMThread = async (participants: Array<string>): Promise<?s
 
   // given a list of threads where both users are active (includes all groups)
   // return only threads where these exact participants are used
-  return await db
+  return db
     .table('usersDirectMessageThreads')
     .getAll(...idsToCheck, { index: 'threadId' })
     .group('threadId')

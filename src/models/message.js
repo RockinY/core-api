@@ -119,8 +119,7 @@ export const storeMessage = (message: Message, userId: string): Promise<Message>
           body:
             message.messageType === 'media'
               ? message.content.body
-              : // For text messages linkify URLs and strip HTML tags
-              message.content.body
+              : message.content.body
         }
       }),
       { returnChanges: true }
