@@ -44,7 +44,7 @@ export default requireAuth(
 
     const newChannel = await createChannel(args, user.id)
 
-    return await createOwnerInChannel(newChannel.id, user.id).then(
+    return createOwnerInChannel(newChannel.id, user.id).then(
       () => newChannel
     )
   }

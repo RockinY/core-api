@@ -80,7 +80,7 @@ type GetChannelByIdArgs = {
 };
 
 type GetChannelBySlugArgs = {
-  slug: string,
+  channelSlug: string,
   communitySlug: string,
 };
 
@@ -321,7 +321,7 @@ const archiveAllPrivateChannels = async (communityId: string, userId: string) =>
     .update({ archivedAt: new Date() })
     .run()
 
-  return await Promise.all([archivePromise])
+  return Promise.all([archivePromise])
 }
 
 module.exports = {

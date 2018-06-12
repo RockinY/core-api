@@ -16,7 +16,8 @@ export type DBUser = {
   lastSeen?: ?Date,
   description?: ?string,
   website?: ?string,
-  modifiedAt: ?Date
+  modifiedAt: ?Date,
+  bannedAt: ?Date
 }
 
 export type DBCommunity = {

@@ -56,7 +56,12 @@ app.use(passport.session())
 app.use(threadParamRedirect)
 // 12. Catch Error
 app.use(
-  (err, req, res, next) => {
+  (
+    err: Error,
+    req: express$Request,
+    res: express$Response,
+    next: express$NextFunction
+  ) => {
     if (err) {
       console.error(err)
       res
@@ -77,7 +82,10 @@ app.use('/auth', authRoutes)
 // GraphQL
 app.use('/api', apiRouter)
 // Testing
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (
+  req: express$Request,
+  res: express$Response
+) => res.send('Hello World!'))
 
 /* ----------- Create server ----------- */
 const server = createServer(app)

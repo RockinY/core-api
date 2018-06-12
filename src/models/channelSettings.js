@@ -24,7 +24,7 @@ export const getOrCreateChannelSettings = async (channelId: string): Promise<DBC
     .run()
 
   if (!settings || settings.length === 0) {
-    return await db
+    return db
       .table('channelSettings')
       .insert(
         {
@@ -76,7 +76,7 @@ export const enableChannelTokenJoin = (channelId: string, userId: string) => {
     })
     .run()
     .then(async () => {
-      return await getChannelById(channelId)
+      return getChannelById(channelId)
     })
 }
 
@@ -92,7 +92,7 @@ export const disableChannelTokenJoin = (channelId: string, userId: string) => {
     })
     .run()
     .then(async () => {
-      return await getChannelById(channelId)
+      return getChannelById(channelId)
     })
 }
 
@@ -107,7 +107,7 @@ export const resetChannelJoinToken = (channelId: string, userId: string) => {
     })
     .run()
     .then(async () => {
-      return await getChannelById(channelId)
+      return getChannelById(channelId)
     })
 }
 
@@ -151,6 +151,6 @@ export const updateChannelSlackBotLinks = async ({ channelId, slackChannelId, ev
     })
     .run()
     .then(async () => {
-      return await getChannelById(channelId)
+      return getChannelById(channelId)
     })
 }

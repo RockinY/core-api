@@ -9,11 +9,11 @@ export default async (
   args: GetChannelArgs,
   { loaders }: GraphQLContext
 ) => {
-  if (args.id) {
-    return await loaders.channel.load(args.id)
+  if (typeof args.id === 'string') {
+    return loaders.channel.load(args.id)
   }
-  if (args.channelSlug && args.communitySlug) {
-    return await getChannelBySlug(args.channelSlug, args.communitySlug)
+  if (typeof args.channelSlug === 'string' && typeof args.communitySlug === 'string') {
+    return getChannelBySlug(args.channelSlug, args.communitySlug)
   }
   return new UserError("We couldn't find this channel")
 }

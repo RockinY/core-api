@@ -16,6 +16,11 @@ export const getCookies = ({ userId }: { userId: string }) => {
 }
 
 export const signCookie = (cookie: string) => {
+  if (!process.env.API_TOKEN_SECRET) {
+    throw new Error(
+      'Looks like youre missing an api token secret cookie signing!'
+    )
+  }
   return jwt.sign({ cookie }, process.env.API_TOKEN_SECRET, {
     expiresIn: '25y'
   })

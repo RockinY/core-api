@@ -1,7 +1,6 @@
 // @flow
 import { IsUserError } from './userError'
 import type { GraphQLError } from 'graphql'
-import type { express$Request } from 'express'
 
 const debug = require('debug')('api:utils:error-formatter')
 const queryRe = /\s*(query|mutation)[^{]*/
@@ -32,7 +31,7 @@ const errorPath = error => {
 const logGraphQLError = (req, error) => {
   debug('---GraphQL Error---')
   debug(error)
-  if (req) {
+  if (req && req.body) {
     debug(collectQueries(req.body.query))
     debug('variables', JSON.stringify(req.body.variables || {}))
   }

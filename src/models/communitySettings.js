@@ -36,7 +36,7 @@ export const getOrCreateCommunitySettings = async (communityId: string): Promise
     .run()
 
   if (!settings || settings.length === 0) {
-    return await db
+    return db
       .table('communitySettings')
       .insert(
         {
@@ -123,7 +123,7 @@ export const createCommunitySettings = (communityId: string): Promise<DBCommunit
       ...defaultSettings
     })
     .run()
-    .then(async () => await getCommunityById(communityId))
+    .then(async () => getCommunityById(communityId))
 }
 
 // prettier-ignore
@@ -138,7 +138,7 @@ export const enableCommunityBrandedLogin = (communityId: string, userId: string)
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -154,7 +154,7 @@ export const disableCommunityBrandedLogin = (communityId: string, userId: string
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -170,7 +170,7 @@ export const updateCommunityBrandedLoginMessage = (communityId: string, message:
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -192,7 +192,7 @@ export const updateSlackSettingsAfterConnection = async (
     .run()
 
   if (!settings || settings.length === 0) {
-    return await createCommunitySettings(communityId)
+    return createCommunitySettings(communityId)
       .then(() => {
         return db
           .table('communitySettings')
@@ -207,11 +207,11 @@ export const updateSlackSettingsAfterConnection = async (
           .run()
       })
       .then(async () => {
-        return await getCommunityById(communityId)
+        return getCommunityById(communityId)
       })
   }
 
-  return await db
+  return db
     .table('communitySettings')
     .getAll(communityId, { index: 'communityId' })
     .update({
@@ -223,7 +223,7 @@ export const updateSlackSettingsAfterConnection = async (
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -243,7 +243,7 @@ export const markInitialSlackInvitationsSent = async (
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -349,7 +349,7 @@ export const enableCommunityTokenJoin = (
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -368,7 +368,7 @@ export const disableCommunityTokenJoin = (
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -386,6 +386,6 @@ export const resetCommunityJoinToken = (
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }

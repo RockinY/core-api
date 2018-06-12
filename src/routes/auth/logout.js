@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import { destroySession } from '../../models/session'
 
 const IS_PROD = process.env.NODE_ENV === 'production'
 const HOME = IS_PROD ? '/' : 'http://localhost:3000/'

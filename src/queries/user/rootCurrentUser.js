@@ -1,7 +1,7 @@
 // @flow
-import type { GraphQLContext } from '../../flowTypes'
+import type { DBUser } from '../../flowTypes'
 
-export default (_: any, __: any, { user }): GraphQLContext => {
+export default (_: any, __: any, { user }: { user: DBUser }) => {
   if (user && !user.bannedAt) {
     return user
   }

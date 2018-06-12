@@ -101,14 +101,14 @@ export const getVisibleCommunitiesByUser = async (evaluatingUserId: string, curr
   const allVisibleCommunityIds = [...publicCommunityIds, ...overlappingMemberships]
   const distinctCommunityIds = allVisibleCommunityIds.filter((x, i, a) => a.indexOf(x) === i)
 
-  return await db
+  return db
     .table('communities')
     .getAll(...distinctCommunityIds)
     .run()
 }
 
 export const getPublicCommunitiesByUser = async (userId: string) => {
-  return await db
+  return db
     .table('usersCommunities')
     // get all the user's communities
     .getAll(userId, { index: 'userId' })
@@ -598,7 +598,7 @@ export const setCommunityPendingAdministratorEmail = (communityId: string, email
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -612,7 +612,7 @@ export const updateCommunityAdministratorEmail = (communityId: string, email: st
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 
@@ -653,7 +653,7 @@ export const disablePaidFeatureFlags = (communityId: string, userId: string): Pr
     })
     .run()
     .then(async () => {
-      return await getCommunityById(communityId)
+      return getCommunityById(communityId)
     })
 }
 

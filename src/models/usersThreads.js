@@ -1,5 +1,4 @@
 // @flow
-import type { DBUsersThreads } from '../flowTypes'
 import db from '../db'
 
 export const createParticipantInThread = (
