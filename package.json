@@ -96,7 +96,8 @@
     "ignore": [
       "/flow-typed",
       "/rethinkdb_data",
-      "/build"
+      "/build",
+      "createGraphqlErrorFormatter.js"
     ]
   }
 }

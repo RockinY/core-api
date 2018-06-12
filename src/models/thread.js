@@ -97,3 +97,11 @@ export const editThread = (
       return result.changes[0].old_val
     })
 }
+
+export const setThreadLastActive = (threadId: string, value: Date) => {
+  return db
+    .table('threads')
+    .get(threadId)
+    .update({ lastActive: value })
+    .run()
+}
