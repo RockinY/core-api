@@ -19,6 +19,7 @@ const sumArr = (input: Array<Object>, prop: string) => {
 const createWorker = (queueMap: QueueMap, queueOptions?: Object = {}) => {
   // We add one error listener per queue, so we have to set the max listeners
   // to whatever it is set to + the amount of queues passed in
+  // $FlowFixMe
   EventEmitter.defaultMaxListeners = Object.keys(queueMap).length + EventEmitter.defaultMaxListeners
   // Start processing the queues
   const queues = Object.keys(queueMap).map(name => {

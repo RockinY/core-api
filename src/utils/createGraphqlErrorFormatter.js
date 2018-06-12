@@ -32,7 +32,9 @@ const logGraphQLError = (req, error) => {
   debug('---GraphQL Error---')
   debug(error)
   if (req && req.body) {
+    // $FlowFixMe
     debug(collectQueries(req.body.query))
+    // $FlowFixMe
     debug('variables', JSON.stringify(req.body.variables || {}))
   }
   const path = errorPath(error)
@@ -43,7 +45,9 @@ const logGraphQLError = (req, error) => {
 const createGraphqlErrorFormatter = (req?: express$Request) => (error: GraphQLError) => {
   logGraphQLError(req, error)
   const isUserError = error.originalError
+    // $FlowFixMe
     ? error.originalError[IsUserError]
+    // $FlowFixMe
     : error[IsUserError]
   return {
     message: isUserError ? error.message : `Internal server error`,
