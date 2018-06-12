@@ -1,5 +1,5 @@
 import processChangefeed from 'rethinkdb-changefeed-reconnect'
-import Raven from 'shared/raven'
+import Raven from './raven'
 import type { Cursor } from 'rethinkdbdash'
 
 const debug = require('debug')('shared:changefeed-utils')
