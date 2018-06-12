@@ -11,7 +11,7 @@ export type ReactionInput = {
 
 // prettier-ignore
 export const getReactions = (messageIds: Array<string>): Promise<Array<DBReaction>> => {
-  const distinctMessageIds = messageIds.filter((x, i, a) => a.indexOf(x) == i)
+  const distinctMessageIds = messageIds.filter((x, i, a) => a.indexOf(x) === i)
   return db
     .table('reactions')
     .getAll(...distinctMessageIds, { index: 'messageId' })
