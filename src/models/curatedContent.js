@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import db from '../db.js'
 import type { DBCommunity } from '../flowTypes'
 import { getCommunitiesBySlug } from './community'
@@ -10,5 +10,5 @@ export const getCuratedCommunities = (type: string): Promise<Array<DBCommunity>>
     .filter({ type })
     .run()
     .then(results => (results && results.length > 0 ? results[0] : null))
-    .then(result => result && getCommunitiesBySlug(result.data));
-};
+    .then(result => result && getCommunitiesBySlug(result.data))
+}
