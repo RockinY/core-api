@@ -1,6 +1,10 @@
 // @flow
 import db from '../db'
 import type { DBThread, FileUpload } from '../flowTypes'
+import { NEW_DOCUMENTS, parseRange } from './utils'
+import { createChangefeed } from '../utils/changeFeed'
+import { deleteMessagesInThread } from './message'
+import { turnOffAllThreadNotifications } from './usersThreads'
 
 export const getThreads = (
   threadIds: Array<string>
