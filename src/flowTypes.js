@@ -232,6 +232,20 @@ export type DBCommunitySettings = {
   }
 }
 
+export type DBUsersCommunities = {
+  id: string,
+  communityId: string,
+  createdAt: Date,
+  isBlocked: boolean,
+  isMember: boolean,
+  isModerator: boolean,
+  isOwner: boolean,
+  isPending: boolean,
+  receiveNotifications: boolean,
+  reputation: number,
+  userId: string,
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,
