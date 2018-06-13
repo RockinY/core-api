@@ -190,12 +190,12 @@ export const getViewableThreadsByUser = async (
     ...publicChannelIds,
     ...publicCommunityIds
   ]
-  const distinctIds = allIds.filter((x, i, a) => a.indexOf(x) == i)
+  const distinctIds = allIds.filter((x, i, a) => a.indexOf(x) === i)
   let validChannelIds = intersection(distinctIds, publishedChannelIds)
   let validCommunityIds = intersection(distinctIds, publishedCommunityIds)
 
   // takes ~70ms for a heavy load
-  return await db
+  return db
     .table('threads')
     .getAll(evalUser, { index: 'creatorId' })
     .filter(thread => db.not(thread.hasFields('deletedAt')))
@@ -287,11 +287,11 @@ export const getViewableParticipantThreadsByUser = async (
   const participantThreadIds = participantChannelIds.map(c => c.threadId)
   const distinctParticipantChannelIds = participantChannelIds
     .map(c => c.channelId)
-    .filter((x, i, a) => a.indexOf(x) == i)
+    .filter((x, i, a) => a.indexOf(x) === i)
 
   const distinctParticipantCommunityIds = participantCommunityIds
     .map(c => c.communityId)
-    .filter((x, i, a) => a.indexOf(x) == i)
+    .filter((x, i, a) => a.indexOf(x) === i)
 
   // get a list of all the channels that are public
   const publicChannelIds = await db
@@ -314,7 +314,7 @@ export const getViewableParticipantThreadsByUser = async (
     ...currentUsersCommunityIds,
     ...publicCommunityIds
   ]
-  const distinctIds = allIds.filter((x, i, a) => a.indexOf(x) == i)
+  const distinctIds = allIds.filter((x, i, a) => a.indexOf(x) === i)
   let validChannelIds = intersection(
     distinctIds,
     distinctParticipantChannelIds
@@ -449,7 +449,6 @@ export const deleteThread = (threadId: string, userId: string): Promise<Boolean>
       ])
     )
     .then(([result]) => {
-      const thread = result.changes[0].new_val
       return result.replaced >= 1
     })
 }
