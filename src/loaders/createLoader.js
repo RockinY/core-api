@@ -5,8 +5,7 @@ import type { Loader, DataLoaderOptions } from '../flowTypes'
 function indexeResults (results, indexField, cacheKeyFn) {
   var indexedResults = new Map()
   results.forEach(res => {
-    const key =
-      typeof indexField === 'function' ? indexField(res) : res[indexField]
+    const key = typeof indexField === 'function' ? indexField(res) : res[indexField]
     indexedResults.set(cacheKeyFn(key), res)
   })
   return indexedResults
@@ -21,6 +20,10 @@ function normalizeRethinkDbResults (keys, indexField, cacheKeyFn) {
   }
 }
 
+// Because of the following reasons, the results needs to be normalized
+// For rethinkdb batch function getAll()
+// 1. Order of results is not guaranteed
+// 2. Non-existent keys will not return an empty record
 const createLoader = (
   batchFn: Function,
   indexField: string | Function = 'id',
