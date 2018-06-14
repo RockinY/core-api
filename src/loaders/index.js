@@ -41,7 +41,7 @@ import {
 } from './notification'
 import {
   __createReactionLoader,
-  __createSingleReactionLoader,
+  __createSingleReactionLoader
 } from './reaction'
 
 const createLoaders = (options?: DataLoaderOptions) => ({
@@ -73,7 +73,7 @@ const createLoaders = (options?: DataLoaderOptions) => ({
   directMessageSnippet: __createDirectMessageSnippetLoader(options),
   message: __createMessageLoader(options),
   messageReaction: __createReactionLoader(options),
-  reaction: __createSingleReactionLoader(options),
+  reaction: __createSingleReactionLoader(options)
 })
 
 export default createLoaders

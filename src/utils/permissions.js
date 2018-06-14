@@ -3,7 +3,7 @@ import {
   COMMUNITY_SLUG_BLACKLIST,
   CHANNEL_SLUG_BLACKLIST
 } from './slugBlacklists'
-import type { GraphQLContext, DBCommunity } from '../flowTypes'
+import type { GraphQLContext, DBCommunity, DBChannel, DBUser } from '../flowTypes'
 import UserError from '../utils/userError'
 
 export const communitySlugIsBlacklisted = (slug: string): boolean => {
@@ -24,6 +24,12 @@ export const isAuthedResolver = (
   return resolver(obj, args, context, info)
 }
 
+const channelExists = async (channelId: string, loaders: any): Promise<?DBChannel> => {
+  const channel = await loaders.channel.load(channelId)
+  if (!channel || channel.deletedAt) return null
+  return channel
+}
+
 const communityExists = async (
   communityId: string,
   loaders: any
@@ -33,6 +39,59 @@ const communityExists = async (
     return null
   }
   return community
+}
+
+export const canAdministerChannel = async (userId: string, channelId: string, loaders: any) => {
+  if (!userId || !channelId) return false
+
+  const channel = await channelExists(channelId, loaders)
+  if (!channel) return false
+
+  const [communityPermissions, channelPermissions] = await Promise.all([
+    loaders.userPermissionsInCommunity.load([userId, channel.communityId]),
+    loaders.userPermissionsInChannel.load([userId, channelId])
+  ])
+
+  if (!communityPermissions) return false
+  if (communityPermissions.isOwner || communityPermissions.isModerator) { return true }
+  if (!channelPermissions) return false
+  if (channelPermissions.isOwner) return true
+
+  return false
+}
+
+export const canModerateChannel = async (userId: string, channelId: string, loaders: any) => {
+  if (!userId || !channelId) return false
+
+  const channel = await channelExists(channelId, loaders)
+  if (!channel) return false
+
+  const [communityPermissions, channelPermissions] = await Promise.all([
+    loaders.userPermissionsInCommunity.load([userId, channel.communityId]),
+    loaders.userPermissionsInChannel.load([userId, channelId])
+  ])
+
+  if (!communityPermissions) return false
+  if (communityPermissions.isOwner || communityPermissions.isModerator) { return true }
+  if (!channelPermissions) return false
+  if (channelPermissions.isOwner || channelPermissions.isModerator) return true
+
+  return false
+}
+
+export const canAdministerCommunity = async (userId: string, communityId: string, loaders: any) => {
+  if (!userId || !communityId) return false
+
+  const community = await communityExists(communityId, loaders)
+  if (!community) return false
+
+  const communityPermissions = await loaders.userPermissionsInCommunity.load([
+    userId,
+    communityId
+  ])
+
+  if (communityPermissions && communityPermissions.isOwner) return true
+  return false
 }
 
 export const canModerateCommunity = async (
@@ -58,4 +117,25 @@ export const canModerateCommunity = async (
     return true
   }
   return false
+}
+
+export const canViewCommunity = async (user: DBUser, communityId: string, loaders: any) => {
+  if (!communityId) return false
+
+  const community = await communityExists(communityId, loaders)
+  if (!community) return false
+
+  if (!community.isPrivate) return true
+
+  if (!user) return false
+
+  const communityPermissions = await loaders.userPermissionsInCommunity.load([
+    user.id,
+    communityId
+  ])
+
+  if (!communityPermissions) return false
+  if (!communityPermissions.isMember) return false
+
+  return true
 }
