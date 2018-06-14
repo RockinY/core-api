@@ -10,5 +10,5 @@ export default (
   }
   return loaders.userPermissionsInCommunity
     .load([user.id, id])
-    .then(result => (result ? result : {}))
+    .then(result => (result || {}))
 }
