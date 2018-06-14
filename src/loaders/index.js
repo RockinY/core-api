@@ -3,43 +3,77 @@ import type { DataLoaderOptions } from '../flowtypes'
 import {
   __createUserLoader,
   __createUserByUsernameLoader,
+  __createUserThreadCountLoader,
+  __createUserTotalReputationLoader,
+  __createUserThreadNotificationStatusLoader,
   __createUserPermissionsInChannelLoader,
   __createUserPermissionsInCommunityLoader
 } from './user'
 import {
   __createCommunityLoader,
-  __createCommunityBySlugLoader
+  __createCommunityBySlugLoader,
+  __createCommunityMemberCountLoader,
+  __createCommunityChannelCountLoader,
+  __createCommunitySettingsLoader
 } from './community'
 import {
-  __createChannelLoader
+  __createChannelLoader,
+  __createChannelMemberCountLoader,
+  __createChannelThreadCountLoader,
+  __createChannelPendingMembersLoader,
+  __createChannelSettingsLoader
 } from './channel'
 import {
-  __createThreadLoader
+  __createThreadLoader,
+  __createThreadParticipantsLoader,
+  __createThreadMessageCountLoader
 } from './thread'
 import {
   __createMessageLoader
 } from './message'
 import {
   __createDirectMessageParticipantsLoader,
-  __createDirectMessageThreadLoader
+  __createDirectMessageThreadLoader,
+  __createDirectMessageSnippetLoader
 } from './directMessageThread'
 import {
   __createNotificationLoader
 } from './notification'
+import {
+  __createReactionLoader,
+  __createSingleReactionLoader,
+} from './reaction'
 
 const createLoaders = (options?: DataLoaderOptions) => ({
   user: __createUserLoader(options),
+  userByUsername: __createUserByUsernameLoader(options),
+  userThreadCount: __createUserThreadCountLoader(options),
   userPermissionsInCommunity: __createUserPermissionsInCommunityLoader(options),
   userPermissionsInChannel: __createUserPermissionsInChannelLoader(options),
-  userByUsername: __createUserByUsernameLoader(options),
+  userTotalReputation: __createUserTotalReputationLoader(options),
+  userThreadNotificationStatus: __createUserThreadNotificationStatusLoader(
+    options
+  ),
+  thread: __createThreadLoader(options),
+  threadParticipants: __createThreadParticipantsLoader(options),
+  threadMessageCount: __createThreadMessageCountLoader(options),
+  notification: __createNotificationLoader(options),
+  channel: __createChannelLoader(options),
+  channelMemberCount: __createChannelMemberCountLoader(options),
+  channelThreadCount: __createChannelThreadCountLoader(options),
+  channelPendingUsers: __createChannelPendingMembersLoader(options),
+  channelSettings: __createChannelSettingsLoader(options),
   community: __createCommunityLoader(options),
   communityBySlug: __createCommunityBySlugLoader(options),
-  channel: __createChannelLoader(options),
-  thread: __createThreadLoader(options),
-  message: __createMessageLoader(options),
+  communityChannelCount: __createCommunityChannelCountLoader(options),
+  communityMemberCount: __createCommunityMemberCountLoader(options),
+  communitySettings: __createCommunitySettingsLoader(options),
   directMessageThread: __createDirectMessageThreadLoader(options),
   directMessageParticipants: __createDirectMessageParticipantsLoader(options),
-  notification: __createNotificationLoader(options)
+  directMessageSnippet: __createDirectMessageSnippetLoader(options),
+  message: __createMessageLoader(options),
+  messageReaction: __createReactionLoader(options),
+  reaction: __createSingleReactionLoader(options),
 })
 
 export default createLoaders
