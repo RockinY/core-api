@@ -1,6 +1,6 @@
 // @flow
 import type { GraphQLContext, DBChannel } from '../../flowTypes'
-import UserError from '../../utils/UserError'
+import UserError from '../../utils/userError'
 import {
   canModerateChannel,
   isAuthedResolver as requireAuth

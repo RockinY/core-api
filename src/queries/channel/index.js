@@ -20,20 +20,20 @@ module.exports = {
   Query: {
     channel
   },
-  Channel: {
-    memberCount,
-    threadConnection,
-    community,
-    channelPermissions,
-    communityPermissions,
-    memberConnection,
-    metaData,
-    pendingUsers,
-    blockedUsers,
-    moderators,
-    owners,
-    isArchived,
-    joinSettings,
-    slackSettings
-  }
+  // Channel: {
+  //   memberCount,
+  //   threadConnection,
+  //   community,
+  //   channelPermissions,
+  //   communityPermissions,
+  //   memberConnection,
+  //   metaData,
+  //   pendingUsers,
+  //   blockedUsers,
+  //   moderators,
+  //   owners,
+  //   isArchived,
+  //   joinSettings,
+  //   slackSettings
+  // }
 }
