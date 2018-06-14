@@ -6,7 +6,7 @@
  * Stolen from http://stackoverflow.com/a/38237610/2115623
  */
 export const encode = (string: string) =>
-  Buffer.from(string).toString('base64');
+  Buffer.from(string).toString('base64')
 
 type Base64String = string;
 /**
@@ -15,4 +15,4 @@ type Base64String = string;
  * Stolen from http://stackoverflow.com/a/38237610/2115623
  */
 export const decode = (string?: Base64String) =>
-  (string ? Buffer.from(string, 'base64').toString('ascii') : '');
+  (string ? Buffer.from(string, 'base64').toString('ascii') : '')

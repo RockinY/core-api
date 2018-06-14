@@ -19,7 +19,7 @@ export default (
     .then(users => loaders.user.loadMany(users))
     .then(result => ({
       pageInfo: {
-        hasNextPage: result && result.length >= first,
+        hasNextPage: result && result.length >= first
       },
       edges: result.filter(Boolean).map((user, index) => ({
         cursor: encode(`${user.id}-${lastUserIndex + index + 1}`),
