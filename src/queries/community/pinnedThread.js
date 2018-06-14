@@ -13,5 +13,5 @@ export default async (root: DBCommunity, _: any, ctx: GraphQLContext) => {
     return null
   }
 
-  return await getThreadById(pinnedThreadId)
+  return getThreadById(pinnedThreadId)
 }
