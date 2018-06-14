@@ -38,7 +38,8 @@ export type DBCommunity = {
   hasPrioritySupport: boolean,
   stripeCustomerId: ?string,
   pendingAdministratorEmail?: string,
-  ossVerified?: boolean
+  ossVerified?: boolean,
+  isPrivate: boolean
 }
 
 export type DBChannel = {
