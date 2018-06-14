@@ -1,5 +1,4 @@
-import typeimport { settings } from "cluster";
- { DBCommunity, GraphQLContext } from '../../flowTypes'
+import { DBCommunity, GraphQLContext } from '../../flowTypes'
 
 export default async (
   { id }: DBCommunity,
