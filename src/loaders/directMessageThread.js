@@ -3,7 +3,6 @@ import { getDirectMessageThreads } from '../models/directMessageThread'
 import { getMembersInDirectMessageThreads } from '../models/usersDirectMessageThread'
 import { getLastMessages } from '../models/message'
 import createLoader from './createLoader'
-import type { Loader } from '../flowTypes'
 
 export const __createDirectMessageThreadLoader = createLoader(threads => {
   return getDirectMessageThreads(threads)
