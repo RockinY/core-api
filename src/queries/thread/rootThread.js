@@ -8,26 +8,45 @@ export default async (
 ) => {
   const thread = await loaders.thread.load(id)
 
-  if (!thread) {
-    return null
-  }
+  // if a thread wasn't found
+  if (!thread) return null
 
+  /*
+      If no user exists, we need to make sure the thread being fetched is not in a private channel
+    */
   if (!user) {
-    const channel = await loaders.channel.load(thread.channelId)
-
-    if (channel.isPrivate) {
-      return null
-    }
-    return thread
-  } else {
-    const [permissions, channel] = await Promise.all([
-      loaders.userPermissionsInChannel.load([user.id, thread.channelId]),
-      loaders.channel.load(thread.channelId)
+    const [channel, community] = await Promise.all([
+      loaders.channel.load(thread.channelId),
+      loaders.community.load(thread.communityId)
     ])
 
-    if (channel.isPrivate && !permissions.isMember) {
-      return null
-    }
+    // if the channel is private, don't return any thread data
+    if (!channel || !community || channel.isPrivate || community.isPrivate) { return null }
+    return thread
+  } else {
+    // if the user is signed in, we need to check if the channel is private as well as the user's permission in that channel
+    const [
+      channelPermissions,
+      channel,
+      communityPermissions,
+      community
+    ] = await Promise.all([
+      loaders.userPermissionsInChannel.load([user.id, thread.channelId]),
+      loaders.channel.load(thread.channelId),
+      loaders.userPermissionsInCommunity.load([user.id, thread.communityId]),
+      loaders.community.load(thread.communityId)
+    ])
+
+    // if the thread is in a private channel where the user is not a member, don't return any thread data
+    if (!channel || !community) return null
+    if (
+      channel.isPrivate &&
+      (!channelPermissions || !channelPermissions.isMember)
+    ) { return null }
+    if (
+      community.isPrivate &&
+      (!communityPermissions || !communityPermissions.isMember)
+    ) { return null }
     return thread
   }
 }
