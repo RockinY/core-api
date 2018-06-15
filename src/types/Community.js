@@ -101,7 +101,6 @@ const Community = `
   extend type Query {
     community(id: ID, slug: LowercaseString): Community
 		communities(slugs: [LowercaseString], ids: [ID], curatedContentType: String): [Community]
-		communityMember(userId: String, communityId: String): CommunityMember
     topCommunities(amount: Int = 20): [Community!] @cost(complexity: 4, multiplier: "amount")
 		recentCommunities: [Community!]
   }
