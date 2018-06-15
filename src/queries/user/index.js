@@ -1,14 +1,38 @@
 // @flow
-import user from './rootUser'
-import currentUser from './rootCurrentUser'
-import settings from './settings'
+import user from './rootUser';
+import currentUser from './rootCurrentUser';
+
+import email from './email';
+import coverPhoto from './coverPhoto';
+import profilePhoto from './profilePhoto';
+import everything from './everything';
+import communityConnection from './communityConnection';
+import channelConnection from './channelConnection';
+import directMessageThreadsConnection from './directMessageThreadsConnection';
+import threadConnection from './threadConnection';
+import threadCount from './threadCount';
+import settings from './settings';
+import totalReputation from './totalReputation';
+import githubProfile from './githubProfile';
 
 module.exports = {
   Query: {
     user,
-    currentUser
+    currentUser,
   },
   User: {
-    settings
-  }
-}
+    email,
+    coverPhoto,
+    profilePhoto,
+    everything,
+    communityConnection,
+    channelConnection,
+    directMessageThreadsConnection,
+    threadConnection,
+    threadCount,
+    settings,
+    totalReputation,
+    githubProfile,
+  },
+};
+
