@@ -1,5 +1,15 @@
 // @flow
 const Thread = `
+  type ThreadMessagesConnection {
+    pageInfo: PageInfo!
+    edges: [ThreadMessageEdge!]
+  }
+
+  type ThreadMessageEdge {
+    cursor: String!
+    node: Message!
+  }
+
   type ThreadContent {
     title: String
     body: String
@@ -25,15 +35,23 @@ const Thread = `
     id: ID!
     createdAt: Date!
     modifiedAt: Date
+    channel: Channel!
+    community: Community! @cost(complexity: 1)
     isPublished: Boolean!
     content: ThreadContent!
     isLocked: Boolean
     isAuthor: Boolean
+    receiveNotifications: Boolean @cost(complexity: 1)
     lastActive: Date
     type: ThreadType
     edits: [Edit!]
+    participants: [User] @cost(complexity: 1)
+    messageConnection(first: Int, after: String, last: Int, before: String): ThreadMessagesConnection! @cost(complexity: 1, multiplier: "first")
+    messageCount: Int @cost(complexity: 1)
+    author: ThreadParticipant! @cost(complexity: 2)
     attachments: [Attachment]
     watercooler: Boolean
+    currentUserLastSeen: Date @cost(complexity: 1)
   }
 
   extend type Query {

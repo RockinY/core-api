@@ -13,6 +13,7 @@ const Reaction = `
   }
 
   extend type Query {
+    messageId: ID!
     reaction(id: String!): Reaction
   }
 `
