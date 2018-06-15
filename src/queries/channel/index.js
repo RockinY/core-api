@@ -14,26 +14,24 @@ import moderators from './moderators'
 import owners from './owners'
 import isArchived from './isArchived'
 import joinSettings from './joinSettings'
-import slackSettings from './slackSettings'
 
 module.exports = {
   Query: {
     channel
+  },
+  Channel: {
+    memberCount,
+    threadConnection,
+    community,
+    channelPermissions,
+    communityPermissions,
+    memberConnection,
+    metaData,
+    pendingUsers,
+    blockedUsers,
+    moderators,
+    owners,
+    isArchived,
+    joinSettings
   }
-  // Channel: {
-  //   memberCount,
-  //   threadConnection,
-  //   community,
-  //   channelPermissions,
-  //   communityPermissions,
-  //   memberConnection,
-  //   metaData,
-  //   pendingUsers,
-  //   blockedUsers,
-  //   moderators,
-  //   owners,
-  //   isArchived,
-  //   joinSettings,
-  //   slackSettings
-  // }
 }

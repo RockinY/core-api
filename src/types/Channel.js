@@ -46,8 +46,7 @@ const Channel = `
     blockedUsers: [User] @cost(complexity: 3)
     moderators: [User] @cost(complexity: 3)
     owners: [User] @cost(complexity: 3)
-    joinSettings: JoinSettings 
-    slackSettings: ChannelSlackSettings
+    joinSettings: JoinSettings
   }
 
   extend type Query {

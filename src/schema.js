@@ -13,6 +13,8 @@ const logExecutions = require('graphql-log')({
 
 // Types
 const scalars = require('./types/scalars')
+const generalTypes = require('./types/general')
+
 const User = require('./types/User')
 const Community = require('./types/Community')
 const Channel = require('./types/Channel')
@@ -21,6 +23,8 @@ const Message = require('./types/Message')
 const DirectMessageThread = require('./types/DirectMessageThread')
 const Reaction = require('./types/Reaction')
 const Notification = require('./types/Notification')
+const CommunityMember = require('./types/CommunityMember')
+const ThreadParticipant = require('./types/ThreadParticipant')
 
 // Queries
 const userQueries = require('./queries/user')
@@ -31,6 +35,7 @@ const messageQueries = require('./queries/message')
 const directMessageThreadQueries = require('./queries/directMessageThread')
 const reactionQueries = require('./queries/reaction')
 const notificationQueries = require('./queries/notification')
+const communityMemberQueries = require('./queries/communityMember')
 
 // Mutations
 const userMutations = require('./mutations/user')
@@ -70,6 +75,7 @@ const resolvers = merge(
   directMessageThreadQueries,
   reactionQueries,
   notificationQueries,
+  communityMemberQueries,
   // Mutations
   userMutations,
   communityMutations,
@@ -84,11 +90,13 @@ if (process.env.NODE_ENV === 'development' && debug.enabled) {
 const schema = makeExecutableSchema({
   typeDefs: [
     scalars.typeDefs,
+    generalTypes,
     Root,
     User,
     Community,
     Channel,
     Thread,
+    ThreadParticipant,
     Message,
     DirectMessageThread,
     Reaction,
