@@ -15,17 +15,25 @@ const Message = `
     body: String!
   }
 
+  type ReactionData {
+		count: Int!
+		hasReacted: Boolean
+	}
+
   type Message {
     id: ID!
-    timestamp: Date!
-    thread: Thread
-    content: MessageContent
-    messageType: MessageTypes!
+		timestamp: Date!
+		thread: Thread
+		content: MessageContent!
+    author: ThreadParticipant! @cost(complexity: 2)
+    reactions: ReactionData @cost(complexity: 1)
+		messageType: MessageTypes!
     parent: Message
   }
 
   extend type Query {
     message(id: ID!): Message
+		getMediaMessagesForThread(threadId: ID!): [Message]
   }
 `
 
