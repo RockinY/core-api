@@ -19,7 +19,7 @@ import slackSettings from './slackSettings'
 module.exports = {
   Query: {
     channel
-  },
+  }
   // Channel: {
   //   memberCount,
   //   threadConnection,
