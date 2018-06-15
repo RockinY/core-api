@@ -34,6 +34,16 @@ const Notification = `
     type: EntityType
   }
 
+  type NotificationsConnection {
+		pageInfo: PageInfo
+		edges: [NotificationEdge]
+	}
+
+	type NotificationEdge {
+		cursor: String
+		node: Notification
+	}
+
   type Notification {
     id: ID!
     createdAt: Date!
@@ -48,6 +58,8 @@ const Notification = `
 
   extend type Query {
     notification(id: ID!): Notification
+		notifications(first: Int = 10, after: String): NotificationsConnection @cost(complexity: 1, multiplier: "first")
+    directMessageNotifications(first: Int = 10, after: String): NotificationsConnection @cost(complexity: 1, multiplier: "first")
   }
 `
 
