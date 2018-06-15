@@ -35,6 +35,19 @@ const Channel = `
     isPrivate: Boolean
     isDefault: Boolean
     isArchived: Boolean
+    channelPermissions: ChannelPermissions! @cost(complexity: 1)
+    communityPermissions: CommunityPermissions!
+    community: Community! @cost(complexity: 1)
+    threadConnection(first: Int = 10, after: String): ChannelThreadsConnection! @cost(complexity: 1, multiplier: "first")
+    memberConnection(first: Int = 10, after: String): ChannelMembersConnection! @cost(complexity: 1, multiplier: "first")
+    memberCount: Int!
+    metaData: ChannelMetaData @cost(complexity: 1)
+    pendingUsers: [User] @cost(complexity: 3)
+    blockedUsers: [User] @cost(complexity: 3)
+    moderators: [User] @cost(complexity: 3)
+    owners: [User] @cost(complexity: 3)
+    joinSettings: JoinSettings 
+    slackSettings: ChannelSlackSettings
   }
 
   extend type Query {

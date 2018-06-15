@@ -1,6 +1,6 @@
 // @flow
-import type { DBUser } from '../../flowTypes';
+import type { DBUser } from '../../flowTypes'
 
 export default ({ coverPhoto }: DBUser) => {
-  return coverPhoto;
-};
+  return coverPhoto
+}

@@ -1,10 +1,10 @@
 // @flow
-import type { DBUser } from '../../flowTypes';
+import type { DBUser } from '../../flowTypes'
 
 export default ({ githubProviderId, githubUsername }: DBUser) => {
-  if (!githubProviderId || !githubUsername) return null;
+  if (!githubProviderId || !githubUsername) return null
   return {
     id: githubProviderId,
-    username: githubUsername,
-  };
-};
+    username: githubUsername
+  }
+}

@@ -4,7 +4,7 @@
  */
 
 const general = /* GraphQL */ `
-	type PageInfo {
+  type PageInfo {
 		hasNextPage: Boolean
 		hasPreviousPage: Boolean
 	}
@@ -73,6 +73,6 @@ const general = /* GraphQL */ `
 		tokenJoinEnabled: Boolean
 		token: String
 	}
-`;
+`
 
-module.exports = general;
+module.exports = general
