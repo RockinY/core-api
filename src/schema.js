@@ -94,6 +94,7 @@ const schema = makeExecutableSchema({
     Root,
     User,
     Community,
+    CommunityMember,
     Channel,
     Thread,
     ThreadParticipant,

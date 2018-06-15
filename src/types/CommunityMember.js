@@ -16,3 +16,5 @@ const CommunityMember = /* GraphQL */ `
     communityMember(userId: ID!, communityId: ID!): CommunityMember		
   }
 `
+
+module.exports = CommunityMember

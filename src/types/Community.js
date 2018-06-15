@@ -79,9 +79,15 @@ const Community = `
 		watercooler: Thread
 		brandedLogin: BrandedLogin
 		joinSettings: JoinSettings
-		memberConnection(first: Int = 10, after: String, filter: MemberConnectionFilter): CommunityMembersConnection! @deprecated(reason:"Use the new Community.members type")
-		contextPermissions: ContextPermissions @deprecated(reason:"Use the new CommunityMember type to get permissions")
-  }
+	}
+	
+	input MembersFilter {
+		isOwner: Boolean
+		isMember: Boolean
+		isBlocked: Boolean
+		isPending: Boolean
+		isModerator: Boolean
+	}
 
   input CreateCommunityInput {
     name: String!

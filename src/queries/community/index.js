@@ -14,7 +14,6 @@ import memberGrowth from './memberGrowth'
 import conversationGrowth from './conversationGrowth'
 import topMembers from './topMembers'
 import topAndNewThreads from './topAndNewThreads'
-import contextPermissions from './contextPermissions'
 import watercooler from './watercooler'
 import brandedLogin from './brandedLogin'
 import joinSettings from './joinSettings'
@@ -37,7 +36,6 @@ module.exports = {
     conversationGrowth,
     topMembers,
     topAndNewThreads,
-    contextPermissions,
     watercooler,
     brandedLogin,
     joinSettings
