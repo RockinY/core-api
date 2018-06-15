@@ -1,5 +1,30 @@
 // @flow
 const Channel = `
+  type ChannelMembersConnection {
+    pageInfo: PageInfo!
+    edges: [ChannelMemberEdge!]
+  }
+
+  type ChannelMemberEdge {
+    cursor: String!
+    node: User!
+  }
+
+  type ChannelThreadsConnection {
+    pageInfo: PageInfo!
+    edges: [ChannelThreadEdge!]
+  }
+
+  type ChannelThreadEdge {
+    cursor: String!
+    node: Thread!
+  }
+
+  type ChannelMetaData {
+    threads: Int
+    members: Int
+  }
+
   type Channel {
     id: ID!
     createdAt: Date!
