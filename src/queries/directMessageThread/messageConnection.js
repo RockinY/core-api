@@ -1,28 +1,28 @@
 // @flow
-import type { PaginationOptions } from '../../utils/paginateArrays';
-import type { GraphQLContext } from '../../flowTypes';
-import { canViewDMThread } from './utils';
-import { encode, decode } from '../../utils/base64';
-import { getMessages } from '../../models/message';
+import type { PaginationOptions } from '../../utils/paginateArrays'
+import type { GraphQLContext } from '../../flowTypes'
+import { canViewDMThread } from './utils'
+import { encode, decode } from '../../utils/base64'
+import { getMessages } from '../../models/message'
 
 export default async (
   { id }: { id: string },
   { first, after }: PaginationOptions,
   { user, loaders }: GraphQLContext
 ) => {
-  if (!user || !user.id) return null;
+  if (!user || !user.id) return null
 
-  const canViewThread = await canViewDMThread(id, user.id, { loaders });
-  if (!canViewThread) return null;
+  const canViewThread = await canViewDMThread(id, user.id, { loaders })
+  if (!canViewThread) return null
 
-  const cursor = parseInt(decode(after), 10);
+  const cursor = parseInt(decode(after), 10)
   const messages = await getMessages(id, {
     // NOTE(@mxstbr): We used to use first/after for reverse DM pagination
     // so we have to keep it that way for backwards compat, but really this
     // should be last/before since it's in the other way of time
     last: first || 30,
-    before: cursor,
-  });
+    before: cursor
+  })
 
   return {
     pageInfo: {
@@ -32,11 +32,11 @@ export default async (
       // That way they might get a false positive here if they request the messages before the last message
       // but since that query returns no messages this will be false and all will be well
       // (so it essentially just takes 1 “unnecessary” request to figure out whether or not there is a previous page)
-      hasPreviousPage: messages && messages.length > 0 && !!cursor,
+      hasPreviousPage: messages && messages.length > 0 && !!cursor
     },
     edges: messages.map(message => ({
       cursor: encode(message.timestamp.getTime().toString()),
-      node: message,
-    })),
-  };
-};
+      node: message
+    }))
+  }
+}
