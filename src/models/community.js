@@ -38,6 +38,18 @@ export const getCommunitiesBySlug = (
     .run()
 }
 
+export const getCommunityBySlug = (slug: string): Promise<?DBCommunity> => {
+  return db
+    .table('communities')
+    .getAll(slug, { index: 'slug' })
+    .filter(community => db.not(community.hasFields('deletedAt')))
+    .run()
+    .then(results => {
+      if (!results || results.length === 0) return null
+      return results[0]
+    })
+}
+
 export const getCommunitiesByUser = (userId: string): Promise<Array<DBCommunity>> => {
   return (
     db

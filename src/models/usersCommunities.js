@@ -465,7 +465,7 @@ export const getUsersPermissionsInCommunities = (input: Array<UserIdAndCommunity
     })
 }
 
-export const checkUserPermissionsInCommunity = (communityId: string, userId: string): Promise<DBUsersCommunities> => {
+export const checkUserPermissionsInCommunity = (communityId: string, userId: string): Promise<Array<DBUsersCommunities>> => {
   return db
     .table('usersCommunities')
     .getAll([userId, communityId], { index: 'userIdAndCommunityId' })
