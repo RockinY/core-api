@@ -527,6 +527,22 @@ export const deleteCommunity = (communityId: string, userId: string): Promise<DB
     .run()
 }
 
+export const setPinnedThreadInCommunity = (communityId: string, value: string, userId: string): Promise<DBCommunity> => {
+  return db
+    .table('communities')
+    .get(communityId)
+    .update(
+      {
+        pinnedThreadId: value
+      },
+      { returnChanges: 'always' }
+    )
+    .run()
+    .then(result => {
+      return result.changes[0].new_val
+    })
+}
+
 export const userIsMemberOfAnyChannelInCommunity = (communityId: string, userId: string): Promise<Boolean> => {
   return db('spectrum')
     .table('channels')
