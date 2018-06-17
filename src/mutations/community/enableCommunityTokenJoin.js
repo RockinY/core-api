@@ -2,8 +2,8 @@
 import type { GraphQLContext } from '../../flowTypes'
 import UserError from '../../utils/userError'
 import {
-  createCommunitySettings,
-  disableCommunityBrandedLogin
+  getOrCreateCommunitySettings,
+  enableCommunityTokenJoin
 } from '../../models/communitySettings'
 import {
   isAuthedResolver as requireAuth,
@@ -21,17 +21,10 @@ export default requireAuth(async (_: any, args: Input, ctx: GraphQLContext) => {
   const { user, loaders } = ctx
 
   if (!await canModerateCommunity(user.id, communityId, loaders)) {
-    return new UserError("You don't have permission to do this.")
+    return new UserError('You don’t have permission to manage this Community')
   }
 
-  const settings = await loaders.communitySettings.load(communityId)
-
-  loaders.communitySettings.clear(communityId)
-
-  // settings.id tells us that a channelSettings record exists in the db
-  if (settings.id) {
-    return await disableCommunityBrandedLogin(communityId, user.id)
-  } else {
-    return await createCommunitySettings(communityId)
-  }
+  return await getOrCreateCommunitySettings(communityId).then(
+    async () => await enableCommunityTokenJoin(communityId, user.id)
+  )
 })

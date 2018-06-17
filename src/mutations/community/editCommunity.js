@@ -1,7 +1,7 @@
 // @flow
 import type { GraphQLContext } from '../../flowTypes'
 import type { EditCommunityInput } from '../../models/community'
-import UserError from '../../utils/UserError'
+import UserError from '../../utils/userError'
 import { editCommunity } from '../../models/community'
 import {
   isAuthedResolver as requireAuth,
