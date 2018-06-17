@@ -91,6 +91,8 @@ export type DBThread = {
   lockedAt?: Date,
   lastActive: Date,
   modifiedAt?: Date,
+  deletedAt?: string,
+  deletedBy: ?string,
   attachments?: Array<DBThreadAttachment>,
   edits?: Array<DBThreadEdits>,
   watercooler?: boolean,
