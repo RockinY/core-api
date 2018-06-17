@@ -1,6 +1,6 @@
 // @flow
 import type { GraphQLContext, DBThread } from '../../flowTypes'
-import UserError from '../../utils/UserError'
+import UserError from '../../utils/userError'
 import { setThreadLock } from '../../models/thread'
 import { isAuthedResolver as requireAuth } from '../../utils/permissions'
 
