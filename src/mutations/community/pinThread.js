@@ -1,6 +1,6 @@
 // @flow
 import type { GraphQLContext } from '../../flowTypes'
-import UserError from '../../utils/UserError'
+import UserError from '../../utils/userError'
 import { getThreadById } from '../../models/thread'
 import { setPinnedThreadInCommunity } from '../../models/community'
 import {
