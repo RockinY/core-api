@@ -86,7 +86,8 @@
     "slugg": "^1.2.1",
     "string-similarity": "^1.2.0",
     "toobusy-js": "^0.5.1",
-    "uuid": "^3.2.1"
+    "uuid": "^3.2.1",
+    "validator": "^10.3.0"
   },
   "standard": {
     "parser": "babel-eslint",
