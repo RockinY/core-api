@@ -95,6 +95,28 @@ export const removeMemberInCommunity = (communityId: string, userId: string): Pr
     )
 }
 
+export const removeMembersInCommunity = async (communityId: string) => {
+  const usersCommunities = await db
+    .table('usersCommunities')
+    .getAll(communityId, { index: 'communityId' })
+    .run()
+
+  if (!usersCommunities || usersCommunities.length === 0) return
+
+  const leavePromise = await db
+    .table('usersCommunities')
+    .getAll(communityId, { index: 'communityId' })
+    .update({
+      isMember: false,
+      receiveNotifications: false
+    })
+    .run()
+
+  return Promise.all([
+    leavePromise
+  ])
+}
+
 export const blockUserInCommunity = (communityId: string, userId: string): Promise<DBUsersCommunities> => {
   return db
     .table('usersCommunities')
