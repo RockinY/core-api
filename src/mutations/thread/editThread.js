@@ -1,7 +1,7 @@
 // @flow
 import type { GraphQLContext } from '../../flowTypes'
 import type { EditThreadInput } from '../../models/thread'
-import UserError from '../../utils/UserError'
+import UserError from '../../utils/userError'
 import { uploadImage } from '../../utils/oss'
 import { getThreads, editThread } from '../../models/thread'
 import { getUserPermissionsInCommunity } from '../../models/usersCommunities'
