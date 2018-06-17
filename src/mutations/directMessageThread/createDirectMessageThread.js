@@ -1,6 +1,6 @@
 // @flow
 import type { GraphQLContext, FileUpload } from '../../flowTypes'
-import UserError from '../../utils/UserError'
+import UserError from '../../utils/userError'
 import {
   checkForExistingDMThread,
   getDirectMessageThread,
