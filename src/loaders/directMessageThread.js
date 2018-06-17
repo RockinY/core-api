@@ -1,6 +1,6 @@
 // @flow
 import { getDirectMessageThreads } from '../models/directMessageThread'
-import { getMembersInDirectMessageThreads } from '../models/usersDirectMessageThread'
+import { getMembersInDirectMessageThreads } from '../models/usersDirectMessageThreads'
 import { getLastMessages } from '../models/message'
 import createLoader from './createLoader'
 
