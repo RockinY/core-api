@@ -35,6 +35,24 @@ const Message = `
     message(id: ID!): Message
 		getMediaMessagesForThread(threadId: ID!): [Message]
   }
+
+  input MessageContentInput {
+    body: String
+  }
+
+  input MessageInput {
+    threadId: ID!
+    threadType: ThreadTypes!
+    messageType: MessageTypes!
+    content: MessageContentInput!
+    parentId: String
+    file: Upload
+  }
+
+  extend type Mutation {
+    addMessage(message: MessageInput!): Message
+    deleteMessage(id: ID!): Boolean
+  }
 `
 
 module.exports = Message
