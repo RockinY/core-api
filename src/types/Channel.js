@@ -53,6 +53,45 @@ const Channel = `
     channel(id: ID, channelSlug: LowercaseString, communitySlug: LowercaseString): Channel @cost(complexity: 1)
   }
 
+  input ArchiveChannelInput {
+    channelId: ID!
+  }
+
+  input RestoreChannelInput {
+    channelID: ID!
+  }
+
+  input JoinChannelWithTokenInput {
+    communitySlug: LowercaseString!
+    channelSlug: LowercaseString!
+    token: String!
+  }
+
+  input EnableChannelTokenJoinInput {
+    id: ID!
+  }
+
+  input DisableChannelJoinTokenInput {
+    id: ID!
+  }
+
+  input ResetChannelJoinTokenInput {
+    id: ID!
+  }
+
+  input UnblockUserInput {
+    channelId: ID!
+    userId: ID!
+  }
+
+  input EditChannelInput {
+    name: String
+    slug: LowercaseString
+    description: String
+    isPrivate: Boolean
+    channelId: ID!
+  }
+
   input CreateChannelInput {
     name: String!
     slug: LowercaseString!
@@ -64,6 +103,15 @@ const Channel = `
 
   extend type Mutation {
     createChannel(input: CreateChannelInput!): Channel
+    editChannel(input: EditChannelInput!): Channel
+    deleteChannel(channelId: ID!): Boolean
+    toggleChannelNotifications(channelId: ID!): Channel
+    unblockUser(input: UnblockUserInput!): Channel
+    archiveChannel(input: ArchiveChannelInput!): Channel
+    restoreChannel(input: RestoreChannelInput!): Channel
+    enableChannelTokenJoin(input: EnableChannelJoinInput!): Channel
+    disableChannelTokenJoin(input: DisableChannelTokenJoinInput!): Channel
+    resetChannelJoinToken(input: ResetChannelJoinTokenInput!): Channel
   }
 `
 
