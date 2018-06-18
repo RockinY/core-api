@@ -32,6 +32,27 @@ const DirectMessageThread = `
   extend type Query {
     directMessageThread(id: ID!): DirectMessageThread
   }
+
+  input ContentInput {
+    body: String!
+  }
+
+  input DirectMessageContentInput {
+    messageType: MessageType!
+    threadType: String!
+    content: ContentInput!
+    file: Upload
+  }
+
+  input DirectMessageThreadInput {
+    participants: [ID!]
+    message: DirectMessageContentInput!
+  }
+
+  extend type Mutation {
+    createDirectMessageThread(input: DirectMessageThreadInput!): DirectMessageThread
+    setLastSeen(id: ID!): DirectMessageThread
+  }
 `
 
 module.exports = DirectMessageThread
