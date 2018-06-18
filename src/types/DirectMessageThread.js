@@ -1,5 +1,11 @@
 // @flow
 const DirectMessageThread = `
+  enum MessageType {
+    text
+    media
+    draftjs
+  }
+
   type DirectMessagesConnection {
     pageInfo: PageInfo!
     edges: [DirectMessageEdge!]

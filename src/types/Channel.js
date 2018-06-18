@@ -67,7 +67,7 @@ const Channel = `
     token: String!
   }
 
-  input EnableChannelTokenJoinInput {
+  input EnableChannelJoinTokenInput {
     id: ID!
   }
 
@@ -104,13 +104,14 @@ const Channel = `
   extend type Mutation {
     createChannel(input: CreateChannelInput!): Channel
     editChannel(input: EditChannelInput!): Channel
+    joinChannelWithToken(input: JoinChannelWithTokenInput!): Channel
     deleteChannel(channelId: ID!): Boolean
     toggleChannelNotifications(channelId: ID!): Channel
     unblockUser(input: UnblockUserInput!): Channel
     archiveChannel(input: ArchiveChannelInput!): Channel
     restoreChannel(input: RestoreChannelInput!): Channel
-    enableChannelTokenJoin(input: EnableChannelJoinInput!): Channel
-    disableChannelTokenJoin(input: DisableChannelTokenJoinInput!): Channel
+    enableChannelTokenJoin(input: EnableChannelJoinTokenInput!): Channel
+    disableChannelTokenJoin(input: DisableChannelJoinTokenInput!): Channel
     resetChannelJoinToken(input: ResetChannelJoinTokenInput!): Channel
   }
 `

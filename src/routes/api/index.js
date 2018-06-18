@@ -5,9 +5,10 @@ import graphql from './graphql'
 
 const apiRouter = Router()
 
-if (process.env.NODE_ENV === 'development') {
-  apiRouter.use('/graphiql', graphiql)
-}
+// if (process.env.NODE_ENV === 'development') {
+//   apiRouter.use('/graphiql', graphiql)
+// }
+apiRouter.use('/graphiql', graphiql)
 
 apiRouter.use('/', graphql)
 
