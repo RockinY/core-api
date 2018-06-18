@@ -80,6 +80,13 @@ const Community = `
 		brandedLogin: BrandedLogin
 		joinSettings: JoinSettings
 	}
+
+	extend type Query {
+    community(id: ID, slug: LowercaseString): Community
+		communities(slugs: [LowercaseString], ids: [ID], curatedContentType: String): [Community]
+    topCommunities(amount: Int = 20): [Community!] @cost(complexity: 4, multiplier: "amount")
+		recentCommunities: [Community!]
+  }
 	
 	input MembersFilter {
 		isOwner: Boolean
@@ -96,17 +103,53 @@ const Community = `
     website: String
     file: Upload
     coverFile: Upload
-  }
-  
-  extend type Query {
-    community(id: ID, slug: LowercaseString): Community
-		communities(slugs: [LowercaseString], ids: [ID], curatedContentType: String): [Community]
-    topCommunities(amount: Int = 20): [Community!] @cost(complexity: 4, multiplier: "amount")
-		recentCommunities: [Community!]
-  }
+	}
+	
+	input EditCommunityInput {
+		name: String
+		description: String
+		website: String
+		file: Upload
+		coverFile: Upload
+		communityId: ID!
+	}
+
+	input EnableBrandedLoginInput {
+		id: String!
+	}
+
+	input DisableBrandedLoginInput {
+		id: String!
+	}
+
+	input SaveBrandedLoginSettingsInput {
+		id: String!
+		message: String
+	}
+
+	input EnableCommunityTokenJoinInput {
+		id: ID!
+	}
+
+	input DisableCommunityTokenJoinInput {
+		id: ID!
+	}
+
+	input ResetCommunityJoinTokenInput {
+		id: ID!
+	}
 
   extend type Mutation {
-    createCommunity(input: CreateCommunityInput!): Community
+		createCommunity(input: CreateCommunityInput!): Community
+		editCommunity(input: EditCommunityInput!): Community
+		deleteCommunity(communityId: ID!): Boolean
+		pinThread(threadId: ID!, communityId: ID!, value: String): Community
+		enableBrandedLogin(input: EnableBrandedLoginInput!): Community
+		disableBrandedLogin(input: DisableBrandedLoginInput!): Community
+		saveBrandedLoginSettings(input: SaveBrandedLoginSettingsInput!): Community
+		enableCommunityTokenJoin(input: EnableCommunityTokenJoinInput!): Community
+		disableCommunityTokenJoin(input: DisableCommunityTokenJoinInput!): Community
+		resetCommunityJoinToken(input: ResetCommunityJoinTokenInput!): Community
   }
 `
 
