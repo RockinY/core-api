@@ -68,6 +68,13 @@ const Thread = `
     body: String
   }
 
+  input EditThreadInput {
+    threadId: ID!
+    content: ThreadContentInput!
+    attachments: [AttachmentInput]
+    filesToUpload: [Upload]
+  }
+
   input ThreadInput {
     channelId: ID!
     communityId: ID!
@@ -79,6 +86,11 @@ const Thread = `
 
   extend type Mutation {
     publishThread(thread: ThreadInput!): Thread
+    editThread(input: EditThreadInput!): Thread
+    setThreadLock(threadId: ID!, value: Boolean!): Thread
+    toggleThreadNotifications(threadId: ID!): Thread
+    deleteThread(threadId: ID!): Boolean
+    moveThread(threadId: ID!, channelId: ID!): Thread
   }
 `
 
