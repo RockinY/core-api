@@ -85,7 +85,7 @@ app.use('/api', apiRouter)
 app.get('/', (
   req: express$Request,
   res: express$Response
-) => res.send('Hello World!'))
+) => res.send('API server for xlab.'))
 
 /* ----------- Create server ----------- */
 const server = createServer(app)
