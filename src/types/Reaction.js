@@ -16,6 +16,15 @@ const Reaction = `
     messageId: ID!
     reaction(id: String!): Reaction
   }
+
+  input ReactionInput {
+    messageId: ID!
+    type: ReactionTypes!
+  }
+
+  extend type Mutation {
+    toggleReaction(reaction: ReactionInput!): Message
+  }
 `
 
 module.exports = Reaction
