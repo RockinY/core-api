@@ -122,8 +122,16 @@ const User = `
     timezone: Int
   }
 
+  input ToggleNotificationSettingsInput {
+    deliveryMethod: String!
+    notificationType: String!
+  }
+
   extend type Mutation {
     editUser(input: EditUserInput!): User
+    toggleNotificationSettings(input: ToggleNotificationSettingsInput): User
+    deleteCurrentUser: Boolean
+    updateUserEmail(email: LowercaseString!): User
   }
 `
 
