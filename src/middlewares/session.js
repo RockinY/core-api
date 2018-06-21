@@ -1,5 +1,7 @@
 /**
- * enable accessing req.session
+ * Attach the property session to req
+ * The middleware will automatically add a Set-Cookie header to the response 
+ * if the contents of req.session were altered
  */
 import session from 'cookie-session'
 import { cookieKeygrip } from '../utils/cookie'
@@ -16,7 +18,7 @@ if (!process.env.SESSION_COOKIE_SECRET && !process.env.TEST_DB) {
 export default session({
   keys: cookieKeygrip,
   name: 'session',
-  secure: process.env.NODE_ENV === 'production',
+  // secure: process.env.NODE_ENV === 'production',
   // Expire the browser cookie one year from now
   maxAge: ONE_YEAR,
   signed: !process.env.TEST_DB
