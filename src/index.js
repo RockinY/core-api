@@ -3,6 +3,7 @@ import './utils/dotenv'
 import compression from 'compression'
 import { createServer } from 'http'
 import express from 'express'
+import { ApolloEngine } from 'apollo-engine'
 import toobusy from './middlewares/toobusy'
 import addSecurityMiddleware from './middlewares/security'
 import logging from './middlewares/logging'
@@ -17,6 +18,7 @@ import threadParamRedirect from './middlewares/threadParam'
 import Raven from './utils/raven'
 import authRoutes from './routes/auth'
 import apiRouter from './routes/api'
+import createSubscriptionsServer from './utils/createSubscriptionServer'
 
 const debug = require('debug')('api')
 debug('Server starting...')
@@ -90,7 +92,27 @@ app.get('/', (
 /* ----------- Create server ----------- */
 const server = createServer(app)
 
-server.listen(3000)
+// Create subscriptions server at /websocket
+createSubscriptionsServer(server, '/websocket')
+
+// Start API wrapped in Apollo Engine
+const engine = new ApolloEngine({
+  logging: {
+    level: 'WARN',
+  },
+  apiKey: process.env.APOLLO_ENGINE_KEY,
+  reporting: {
+    disabled: process.env.NODE_ENV !== 'production',
+    privateHeaders: ['authorization', 'Authorization', 'AUTHORIZATION']
+  },
+});
+
+engine.listen({
+  port: 3000,
+  httpServer: server,
+  graphqlPaths: ['/api']
+})
+
 debug('Server is running!')
 
 /* ----------- Handle Errors ----------- */
