@@ -85,6 +85,7 @@
     "shortid": "^2.2.8",
     "slugg": "^1.2.1",
     "string-similarity": "^1.2.0",
+    "subscriptions-transport-ws": "^0.9.11",
     "toobusy-js": "^0.5.1",
     "uuid": "^3.2.1",
     "validator": "^10.3.0"
