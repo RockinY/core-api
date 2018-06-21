@@ -1,3 +1,6 @@
+/**
+ * enable accessing req.session
+ */
 import session from 'cookie-session'
 import { cookieKeygrip } from '../utils/cookie'
 

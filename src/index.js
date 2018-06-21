@@ -29,6 +29,7 @@ initPassport()
 
 /* ----------- API server ----------- */
 const app = express()
+app.set('trust proxy', true)
 
 /* ----------- Middlewares ----------- */
 // 1. Send all responses as gzip
