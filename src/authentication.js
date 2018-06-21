@@ -1,4 +1,3 @@
-import config from './config'
 const passport = require('passport')
 const { Strategy: GithubStrategy } = require('passport-github2')
 const {

@@ -1,5 +1,4 @@
 import passport from 'passport'
-import config from '../../config'
 import { URL } from 'url'
 import { isOfficialUrl } from '../../utils/url'
 import { signCookie, getCookie } from '../../utils/cookie'
