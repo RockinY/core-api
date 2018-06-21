@@ -8,9 +8,7 @@ const {
   getUserByIndex
 } = require('./models/user')
 
-const baseUrl = process.env.NODE_ENV === 'production'
-  ? config.domainUrl
-  : config.devDomainUrl
+const baseUrl = process.env.HOST_URL
 
 const init = () => {
   // The result of serializer is attached to the req.session..passport.user

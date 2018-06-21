@@ -4,10 +4,7 @@ import { URL } from 'url'
 import { isOfficialUrl } from '../../utils/url'
 import { signCookie, getCookie } from '../../utils/cookie'
 
-const IS_PROD = process.env.NODE_ENV === 'production'
-const FALLBACK_URL = IS_PROD
-  ? config.domainUrl
-  : config.devDomainUrl
+const FALLBACK_URL = process.env.HOST_URL
 
 type Strategy = 'github'
 
@@ -34,7 +31,7 @@ export const createSigninRoutes = (
     /* Authenticate and set the response cookie */
     callbacks: [
       passport.authenticate(strategy, {
-        failureRedirect: IS_PROD ? '/' : config.devDomainUrl
+        failureRedirect: process.env.HOST_URL
       }),
       (req, res) => {
         const redirectUrl = req.session.redirectUrl
