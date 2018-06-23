@@ -3,7 +3,7 @@ const debug = require('debug')('api:subscriptions:messages')
 import { getThread } from '../models/thread'
 import { getDirectMessageThread } from '../models/directMessageThread'
 import { listenToNewMessages } from '../models/message'
-import UserError from '../utils/UserError'
+import UserError from '../utils/userError'
 import asyncify from '../utils/asyncify'
 import { userCanViewChannel, userCanViewDirectMessageThread } from './utils'
 import Raven from '../utils/raven'

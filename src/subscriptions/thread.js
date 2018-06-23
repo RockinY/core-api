@@ -6,7 +6,7 @@ import {
   getUsersPermissionsInChannels
 } from '../models/usersChannels'
 import asyncify from '../utils/asyncify'
-import UserError from '../utils/UserError'
+import UserError from '../utils/userError'
 import Raven from '../utils/raven'
 import type { GraphQLContext } from '../flowTypes'
 import type { GraphQLResolveInfo } from 'graphql'
