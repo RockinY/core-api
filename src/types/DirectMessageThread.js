@@ -59,6 +59,10 @@ const DirectMessageThread = `
     createDirectMessageThread(input: DirectMessageThreadInput!): DirectMessageThread
     setLastSeen(id: ID!): DirectMessageThread
   }
+
+  extend type Subscription {
+		directMessageThreadUpdated: DirectMessageThread
+	}
 `
 
 module.exports = DirectMessageThread

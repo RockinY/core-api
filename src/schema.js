@@ -48,6 +48,12 @@ const directMessageThreadMutations = require('./mutations/directMessageThread')
 const notificationMutations = require('./mutations/notification')
 const communityMemberMutations = require('./mutations/communityMember')
 
+// Subscriptions
+const messageSubscriptions = require('./subscriptions/message')
+const notificationSubscriptions = require('./subscriptions/notification')
+const directMessageThreadSubscriptions = require('./subscriptions/directMessageThread')
+const threadSubscriptions = require('./subscriptions/thread')
+
 const Root = `
   type Query {
     dummy: String
@@ -89,7 +95,12 @@ const resolvers = merge(
   directMessageThreadMutations,
   reactionMutations,
   notificationMutations,
-  communityMemberMutations
+  communityMemberMutations,
+  // Subscriptions
+  messageSubscriptions,
+  notificationSubscriptions,
+  directMessageThreadSubscriptions,
+  threadSubscriptions
 )
 
 if (process.env.NODE_ENV === 'development' && debug.enabled) {

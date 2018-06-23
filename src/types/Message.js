@@ -53,6 +53,10 @@ const Message = `
     addMessage(message: MessageInput!): Message
     deleteMessage(id: ID!): Boolean
   }
+
+  extend type Subscription {
+		messageAdded(thread: ID!): Message
+	}
 `
 
 module.exports = Message

@@ -92,6 +92,10 @@ const Thread = `
     deleteThread(threadId: ID!): Boolean
     moveThread(threadId: ID!, channelId: ID!): Thread
   }
+
+  extend type Subscription {
+    threadUpdated(channelIds: [String!]): Thread
+  }
 `
 
 module.exports = Thread

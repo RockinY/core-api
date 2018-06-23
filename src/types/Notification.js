@@ -67,6 +67,11 @@ const Notification = `
     markDirectMessageNotificationsSeen: Boolean
     markSingleNotificationSeen(id: ID!): Boolean
   }
+
+  extend type Subscription {
+		notificationAdded: Notification
+		dmNotificationAdded: Notification
+	}
 `
 
 module.exports = Notification
