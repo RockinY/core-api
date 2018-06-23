@@ -99,14 +99,14 @@ createSubscriptionsServer(server, '/websocket')
 // Start API wrapped in Apollo Engine
 const engine = new ApolloEngine({
   logging: {
-    level: 'WARN',
+    level: 'WARN'
   },
   apiKey: process.env.APOLLO_ENGINE_KEY,
   reporting: {
     disabled: process.env.NODE_ENV !== 'production',
     privateHeaders: ['authorization', 'Authorization', 'AUTHORIZATION']
-  },
-});
+  }
+})
 
 engine.listen({
   port: 3000,

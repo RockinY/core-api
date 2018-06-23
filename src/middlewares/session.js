@@ -1,6 +1,6 @@
 /**
  * Attach the property session to req
- * The middleware will automatically add a Set-Cookie header to the response 
+ * The middleware will automatically add a Set-Cookie header to the response
  * if the contents of req.session were altered
  */
 import session from 'cookie-session'
