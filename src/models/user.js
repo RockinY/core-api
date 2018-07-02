@@ -3,7 +3,7 @@ import db from '../db.js'
 import { createNewUsersSettings } from './usersSettings.js'
 import { uploadImage } from '../utils/oss'
 import type { PaginationOptions } from '../utils/paginateArrays'
-import type { DBUser, FileUpload } from '../flowtypes'
+import type { DBUser, FileUpload } from '../flowTypes'
 
 type GetUserInput = {
   id?: string,

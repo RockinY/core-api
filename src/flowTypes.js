@@ -143,6 +143,16 @@ export type DBReaction = {
   userId: string
 }
 
+export type NotificationPayloadType =
+  | 'REACTION'
+  | 'THREAD_REACTION'
+  | 'MESSAGE'
+  | 'THREAD'
+  | 'CHANNEL'
+  | 'COMMUNITY'
+  | 'USER'
+  | 'DIRECT_MESSAGE_THREAD'
+
 export type NotificationEventType =
   | 'REACTION_CREATED'
   | 'MESSAGE_CREATED'
@@ -160,7 +170,7 @@ export type NotificationEventType =
 type NotificationPayload = {
   id: string,
   payload: string,
-  type: NotificationPayload
+  type: NotificationPayloadType
 }
 
 export type DBNotification = {
