@@ -92,6 +92,7 @@ const User = `
     createdAt: Date!
     lastSeen: Date!
     isOnline: Boolean
+    isPro: Boolean
     timezone: Int
     totalReputation: Int
     pendingEmail: LowercaseString

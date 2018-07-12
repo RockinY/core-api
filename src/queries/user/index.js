@@ -14,6 +14,7 @@ import threadCount from './threadCount'
 import settings from './settings'
 import totalReputation from './totalReputation'
 import githubProfile from './githubProfile'
+import isPro from './isPro'
 
 module.exports = {
   Query: {
@@ -32,6 +33,7 @@ module.exports = {
     threadCount,
     settings,
     totalReputation,
-    githubProfile
+    githubProfile,
+    isPro
   }
 }
