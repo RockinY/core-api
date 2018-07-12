@@ -12,6 +12,7 @@ import author from './author'
 import messageCount from './messageCount'
 import currentUserLastSeen from './currentUserLastSeen'
 import content from './content'
+import reactions from './reactions'
 
 module.exports = {
   Query: {
@@ -28,6 +29,7 @@ module.exports = {
     author,
     messageCount,
     currentUserLastSeen,
-    content
+    content,
+    reactions
   }
 }

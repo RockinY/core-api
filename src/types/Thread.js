@@ -1,5 +1,10 @@
 // @flow
 const Thread = `
+  type ThreadReactions {
+    count: Int!
+    hasReacted: Boolean
+  }
+  
   type ThreadMessagesConnection {
     pageInfo: PageInfo!
     edges: [ThreadMessageEdge!]
@@ -52,6 +57,7 @@ const Thread = `
     attachments: [Attachment]
     watercooler: Boolean
     currentUserLastSeen: Date @cost(complexity: 1)
+    reactions: ThreadReactions @cost(complexity: 1)
   }
 
   extend type Query {
