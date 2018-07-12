@@ -17,6 +17,7 @@ import topAndNewThreads from './topAndNewThreads'
 import watercooler from './watercooler'
 import brandedLogin from './brandedLogin'
 import joinSettings from './joinSettings'
+import contextPermissions from './contextPermissions'
 
 module.exports = {
   Query: {
@@ -27,6 +28,7 @@ module.exports = {
   },
   Community: {
     communityPermissions,
+    contextPermissions,
     channelConnection,
     members,
     pinnedThread,

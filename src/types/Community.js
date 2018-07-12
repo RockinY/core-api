@@ -79,6 +79,8 @@ const Community = `
 		watercooler: Thread
 		brandedLogin: BrandedLogin
 		joinSettings: JoinSettings
+
+		contextPermissions: ContextPermissions @deprecated(reason:"Use the new CommunityMember type to get permissions")
 	}
 
 	extend type Query {
