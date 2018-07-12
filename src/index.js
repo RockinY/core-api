@@ -45,7 +45,10 @@ if (process.env.NODE_ENV === 'development') {
 // 5. JWT header cookie
 app.use(jwtAuth)
 // 6. Cross Origin Request
-app.use(cors())
+app.use(cors({
+  origin: ['http://localhost:5000', 'https://www.liangboyuan.pub'],
+  credentials: true
+}))
 // 7. Cookie parser
 app.use(cookieParser())
 // 8. JSON body parser
