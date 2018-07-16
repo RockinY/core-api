@@ -26,7 +26,7 @@ export default (args: Args, { loaders, user }: GraphQLContext) => {
     const users = content.hits.hits
     if (!content.hits || content.hits.total === 0) return [];
 
-    const userIds = users.map(o => o.objectID);
+    const userIds = users.map(o => o._source.objectID);
     return loaders.user.loadMany(userIds);
   })
   .then(data => data.filter(Boolean))

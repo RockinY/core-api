@@ -20,7 +20,7 @@ export default (args: Args, { loaders, user }: GraphQLContext) => {
   .then(content => {
     const communities = content.hits.hits
     if (!content.hits || content.hits.total === 0) return [];
-    const communityIds = communities.map(o => o.objectID);
+    const communityIds = communities.map(o => o._source.objectID);
     return loaders.community.loadMany(communityIds);
   })
   .then(data => data.filter(Boolean))

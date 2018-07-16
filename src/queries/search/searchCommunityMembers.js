@@ -13,14 +13,7 @@ export default (args: Args, { loaders, user }: GraphQLContext) => {
   return client.search({
     index: 'users',
     size: hitsPerPage,
-    body: {
-      query: {
-        multi_match: {
-          query: queryString,
-          fields: ['name', 'username']
-        }
-      }
-    }
+    q: queryString
   })
   .then(content => {
     const users = content.hits.hits
@@ -28,7 +21,7 @@ export default (args: Args, { loaders, user }: GraphQLContext) => {
     // if no search filter was passed, there's no way to be searching for
     // community members
     if (searchFilter && !searchFilter.communityId) return [];
-    const userIds = users.map(o => o.objectID);
+    const userIds = users.map(o => o._source.objectID);
     const input = userIds.map(userId => {
       if (!searchFilter || !searchFilter.communityId) return;
       return [userId, searchFilter.communityId];

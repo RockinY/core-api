@@ -66,10 +66,10 @@ export default async (args: Args, { loaders, user }: GraphQLContext) => {
       const threads = content.hits.hits
       if (!content.hits || content.hits.total === 0) return null;
       return threads.map(o => ({
-        threadId: o.threadId,
-        channelId: o.channelId,
-        communityId: o.communityId,
-        creatorId: o.creatorId,
+        threadId: o._source.threadId,
+        channelId: o._source.channelId,
+        communityId: o._source.communityId,
+        creatorId: o._source.creatorId,
       }));
     })
     .catch(err => {
