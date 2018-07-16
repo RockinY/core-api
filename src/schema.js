@@ -25,6 +25,7 @@ const Reaction = require('./types/Reaction')
 const Notification = require('./types/Notification')
 const CommunityMember = require('./types/CommunityMember')
 const ThreadParticipant = require('./types/ThreadParticipant')
+const Search = require('./types/Search')
 
 // Queries
 const userQueries = require('./queries/user')
@@ -36,6 +37,7 @@ const directMessageThreadQueries = require('./queries/directMessageThread')
 const reactionQueries = require('./queries/reaction')
 const notificationQueries = require('./queries/notification')
 const communityMemberQueries = require('./queries/communityMember')
+const searchQueries = require('./queries/search')
 
 // Mutations
 const userMutations = require('./mutations/user')
@@ -87,6 +89,7 @@ const resolvers = merge(
   reactionQueries,
   notificationQueries,
   communityMemberQueries,
+  searchQueries,
   // Mutations
   userMutations,
   communityMutations,
@@ -121,7 +124,8 @@ const schema = makeExecutableSchema({
     Message,
     DirectMessageThread,
     Reaction,
-    Notification
+    Notification,
+    Search
   ],
   resolvers
 })

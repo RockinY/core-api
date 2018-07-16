@@ -404,7 +404,7 @@ export const getOwnersInCommunity = (
   )
 }
 
-const DEFAULT_USER_COMMUNITY_PERMISSIONS = {
+export const DEFAULT_USER_COMMUNITY_PERMISSIONS = {
   isOwner: false,
   isMember: false,
   isModerator: false,
