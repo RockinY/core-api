@@ -99,6 +99,7 @@ const resolvers = merge(
   reactionMutations,
   notificationMutations,
   communityMemberMutations,
+  messageMutations,
   // Subscriptions
   messageSubscriptions,
   notificationSubscriptions,
