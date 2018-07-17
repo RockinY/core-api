@@ -143,6 +143,15 @@ export type DBReaction = {
   userId: string
 }
 
+export type DBThreadReaction = {
+  id: string,
+  threadId: string,
+  createdAt: Date,
+  type: ReactionType,
+  deletedAt?: Date,
+  userId: string
+}
+
 export type NotificationPayloadType =
   | 'REACTION'
   | 'THREAD_REACTION'

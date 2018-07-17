@@ -43,6 +43,7 @@ import {
   __createReactionLoader,
   __createSingleReactionLoader
 } from './reaction'
+import { __createThreadReactionLoader } from './threadReaction'
 
 const createLoaders = (options?: DataLoaderOptions) => ({
   user: __createUserLoader(options),
@@ -73,6 +74,7 @@ const createLoaders = (options?: DataLoaderOptions) => ({
   directMessageSnippet: __createDirectMessageSnippetLoader(options),
   message: __createMessageLoader(options),
   messageReaction: __createReactionLoader(options),
+  threadReaction: __createThreadReactionLoader(options),
   reaction: __createSingleReactionLoader(options)
 })
 

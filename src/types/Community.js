@@ -54,6 +54,11 @@ const Community = `
 		message: String
 	}
 
+	type Features {
+		analytics: Boolean
+		prioritySupport: Boolean
+	}
+
   type Community {
     id: ID!
 		createdAt: Date
@@ -79,6 +84,8 @@ const Community = `
 		watercooler: Thread
 		brandedLogin: BrandedLogin
 		joinSettings: JoinSettings
+		hasFeatures: Features
+		isPro: Boolean @cost(complexity: 1)
 
 		contextPermissions: ContextPermissions @deprecated(reason:"Use the new CommunityMember type to get permissions")
 	}

@@ -18,6 +18,8 @@ import watercooler from './watercooler'
 import brandedLogin from './brandedLogin'
 import joinSettings from './joinSettings'
 import contextPermissions from './contextPermissions'
+import hasFeatures from './hasFeatures'
+import isPro from './isPro'
 
 module.exports = {
   Query: {
@@ -40,6 +42,8 @@ module.exports = {
     topAndNewThreads,
     watercooler,
     brandedLogin,
-    joinSettings
+    joinSettings,
+    hasFeatures,
+    isPro
   }
 }
