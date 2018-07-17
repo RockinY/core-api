@@ -19,4 +19,6 @@ export const canViewDMThread = async (
   if (ids.indexOf(userId) === -1) {
     return false
   }
+
+  return true
 }
