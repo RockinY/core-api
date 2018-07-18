@@ -105,6 +105,7 @@ const Channel = `
     createChannel(input: CreateChannelInput!): Channel
     editChannel(input: EditChannelInput!): Channel
     joinChannelWithToken(input: JoinChannelWithTokenInput!): Channel
+    toggleChannelSubscription(channelId: ID!): Channel
     deleteChannel(channelId: ID!): Boolean
     toggleChannelNotifications(channelId: ID!): Channel
     unblockUser(input: UnblockUserInput!): Channel

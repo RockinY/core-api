@@ -10,6 +10,7 @@ import joinChannelWithToken from './joinChannelWithToken'
 import enableChannelTokenJoin from './enableChannelTokenJoin'
 import disableChannelTokenJoin from './disableChannelTokenJoin'
 import resetChannelJoinToken from './resetChannelJoinToken'
+import toggleChannelSubscription from './toggleChannelSubscription'
 
 module.exports = {
   Mutation: {
@@ -17,6 +18,7 @@ module.exports = {
     deleteChannel,
     editChannel,
     toggleChannelNotifications,
+    toggleChannelSubscription,
     unblockUser,
     archiveChannel,
     restoreChannel,
