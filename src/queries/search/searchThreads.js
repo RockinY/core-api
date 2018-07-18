@@ -46,20 +46,33 @@ export default async (args: Args, { loaders, user }: GraphQLContext) => {
   // }
 
   let getSearchResultThreads = (filters: Object) => {
-    return client.search({
-      index: 'threads',
-      body: {
+    var searchQuery
+    if (Object.keys(filters).length > 0) {
+      searchQuery = {
         bool: {
-          query: {
+          must: {
             multi_match: {
               query: queryString,
               fields: ['title', 'body']
             }
           },
-          filter: [
-            {term: filters}
-          ]
+          filter: {
+            term: filters
+          }
         }
+      }
+    } else {
+      searchQuery = {
+        multi_match: {
+          query: queryString,
+          fields: ['title', 'body']
+        }
+      }
+    }
+    return client.search({
+      index: 'threads',
+      body: {
+        query: searchQuery
       }
     })
     .then(content => {
