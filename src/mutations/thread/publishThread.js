@@ -208,7 +208,7 @@ export default requireAuth(async (
   if (dbThread.content.body) {
     const body = JSON.parse(dbThread.content.body)
     const imageKeys = Object.keys(body.entityMap).filter(
-      key => body.entityMap[key].type === 'image'
+      key => body.entityMap[key].type.toLowerCase() === 'image'
     )
     urls.forEach((url, index) => {
       if (!body.entityMap[imageKeys[index]]) {
