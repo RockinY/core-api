@@ -90,6 +90,15 @@ const Thread = `
     filesToUpload: [Upload]
   }
 
+  enum ThreadReactionTypes {
+		like
+	}
+
+  input AddThreadReactionInput {
+    threadId: ID!
+    type: ThreadReactionTypes
+  }
+
   extend type Mutation {
     publishThread(thread: ThreadInput!): Thread
     editThread(input: EditThreadInput!): Thread
@@ -97,6 +106,7 @@ const Thread = `
     toggleThreadNotifications(threadId: ID!): Thread
     deleteThread(threadId: ID!): Boolean
     moveThread(threadId: ID!, channelId: ID!): Thread
+    addThreadReaction(input: AddThreadReactionInput!): Thread
   }
 
   extend type Subscription {

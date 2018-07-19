@@ -5,6 +5,7 @@ import deleteThread from './deleteThread'
 import setThreadLock from './setThreadLock'
 import toggleThreadNotifications from './toggleThreadNotifications'
 import moveThread from './moveThread'
+import addThreadReaction from './addThreadReaction'
 
 module.exports = {
   Mutation: {
@@ -13,6 +14,7 @@ module.exports = {
     deleteThread,
     setThreadLock,
     toggleThreadNotifications,
-    moveThread
+    moveThread,
+    addThreadReaction
   }
 }
