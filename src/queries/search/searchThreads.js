@@ -30,34 +30,34 @@ export default async (args: Args, { loaders, user }: GraphQLContext) => {
   const { queryString, filter } = args;
   const searchFilter = {}
 
-  // // $FlowFixMe
-  // if (filter.communityId) {
-  //   searchFilter.communityId = filter.communityId
-  // }
+  // $FlowFixMe
+  if (filter.communityId) {
+    searchFilter.communityId = filter.communityId
+  }
 
-  // // $FlowFixMe
-  // if (filter.channelId) {
-  //   searchFilter.channelId = filter.channelId
-  // }
+  // $FlowFixMe
+  if (filter.channelId) {
+    searchFilter.channelId = filter.channelId
+  }
 
-  // // $FlowFixMe
-  // if (filter.creatorId) {
-  //   searchFilter.creatorId = filter.creatorId
-  // }
+  // $FlowFixMe
+  if (filter.creatorId) {
+    searchFilter.creatorId = filter.creatorId
+  }
 
   let getSearchResultThreads = (filters: Object) => {
     var searchQuery
-    if (Object.keys(filters).length > 0) {
+    if (Object.keys(searchFilter).length > 0) {
       searchQuery = {
         bool: {
           must: {
             multi_match: {
               query: queryString,
-              fields: ['title', 'body']
+              fields: ['threadContent.title', 'messageContent.body', 'threadContent.body']
             }
           },
           filter: {
-            term: filters
+            term: searchFilter
           }
         }
       }
@@ -65,12 +65,13 @@ export default async (args: Args, { loaders, user }: GraphQLContext) => {
       searchQuery = {
         multi_match: {
           query: queryString,
-          fields: ['title', 'body']
+          fields: ['threadContent.title', 'messageContent.body', 'threadContent.body']
         }
       }
     }
     return client.search({
       index: 'threads',
+      type: 'item',
       body: {
         query: searchQuery
       }
