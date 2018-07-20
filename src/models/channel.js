@@ -209,9 +209,9 @@ const createGeneralChannel = (communityId: string, userId: string): Promise<DBCh
   return createChannel(
     {
       input: {
-        name: 'General',
+        name: '默认',
         slug: 'general',
-        description: 'General Chatter',
+        description: '默认频道',
         communityId,
         isPrivate: false,
         isDefault: true
