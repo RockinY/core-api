@@ -106,6 +106,8 @@ const User = `
     everything(first: Int = 20, after: String): EverythingThreadsConnection! @cost(complexity: 1, multiplier: "first")
     settings: UserSettings @cost(complexity: 1)
     githubProfile: GithubProfile
+
+    contextPermissions: ContextPermissions @deprecated(reason:"Use the CommunityMember type to get permissions")
   }
 
   extend type Query {

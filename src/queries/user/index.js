@@ -15,6 +15,7 @@ import settings from './settings'
 import totalReputation from './totalReputation'
 import githubProfile from './githubProfile'
 import isPro from './isPro'
+import contextPermissions from './contextPermissions'
 
 module.exports = {
   Query: {
@@ -34,6 +35,7 @@ module.exports = {
     settings,
     totalReputation,
     githubProfile,
-    isPro
+    isPro,
+    contextPermissions
   }
 }
