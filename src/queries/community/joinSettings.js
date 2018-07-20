@@ -6,7 +6,7 @@ export default async (
   _: any,
   { loaders }: GraphQLContext
 ) => {
-  return loaders.communitySettins.load(id).then(settings => {
+  return loaders.communitySettings.load(id).then(settings => {
     return settings.joinSettings
   })
 }
