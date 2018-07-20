@@ -120,7 +120,7 @@ const User = `
     coverFile: Upload
     name: String
     description: String
-    Website: String
+    website: String
     username: LowercaseString
     timezone: Int
   }
