@@ -47,7 +47,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(jwtAuth)
 // *. Cross Origin Request
 app.use(cors({
-  origin: ['http://localhost:5000', 'https://www.liangboyuan.pub'],
+  origin: ['http://localhost:5000', 'http://localhost:3006', 'https://www.liangboyuan.pub'],
   credentials: true
 }))
 // *. Cookie parser
