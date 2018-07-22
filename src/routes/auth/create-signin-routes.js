@@ -1,7 +1,7 @@
 import passport from 'passport'
 import { URL } from 'url'
 import { isOfficialUrl } from '../../utils/url'
-import { signCookie, getCookie } from '../../utils/cookie'
+import { signCookie, getCookies } from '../../utils/cookie'
 
 const FALLBACK_URL = process.env.HOST_URL
 
@@ -39,7 +39,7 @@ export const createSigninRoutes = (
         redirectUrl.searchParams.append('authed', 'true')
 
         if (req.session.authType === 'token' && req.session.passport && req.session.passport.user) {
-          const cookies = getCookie({ userId: req.session.passport.user })
+          const cookies = getCookies({ userId: req.session.passport.user })
 
           redirectUrl.searchParams.append('accessToken', signCookie(
             `session=${cookies.session}; session.sig=${
