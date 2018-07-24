@@ -6,7 +6,7 @@
     "prebuild": "rm -rf ./build",
     "build": "npm run prebuild && backpack build",
     "dev": "DEBUG=api* backpack",
-    "start": "node ./build/main",
+    "start": "DEBUG=api* node ./build/main",
     "deploy": "npm run db:migrate && npm run start",
     "db:drop": "npm run rethinkdb:migrate -- down",
     "db:migrate": "npm run rethinkdb:migrate -- up",
