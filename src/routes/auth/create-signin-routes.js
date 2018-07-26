@@ -3,7 +3,7 @@ import { URL } from 'url'
 import { isOfficialUrl } from '../../utils/url'
 import { signCookie, getCookies } from '../../utils/cookie'
 
-const FALLBACK_URL = process.env.HOST_URL
+const FALLBACK_URL = process.env.WEB_CLIENT_URL
 
 type Strategy = 'github'
 
