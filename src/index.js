@@ -40,7 +40,7 @@ app.use(toobusy)
 // *. Increase security
 addSecurityMiddleware(app)
 // *. Logging
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   app.use(logging)
 }
 // *. JWT header cookie
