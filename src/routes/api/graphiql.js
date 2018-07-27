@@ -1,6 +1,6 @@
 // @flow
-import { graphiqlExpress } from 'apollo-server-express'
+import expressPlayground from 'graphql-playground-middleware-express'
 
-export default graphiqlExpress({
-  endpointURL: '/api'
+export default expressPlayground({
+  endpoint: '/api'
 })

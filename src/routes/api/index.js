@@ -6,7 +6,7 @@ import graphql from './graphql'
 const apiRouter = Router()
 
 if (process.env.NODE_ENV !== 'production') {
-  apiRouter.use('/graphiql', graphiql)
+  apiRouter.use('/playground', graphiql)
 }
 
 apiRouter.use('/', graphql)
