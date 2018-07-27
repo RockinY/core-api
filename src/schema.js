@@ -107,7 +107,7 @@ const resolvers = merge(
   threadSubscriptions
 )
 
-if (process.env.NODE_ENV === 'development' && debug.enabled) {
+if (process.env.NODE_ENV !== 'production' && debug.enabled) {
   logExecutions(resolvers)
 }
 
