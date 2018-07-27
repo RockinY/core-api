@@ -655,22 +655,6 @@ export const resetCommunityAdministratorEmail = (communityId: string) => {
     .run()
 }
 
-export const setStripeCustomerId = (communityId: string, stripeCustomerId: string): Promise<DBCommunity> => {
-  return db
-    .table('communities')
-    .get(communityId)
-    .update(
-      {
-        stripeCustomerId
-      },
-      {
-        returnChanges: 'always'
-      }
-    )
-    .run()
-    .then(result => result.changes[0].new_val || result.changes[0].old_val)
-}
-
 export const disablePaidFeatureFlags = (communityId: string, userId: string): Promise<DBCommunity> => {
   return db
     .table('communities')
