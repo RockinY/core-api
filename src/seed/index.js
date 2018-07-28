@@ -7,6 +7,7 @@ const {
   defaultCommunities,
   defaultUsers,
   defaultChannels,
+  defaultUsersCommunities,
   defaultThreads,
   defaultUsersThreads,
   defaultDirectMessageThreads,
@@ -14,22 +15,7 @@ const {
   defaultUsersChannels,
   defaultMessages
 } = require('./default/index')
-
-const {
-  randomAmount,
-  generateUser,
-  generateUsersSettings,
-  generateCommunity,
-  generateChannel,
-  generateUsersCommunities,
-  generateUsersChannels,
-  generateThread,
-  generateUsersThreads,
-  generateDirectMessageThread,
-  generateUsersDirectMessageThreads,
-  generateMessage,
-  generateReaction
-} = require('./generate')
+const { generateUsersSettings } = require('./generate')
 
 const users = [
   ...defaultUsers
@@ -40,137 +26,22 @@ users.forEach(user => {
   usersSettings.push(generateUsersSettings(user.id))
 })
 
-debug('Generating communities...')
-const communities = [
-  ...defaultCommunities
-]
-
-debug('Generating usersCommunities...')
-let usersCommunities = []
-users.forEach(user => {
-  communities.forEach(community => {
-    usersCommunities.push(generateUsersCommunities(community.id, user.id))
-  })
-})
-
-debug('Generating channels...')
-let channels = defaultChannels
-communities.forEach(community => {
-  randomAmount({ max: 10 }, () => {
-    channels.push(generateChannel(community.id))
-  })
-})
-
-debug('Generating usersChannels...')
-let usersChannels = defaultUsersChannels
-const generatedUsersChannels = users.map(user => {
-  return generateUsersChannels(channels, usersCommunities, user.id)
-})
-generatedUsersChannels.map(elem => {
-  usersChannels.push(...elem)
-})
-
-debug('Generating threads...')
-let threads = defaultThreads
-channels.forEach(channel => {
-  randomAmount({ max: 10 }, () => {
-    const creator = faker.random.arrayElement(users)
-    const thread = generateThread(channel.communityId, channel.id, creator.id)
-    threads.push(thread)
-  })
-})
-
-let usersThreads = defaultUsersThreads
-threads.forEach(thread => {
-  const usersThread = generateUsersThreads(thread.id, thread.creatorId)
-  usersThreads.push(usersThread)
-})
-
-debug('Generating direct message threads...')
-let directMessageThreads = defaultDirectMessageThreads
-randomAmount({ max: 100 }, () => {
-  directMessageThreads.push(generateDirectMessageThread())
-})
-
-debug('Generating usersDirectMessageThreads...')
-let usersDirectMessageThreads = defaultUsersDirectMessageThreads
-directMessageThreads.forEach(thread => {
-  const threadUsers = randomAmount({ max: 5, min: 2 }, i => users[i])
-
-  threadUsers.forEach(user => {
-    usersDirectMessageThreads.push(
-      generateUsersDirectMessageThreads(thread.id, user.id)
-    )
-  })
-})
-
-debug('Generating messages...')
-let messages = defaultMessages
-threads.forEach(thread => {
-  const threadMessages = []
-  randomAmount({ max: 10 }, () => {
-    const sender = faker.random.arrayElement(users)
-    const message = generateMessage(sender.id, thread.id, 'story')
-    messages.push(message)
-    threadMessages.push(message)
-  })
-})
-
-debug('Generating direct messages...')
-let directMessages = []
-usersDirectMessageThreads.forEach(thread => {
-  const threadMessages = []
-  const sender = thread.userId
-  randomAmount({ max: 100 }, () => {
-    const message = generateMessage(
-      sender,
-      thread.threadId,
-      'directMessageThread'
-    )
-    directMessages.push(message)
-    threadMessages.push(message)
-  })
-})
-
-debug('Generating reactions...')
-let reactions = []
-messages.map(message => {
-  randomAmount({ max: 5 }, () => {
-    const user = faker.random.arrayElement(users)
-    reactions.push(generateReaction(user.id, message.id))
-  })
-})
-
-debug(
-  `Inserting ${users.length} users,
-  ${communities.length} communities, ${channels.length} channels, ${
-  threads.length
-} threads, ${messages.length + directMessages.length} messages, ${
-  reactions.length
-} reactions, ${directMessageThreads.length} direct message threads, ${
-  usersCommunities.length
-} usersCommunities objects, ${
-  usersChannels.length
-} usersChannels objects, and ${
-  usersDirectMessageThreads.length
-} usersDirectMessageThreads objects into the database... (this might take a while!)`
-)
 Promise.all([
   db
     .table('communities')
-    .insert(communities)
+    .insert(defaultCommunities)
     .run(),
   db
     .table('channels')
-    .insert(channels)
+    .insert(defaultChannels)
     .run(),
   db
     .table('threads')
-    .insert(threads)
+    .insert(defaultThreads)
     .run(),
   db
     .table('messages')
-    .insert(messages)
+    .insert(defaultMessages)
     .run(),
   db
     .table('users')
@@ -181,33 +52,31 @@ Promise.all([
     .insert(usersSettings)
     .run(),
   db
-    .table('reactions')
-    .insert(reactions)
-    .run(),
-  db
     .table('directMessageThreads')
-    .insert(directMessageThreads)
-    .run(),
-  db
-    .table('messages')
-    .insert(directMessages)
+    .insert(defaultDirectMessageThreads)
     .run(),
   db
     .table('usersCommunities')
-    .insert(usersCommunities)
+    .insert(defaultUsersCommunities)
     .run(),
   db
     .table('usersChannels')
-    .insert(usersChannels)
+    .insert(defaultUsersChannels)
     .run(),
   db
     .table('usersDirectMessageThreads')
-    .insert(usersDirectMessageThreads)
+    .insert(defaultUsersDirectMessageThreads)
     .run(),
   db
     .table('usersThreads')
-    .insert(usersThreads)
-    .run()
+    .insert(defaultUsersThreads)
+    .run(),
+  db
+    .table('curatedContent')
+    .insert({
+      type: 'recommended',
+      data: ['yunshe', 'kuyuan']
+    })
 ])
   .then(() => {
     debug('Finished seeding database! 🎉')

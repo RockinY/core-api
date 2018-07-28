@@ -33,7 +33,7 @@ module.exports = [
       'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/communities/comm2.png',
     coverPhoto:
       'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover2.jpg',
-    slug: 'payments'
+    slug: 'kuyuan'
   },
   {
     id: DELETED_COMMUNITY_ID,
