@@ -11,38 +11,38 @@ module.exports = [
   {
     id: SPECTRUM_COMMUNITY_ID,
     createdAt: new Date(DATE),
-    name: 'Spectrum',
-    description: 'The future of communities',
-    website: 'https://spectrum.chat',
+    name: '云社官方',
+    description: '一个自由和谐有趣的社区',
+    website: 'https://yunshe.fun',
     profilePhoto:
-      'https://spectrum.imgix.net/communities/-Kh6RfPYjmSaIWbkck8i/Twitter Profile.png.0.6225566835336693',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/communities/comm1.png',
     coverPhoto:
-      'https://spectrum.imgix.net/communities/-Kh6RfPYjmSaIWbkck8i/Twitter Header.png.0.3303118636071434',
-    slug: 'spectrum'
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover18.jpg',
+    slug: 'yunshe'
   },
   {
     id: PAYMENTS_COMMUNITY_ID,
     createdAt: new Date(DATE),
-    name: 'Payments',
-    description: 'Where payments are tested',
-    website: 'https://spectrum.chat',
+    name: '南京酷猿信息技术有限公司',
+    description: '全蓝鲸最厉害的互联网公司',
+    website: 'https://corran.cn',
     profilePhoto:
-      'https://spectrum.imgix.net/communities/-Kh6RfPYjmSaIWbkck8i/Twitter Profile.png.0.6225566835336693',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/communities/comm2.png',
     coverPhoto:
-      'https://spectrum.imgix.net/communities/-Kh6RfPYjmSaIWbkck8i/Twitter Header.png.0.3303118636071434',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover2.jpg',
     slug: 'payments'
   },
   {
     id: DELETED_COMMUNITY_ID,
     createdAt: new Date(DATE),
     deletedAt: new Date(DATE),
-    name: 'Deleted',
-    description: 'Things didnt work out',
-    website: 'https://spectrum.chat',
+    name: '已被删除',
+    description: '不会再出现的',
+    website: 'https://yunshe.fun',
     profilePhoto:
-      'https://spectrum.imgix.net/communities/-Kh6RfPYjmSaIWbkck8i/Twitter Profile.png.0.6225566835336693',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/communities/comm2.png',
     coverPhoto:
-      'https://spectrum.imgix.net/communities/-Kh6RfPYjmSaIWbkck8i/Twitter Header.png.0.3303118636071434',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover2.jpg',
     slug: 'deleted'
   }
 ]
