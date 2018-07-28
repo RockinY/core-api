@@ -13,7 +13,7 @@ module.exports = [
         blocks: [
           {
             key: '9u8bg',
-            text: 'This is the first message!',
+            text: '第一条消息出现了!',
             type: 'unstyled',
             depth: 0,
             inlineStyleRanges: [],
@@ -35,7 +35,7 @@ module.exports = [
     attachments: [],
     content: {
       body: JSON.stringify(
-        toJSON(fromPlainText('This is the second message!'))
+        toJSON(fromPlainText('随之而来的是第二条消息!'))
       )
     },
     messageType: 'draftjs',
@@ -49,7 +49,7 @@ module.exports = [
     attachments: [],
     content: {
       body: JSON.stringify(
-        toJSON(fromPlainText('The next one is an emoji-only one :scream:'))
+        toJSON(fromPlainText('自带表情的一条消息 :scream:'))
       )
     },
     messageType: 'draftjs',
@@ -79,7 +79,7 @@ module.exports = [
         blocks: [
           {
             key: '9u8bg',
-            text: 'This is the first message!',
+            text: '你好，很高心认识你!',
             type: 'unstyled',
             depth: 0,
             inlineStyleRanges: [],
@@ -101,7 +101,7 @@ module.exports = [
     attachments: [],
     content: {
       body: JSON.stringify(
-        toJSON(fromPlainText('This is the second message!'))
+        toJSON(fromPlainText('非常荣幸收到你的回复!'))
       )
     },
     messageType: 'draftjs',
@@ -115,7 +115,7 @@ module.exports = [
     attachments: [],
     content: {
       body: JSON.stringify(
-        toJSON(fromPlainText('The next one is an emoji-only one :scream:'))
+        toJSON(fromPlainText('哈哈哈哈，别这么客气 :scream:'))
       )
     },
     messageType: 'draftjs',
@@ -144,7 +144,7 @@ module.exports = [
     attachments: [],
     content: {
       body: JSON.stringify(
-        toJSON(fromPlainText('Direct message thread message!'))
+        toJSON(fromPlainText('让我们一起来测试测试吧!'))
       )
     },
     messageType: 'draftjs',
@@ -157,7 +157,7 @@ module.exports = [
     threadType: 'directMessageThread',
     attachments: [],
     content: {
-      body: JSON.stringify(toJSON(fromPlainText('A second one')))
+      body: JSON.stringify(toJSON(fromPlainText('很短的一条消息')))
     },
     messageType: 'draftjs',
     senderId: BRYN_ID,
@@ -169,7 +169,7 @@ module.exports = [
     threadType: 'directMessageThread',
     attachments: [],
     content: {
-      body: JSON.stringify(toJSON(fromPlainText('A third one')))
+      body: JSON.stringify(toJSON(fromPlainText('再来一条')))
     },
     messageType: 'draftjs',
     senderId: BRIAN_ID,
@@ -181,7 +181,7 @@ module.exports = [
     threadType: 'directMessageThread',
     attachments: [],
     content: {
-      body: JSON.stringify(toJSON(fromPlainText('A fourth one')))
+      body: JSON.stringify(toJSON(fromPlainText('我还要继续发')))
     },
     messageType: 'draftjs',
     senderId: MAX_ID,
@@ -193,7 +193,7 @@ module.exports = [
     threadType: 'directMessageThread',
     attachments: [],
     content: {
-      body: JSON.stringify(toJSON(fromPlainText('A fifth one')))
+      body: JSON.stringify(toJSON(fromPlainText('最后一条不发了，就此结束')))
     },
     messageType: 'draftjs',
     senderId: BRYN_ID,
