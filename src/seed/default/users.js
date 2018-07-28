@@ -15,115 +15,115 @@ const {
 module.exports = [
   {
     id: MAX_ID,
-    name: 'Max Stoiber',
+    name: '曹言',
     description:
-      'Makes styled-components, react-boilerplate and micro-analytics 💅 Speciality coffee geek, skier, traveller ☕',
+      '我依旧深信时间是良药虽苦口但有效',
     website: 'https://mxstbr.com',
-    username: 'mxstbr',
-    profilePhoto: 'https://img.gs/jztmrqvgzv/500/mxstbr.com/headshot.jpeg',
+    username: 'caoyan',
+    profilePhoto: 'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar1.jpeg',
     coverPhoto:
-      'https://pbs.twimg.com/profile_banners/2451223458/1479507323/1500x500',
-    email: 'contact@mxstbr.com',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover1.jpg',
+    email: 'caoyan@corran.cn',
     providerId: '2451223458',
     createdAt: new Date(DATE),
     lastSeen: new Date(DATE)
   },
   {
     id: BRIAN_ID,
-    name: 'Brian Lovin',
-    description: 'Chief Nice Boy™',
+    name: '李子',
+    description: '尽人事，听天命，更多的时候是需要有一颗能够接纳失去的心。',
     website: 'https://brianlovin.com',
-    username: 'brian',
+    username: 'liyuwei',
     profilePhoto:
-      'https://pbs.twimg.com/profile_images/570313913648955392/cf4tgX7M_bigger.jpeg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar2.jpeg',
     coverPhoto:
-      'https://pbs.twimg.com/profile_banners/465068802/1490051733/1500x500',
-    email: 'briandlovin@gmail.com',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover2.jpg',
+    email: 'frank@corran.cn',
     providerId: '465068802',
     createdAt: new Date(DATE),
     lastSeen: new Date(DATE)
   },
   {
     id: BRYN_ID,
-    name: 'Bryn Jackson',
-    description: 'full-stack flapjack',
+    name: 'Giorgio - 乔治',
+    description: '总是向你索取却不曾谢谢你，直到长大以后才懂得你不容易。',
     website: 'https://bryn.io',
-    username: 'bryn',
+    username: 'giorgio',
     profilePhoto:
-      'https://pbs.twimg.com/profile_images/848823167699230721/-9CbPtto_bigger.jpg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar3.jpeg',
     coverPhoto:
-      'https://pbs.twimg.com/profile_banners/17106008/1491444958/1500x500',
-    email: 'hi@bryn.io',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover3.jpg',
+    email: 'giorgio@corran.cn',
     providerId: '17106008',
     createdAt: new Date(DATE),
     lastSeen: new Date(DATE)
   },
   {
     id: QUIET_USER_ID,
-    name: 'Quiet user',
-    description: "I've never joined anything on Spectrum",
+    name: 'change黄皇兴',
+    description: "我是个游客，还没有加入任何社区",
     website: '',
     username: 'quiet-user',
     profilePhoto:
-      'https://pbs.twimg.com/profile_images/848823167699230721/-9CbPtto_bigger.jpg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar4.jpeg',
     coverPhoto:
-      'https://pbs.twimg.com/profile_banners/17106008/1491444958/1500x500',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover4.jpg',
     email: 'hi@quietuser.com',
     createdAt: new Date(DATE),
     lastSeen: new Date(DATE)
   },
   {
     id: BLOCKED_USER_ID,
-    name: 'Blocked user',
-    description: 'I am blocked in the Spectrum community',
+    name: '李乾坤David',
+    description: '我被社区屏蔽了',
     website: '',
     username: 'blocked-user',
     profilePhoto:
-      'https://pbs.twimg.com/profile_images/848823167699230721/-9CbPtto_bigger.jpg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar5.jpeg',
     coverPhoto:
-      'https://pbs.twimg.com/profile_banners/17106008/1491444958/1500x500',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover5.jpg',
     email: 'hi@blockeduser.com',
     createdAt: new Date(DATE),
     lastSeen: new Date(DATE)
   },
   {
     id: PREVIOUS_MEMBER_USER_ID,
-    name: 'Previous member',
-    description: 'I used to be in the Spectrum community, but then left',
+    name: '陆鼎铭',
+    description: '只有拼命的将嘴角拉起，才不会将眼底那该死的落寞遮住',
     website: '',
     username: 'previous-user',
     profilePhoto:
-      'https://pbs.twimg.com/profile_images/848823167699230721/-9CbPtto_bigger.jpg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar6.jpeg',
     coverPhoto:
-      'https://pbs.twimg.com/profile_banners/17106008/1491444958/1500x500',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover6.jpg',
     email: 'hi@previousboy.io',
     createdAt: new Date(DATE),
     lastSeen: new Date(DATE)
   },
   {
     id: CHANNEL_MODERATOR_USER_ID,
-    name: 'Channel moderator',
-    description: 'I moderate all channels',
+    name: '高路遥',
+    description: '与其给我山盟海誓 不如陪我走过每一个春夏秋冬',
     website: '',
     username: 'channel-moderator-user',
     profilePhoto:
-      'https://pbs.twimg.com/profile_images/848823167699230721/-9CbPtto_bigger.jpg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar7.jpeg',
     coverPhoto:
-      'https://pbs.twimg.com/profile_banners/17106008/1491444958/1500x500',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover7.jpg',
     email: 'hi@channelmoderatorboy.io',
     createdAt: new Date(DATE),
     lastSeen: new Date(DATE)
   },
   {
     id: COMMUNITY_MODERATOR_USER_ID,
-    name: 'Community moderator',
-    description: 'I moderate all communities',
+    name: '转身浅笑',
+    description: '我把我的心都花出去了，竟然忘了留下一点点来疼自己',
     website: '',
     username: 'community-moderator-user',
     profilePhoto:
-      'https://pbs.twimg.com/profile_images/848823167699230721/-9CbPtto_bigger.jpg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar8.jpeg',
     coverPhoto:
-      'https://pbs.twimg.com/profile_banners/17106008/1491444958/1500x500',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover8.jpg',
     email: 'hi@communitymoderatorboy.io',
     createdAt: new Date(DATE),
     lastSeen: new Date(DATE)
