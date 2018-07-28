@@ -31,8 +31,6 @@ const {
   generateReaction
 } = require('./generate')
 
-const client = require('../utils/elastic')
-
 const users = [
   ...defaultUsers
 ]
@@ -209,8 +207,7 @@ Promise.all([
   db
     .table('usersThreads')
     .insert(usersThreads)
-    .run(),
-  client.indices.delete({index: '*'})
+    .run()
 ])
   .then(() => {
     debug('Finished seeding database! 🎉')
