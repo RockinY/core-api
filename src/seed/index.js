@@ -33,10 +33,8 @@ const {
 
 const client = require('../utils/elastic')
 
-const userAmount = faker.random.number(1000)
 const users = [
-  ...defaultUsers,
-  ...randomAmount({ max: userAmount, min: 1 }, generateUser)
+  ...defaultUsers
 ]
 
 const usersSettings = []
@@ -46,10 +44,7 @@ users.forEach(user => {
 
 debug('Generating communities...')
 const communities = [
-  ...defaultCommunities,
-  ...randomAmount({ min: 10, max: 20 }, () => {
-    return generateCommunity()
-  })
+  ...defaultCommunities
 ]
 
 debug('Generating usersCommunities...')
