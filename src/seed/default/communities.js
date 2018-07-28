@@ -59,7 +59,7 @@ module.exports = [
     profilePhoto:
       'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/communities/comm3.png',
     coverPhoto:
-    'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover20.jpg',
+    'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover20.jpeg',
     slug: 'private',
   },
 ]

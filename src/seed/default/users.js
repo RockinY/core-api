@@ -35,7 +35,7 @@ module.exports = [
     website: 'https://brianlovin.com',
     username: 'liyuwei',
     profilePhoto:
-      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar2.jpeg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar2.jpg',
     coverPhoto:
       'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover2.jpg',
     email: 'frank@corran.cn',
@@ -79,7 +79,7 @@ module.exports = [
     website: '',
     username: 'blocked-user',
     profilePhoto:
-      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar5.jpeg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar5.jpg',
     coverPhoto:
       'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover5.jpg',
     email: 'hi@blockeduser.com',
@@ -93,7 +93,7 @@ module.exports = [
     website: '',
     username: 'previous-user',
     profilePhoto:
-      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar6.jpeg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar6.jpg',
     coverPhoto:
       'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover6.jpg',
     email: 'hi@previousboy.io',
@@ -107,7 +107,7 @@ module.exports = [
     website: '',
     username: 'channel-moderator-user',
     profilePhoto:
-      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar7.jpeg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar7.jpg',
     coverPhoto:
       'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover7.jpg',
     email: 'hi@channelmoderatorboy.io',
@@ -121,7 +121,7 @@ module.exports = [
     website: '',
     username: 'community-moderator-user',
     profilePhoto:
-      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar8.jpeg',
+      'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/avatars/avatar8.jpg',
     coverPhoto:
       'https://xlabsample.oss-cn-hangzhou.aliyuncs.com/covers/cover8.jpg',
     email: 'hi@communitymoderatorboy.io',
