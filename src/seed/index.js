@@ -31,6 +31,8 @@ const {
   generateReaction
 } = require('./generate')
 
+const client = require('../utils/elastic')
+
 const userAmount = faker.random.number(1000)
 const users = [
   ...defaultUsers,
@@ -212,7 +214,8 @@ Promise.all([
   db
     .table('usersThreads')
     .insert(usersThreads)
-    .run()
+    .run(),
+  client.indices.delete({index: '*'})
 ])
   .then(() => {
     debug('Finished seeding database! 🎉')
