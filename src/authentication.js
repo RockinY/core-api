@@ -108,7 +108,7 @@ const init = () => {
           googleProviderId: null,
           githubProviderId: profile.id,
           githubUsername: githubUsername,
-          username: githubUsername,
+          username: null,
           name: name,
           description: profile._json.bio,
           website: profile._json.blog,
