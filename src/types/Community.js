@@ -111,7 +111,8 @@ const Community = `
     description: String!
     website: String
     file: Upload
-    coverFile: Upload
+		coverFile: Upload
+		isPrivate: Boolean
 	}
 	
 	input EditCommunityInput {
