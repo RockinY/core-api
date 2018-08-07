@@ -31,9 +31,7 @@ exports.QUEUE_NAMES = {
   sendPrivateCommunityRequestApprovedQueue: PRIVATE_COMMUNITY_REQUEST_APPROVED,
   sendChannelNotificationQueue: CHANNEL_NOTIFICATION,
   sendDirectMessageNotificationQueue: DIRECT_MESSAGE_NOTIFICATION,
-  sendMessageNotificationQueue: MESSAGE_NOTIFICATION,
-  sendMentionNotificationQueue: MENTION_NOTIFICATION,
-  sendNotificationAsPushQueue: SEND_PUSH_NOTIFICATIONS
+  sendMessageNotificationQueue: MESSAGE_NOTIFICATION
 }
 
 // We add one error listener per queue, so we have to set the max listeners
