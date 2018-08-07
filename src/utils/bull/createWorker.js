@@ -4,7 +4,7 @@
 import toobusy from '../../middlewares/toobusy'
 const http = require('http')
 const EventEmitter = require('events')
-const createQueue = require('./create-queue')
+const createQueue = require('./createQueue')
 
 type QueueMap = {
   [name: string]: (job: Object) => ?Promise<any>,

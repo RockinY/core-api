@@ -1,5 +1,5 @@
 // @flow
-var createQueue = require('./create-queue')
+var createQueue = require('./createQueue')
 
 // A small wrapper around bull to have consistent logging
 function processQueue (name /*: string */, cb /*: Function */) {

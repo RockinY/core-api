@@ -1,5 +1,5 @@
 // @flow
-import createRedis from './create-redis'
+import createRedis from './createRedis'
 import Raven from '../raven'
 const Queue = require('bull')
 
