@@ -1,6 +1,7 @@
 // @flow
 import db from '../db'
 import type { DBUsersCommunities, DBCommunity } from '../flowTypes'
+import { sendCommunityNotificationQueue } from '../utils/bull/queues'
 
 export const createOwnerInCommunity = (communityId: string, userId: string): Promise<Object> => {
   return db
@@ -21,7 +22,7 @@ export const createOwnerInCommunity = (communityId: string, userId: string): Pro
     )
     .run()
     .then(result => {
-      // TODO: Add track queue
+      sendCommunityNotificationQueue.add({ communityId, userId })
       return result.changes[0].new_val
     })
 }
