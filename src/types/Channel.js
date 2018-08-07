@@ -1,5 +1,5 @@
 // @flow
-const Channel = `
+const Channel = /* GraphQL */`
   type ChannelMembersConnection {
     pageInfo: PageInfo!
     edges: [ChannelMemberEdge!]
@@ -101,6 +101,17 @@ const Channel = `
     isDefault: Boolean
   }
 
+  enum PendingActionType {
+    block
+    approve
+  }
+
+  input TogglePendingUserInput {
+    channelId: ID!
+    userId: ID!
+    action: PendingActionType!
+  }
+
   extend type Mutation {
     createChannel(input: CreateChannelInput!): Channel
     editChannel(input: EditChannelInput!): Channel
@@ -108,6 +119,7 @@ const Channel = `
     toggleChannelSubscription(channelId: ID!): Channel
     deleteChannel(channelId: ID!): Boolean
     toggleChannelNotifications(channelId: ID!): Channel
+    togglePendingUser(input: TogglePendingUserInput!): Channel
     unblockUser(input: UnblockUserInput!): Channel
     archiveChannel(input: ArchiveChannelInput!): Channel
     restoreChannel(input: RestoreChannelInput!): Channel

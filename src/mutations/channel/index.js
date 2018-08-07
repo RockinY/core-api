@@ -11,6 +11,7 @@ import enableChannelTokenJoin from './enableChannelTokenJoin'
 import disableChannelTokenJoin from './disableChannelTokenJoin'
 import resetChannelJoinToken from './resetChannelJoinToken'
 import toggleChannelSubscription from './toggleChannelSubscription'
+import togglePendingUser from './togglePendingUser'
 
 module.exports = {
   Mutation: {
@@ -19,6 +20,7 @@ module.exports = {
     editChannel,
     toggleChannelNotifications,
     toggleChannelSubscription,
+    togglePendingUser,
     unblockUser,
     archiveChannel,
     restoreChannel,
