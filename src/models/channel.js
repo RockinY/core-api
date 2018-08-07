@@ -1,6 +1,7 @@
 // @flow
 import db from '../db'
 import type { DBChannel } from '../flowTypes'
+import { sendChannelNotificationQueue } from '../utils/bull/queues'
 
 const channelsByCommunitiesQuery = (...communityIds: string[]) => {
   return db
@@ -198,7 +199,7 @@ const createChannel = ({ input }: CreateChannelInput, userId: string): Promise<D
       // TODO: add track queue
 
       if (!channel.isPrivate) {
-        // TODO: send channel notification
+        sendChannelNotificationQueue.add({ channel, userId })
       }
 
       return channel
