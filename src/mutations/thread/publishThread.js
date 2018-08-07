@@ -9,6 +9,7 @@ import {
   editThread,
   getThreadsByUserAsSpamCheck
 } from '../../models/thread'
+import { sendThreadNotificationQueue } from '../../utils/bull/queues'
 import { createParticipantInThread } from '../../models/usersThreads'
 import { toPlainText, toState } from '../../utils/draft'
 import { isAuthedResolver as requireAuth } from '../../utils/permissions'
@@ -187,6 +188,7 @@ export default requireAuth(async (
   const dbThread: DBThread = await publishThread(threadObject, user.id)
 
   // TODO: check toxicity
+  sendThreadNotificationQueue.add({ thread: dbThread });
 
   await createParticipantInThread(dbThread.id, user.id)
 
