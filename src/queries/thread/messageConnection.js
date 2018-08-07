@@ -4,6 +4,7 @@ import type { PaginationOptions } from '../../utils/paginateArrays'
 import UserError from '../../utils/userError'
 import { encode, decode } from '../../utils/base64'
 import { getMessages } from '../../models/message'
+import { trackUserThreadLastSeenQueue } from '../../utils/bull/queues'
 const debug = require('debug')('api:thread-message-connection')
 
 export default (
@@ -78,6 +79,13 @@ export default (
   options.last && options.last++
 
   return getMessages(id, options).then(result => {
+    if (user && user.id) {
+      trackUserThreadLastSeenQueue.add({
+        threadId: id,
+        userId: user.id,
+        timestamp: Date.now(),
+      });
+    }
     let messages = result
     // Check if more messages were returned than were requested, which would mean
     // there's a next/previous page. (depending on the direction of the pagination)

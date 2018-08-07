@@ -10,6 +10,7 @@ import { createMemberInChannel } from '../../models/usersChannels'
 import { createParticipantInThread } from '../../models/usersThreads'
 import addCommunityMember from '../communityMember/addCommunityMember'
 import { isAuthedResolver as requireAuth } from '../../utils/permissions'
+import { trackUserThreadLastSeenQueue } from '../../utils/bull/queues'
 
 type Input = {
   message: {
@@ -210,6 +211,12 @@ export default requireAuth(async (_: any, args: Input, ctx: GraphQLContext) => {
           : false,
         isOwner: communityPermissions ? communityPermissions.isOwner : false
       }
+
+      trackUserThreadLastSeenQueue.add({
+        userId: user.id,
+        threadId: message.threadId,
+        timestamp: Date.now(),
+      })
 
       return {
         ...dbMessage,

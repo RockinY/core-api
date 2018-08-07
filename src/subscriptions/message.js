@@ -7,6 +7,7 @@ import UserError from '../utils/userError'
 import asyncify from '../utils/asyncify'
 import { userCanViewChannel, userCanViewDirectMessageThread } from './utils'
 import Raven from '../utils/raven'
+import { trackUserThreadLastSeenQueue } from '../utils/bull/queues'
 
 const addMessageListener = asyncify(listenToNewMessages)
 
@@ -60,6 +61,15 @@ module.exports = {
             filter: message => {
               if (message.threadId === thread && user) {
                 return true
+              }
+
+              if (message.threadId === thread && user) {
+                trackUserThreadLastSeenQueue.add({
+                  userId: user.id,
+                  threadId: message.threadId,
+                  timestamp: new Date(message.timestamp).getTime() + 100,
+                });
+                return true;
               }
 
               return false
