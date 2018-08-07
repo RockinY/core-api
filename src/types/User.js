@@ -1,4 +1,4 @@
-const User = `
+const User = /* GraphQL */`
   type UserCommunitiesConnection {
     pageInfo: PageInfo!
     edges: [UserCommunityEdge!]
@@ -130,10 +130,22 @@ const User = `
     notificationType: String!
   }
 
+  input WebPushSubscriptionKeys {
+		p256dh: String!
+		auth: String!
+	}
+
+	input WebPushSubscription {
+		endpoint: String!
+		keys: WebPushSubscriptionKeys!
+	}
+
   extend type Mutation {
     editUser(input: EditUserInput!): User
     toggleNotificationSettings(input: ToggleNotificationSettingsInput): User
     deleteCurrentUser: Boolean
+    subscribeWebPush(subscription: WebPushSubscription!): Boolean
+		unsubscribeWebPush(endpoint: String!): Boolean
     updateUserEmail(email: LowercaseString!): User
   }
 `
