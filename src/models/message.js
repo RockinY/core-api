@@ -3,6 +3,7 @@ import db from '../db'
 import { NEW_DOCUMENTS } from './utils'
 import { createChangefeed } from '../utils/changeFeed'
 import { setThreadLastActive } from './thread'
+import { sendDirectMessageNotificationQueue } from '../utils/bull/queues'
 
 export type MessageTypes = 'text' | 'media'
 export type Message = Object
@@ -128,7 +129,7 @@ export const storeMessage = (message: Message, userId: string): Promise<Message>
     .then(result => result.changes[0].new_val)
     .then(message => {
       if (message.threadType === 'directMessageThread') {
-        // sendDirectMessageNotificationQueue.add({ message, userId })
+        sendDirectMessageNotificationQueue.add({ message, userId })
       }
 
       if (message.threadType === 'story') {
