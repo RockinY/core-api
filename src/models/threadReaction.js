@@ -1,6 +1,7 @@
 // @flow
 import db from '../db';
 import type { DBThreadReaction } from '../flowTypes';
+import { sendThreadReactionNotificationQueue } from '../utils/bull/queues'
 
 type ThreadReactionType = 'like';
 
@@ -32,6 +33,8 @@ export const addThreadReaction = (input: ThreadReactionInput, userId: string): P
       // just remove the deletedAt field
       if (results && results.length > 0) {
         const thisReaction = results[0];
+
+        sendThreadReactionNotificationQueue.add({ threadReaction: thisReaction, userId })
 
         return db
           .table('threadReactions')
