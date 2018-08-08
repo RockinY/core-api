@@ -7,22 +7,22 @@ export const createNewUsersSettings = (userId: string): Promise<Object> => {
     notifications: {
       types: {
         newMessageInThreads: {
-          email: true
+          email: false
         },
         newMention: {
-          email: true
+          email: false
         },
         newDirectMessage: {
-          email: true
+          email: false
         },
         newThreadCreated: {
-          email: true
+          email: false
         },
         dailyDigest: {
-          email: true
+          email: false
         },
         weeklyDigest: {
-          email: true
+          email: false
         }
       }
     }
