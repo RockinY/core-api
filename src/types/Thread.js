@@ -1,5 +1,5 @@
 // @flow
-const Thread = `
+const Thread = /* GraphQL */`
   type ThreadReactions {
     count: Int!
     hasReacted: Boolean

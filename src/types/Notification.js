@@ -1,5 +1,5 @@
 // @flow
-const Notification = `
+const Notification = /* GraphQL */`
   enum NotificationEventType {
     REACTION_CREATED
     MESSAGE_CREATED

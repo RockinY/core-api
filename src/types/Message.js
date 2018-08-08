@@ -1,5 +1,5 @@
 // @flow
-const Message = `
+const Message = /* GraphQL */`
   enum MessageTypes {
     text
     media

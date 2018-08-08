@@ -1,5 +1,5 @@
 // @flow
-const DirectMessageThread = `
+const DirectMessageThread = /* GraphQL */`
   enum MessageType {
     text
     media

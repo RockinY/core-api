@@ -1,5 +1,5 @@
 // @flow
-const Reaction = `
+const Reaction = /* GraphQL */`
   enum ReactionTypes {
     like
   }

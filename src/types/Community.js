@@ -1,5 +1,5 @@
 // @flow
-const Community = `
+const Community = /* GraphQL */`
 	type CommunityChannelsConnection {
 		pageInfo: PageInfo!
 		edges: [CommunityChannelEdge!]
