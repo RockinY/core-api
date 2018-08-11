@@ -45,7 +45,8 @@ var COMMUNITY_SLUG_BLACKLIST = [
   'undefined',
   'upgrade',
   'user',
-  'users'
+  'users',
+  'goto'
 ]
 
 var CHANNEL_SLUG_BLACKLIST = ['feed', 'members', 'settings']
