@@ -1,7 +1,7 @@
 {
   "name": "core-api",
   "version": "0.0.1",
-  "description": "Learning project from fantastic spectrum code base.",
+  "description": "Online community YunShe API.",
   "scripts": {
     "prebuild": "rm -rf ./build",
     "build": "npm run prebuild && backpack build",
@@ -11,6 +11,7 @@
     "db:drop": "npm run rethinkdb:migrate -- down",
     "db:migrate": "npm run rethinkdb:migrate -- up",
     "db:seed": "node src/seed/index.js",
+    "create:migration": "cd ./src && rethinkdb-migrate create",
     "db:reset": "yarn run db:drop && yarn run db:migrate && yarn run db:seed",
     "rethinkdb:migrate": "rethinkdb-migrate -f ./src/migrations/config.js",
     "fix": "standard --fix "
