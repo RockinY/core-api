@@ -1,6 +1,7 @@
 // @flow
-import expressPlayground from 'graphql-playground-middleware-express'
+import { graphiqlExpress } from 'graphql-server-express';
 
-export default expressPlayground({
-  endpoint: '/api'
-})
+export default graphiqlExpress({
+  endpointURL: '/api',
+  subscriptionsEndpoint: process.env.WS_URL
+});
