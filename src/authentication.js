@@ -150,7 +150,90 @@ const init = () => {
         passReqToCallback: true
       },
       async (req, accessToken, refreshToken, profile, done) => {
-        
+        debug(profile)
+        if (req.user) {
+          // if a user exists in the request body, it means the user is already
+          // authed and is trying to connect an alipay account. Before we do so
+          // we need to make sure that:
+          // 1. The user doesn't have an existing alipayId on their user
+          // 2. The providerId returned from Alipay isnt' being used by another user
+
+          // 1
+          // if the user already has a aliapyId, don't override it
+          if (req.user.alipayProviderId) {
+            if (!req.user.alipayUsername) {
+              return saveUserProvider(
+                req.user.id,
+                'alipayProviderId',
+                profile.id,
+                { alipayUsername: profile.displayName }
+              )
+                .then(user => {
+                  done(null, user)
+                  return user
+                })
+            }
+
+            return done(null, req.user)
+          }
+
+          const existingUserWithProviderId = await getUserByIndex(
+            'alipayProviderId',
+            profile.id
+          )
+
+          // 2
+          // if no user exists with this provider id, it's safe to save on the req.user's object
+          if (!existingUserWithProviderId) {
+            return saveUserProvider(
+              req.user.id,
+              'alipayProviderId',
+              profile.id,
+              { alipayUsername: profile.displayName }
+            )
+              .then(user => {
+                done(null, user)
+                return user
+              })
+              .catch(err => {
+                done(err)
+                return null
+              })
+          }
+
+          // if a user exists with this provider id, don't do anything and return
+          if (existingUserWithProviderId) {
+            return done(null, req.user)
+          }
+        }
+
+        const user = {
+          providerId: null,
+          fbProviderId: null,
+          googleProviderId: null,
+          githubProviderId: null,
+          githubUsername: null,
+          alipayProviderId: profile.id,
+          alipayUsername: profile.displayName,
+          username: null,
+          name: profile.displayName,
+          description: `${profile._json.province} ${profile._json.city}`,
+          website: null,
+          email: null,
+          profilePhoto: profile.avatar,
+          createdAt: new Date(),
+          lastSeen: new Date()
+        }
+
+        return createOrFindUser(user, 'alipayProviderId')
+          .then(user => {
+            done(null, user)
+            return user
+          })
+          .catch(err => {
+            done(err)
+            return null
+          })
       }
     )
   )
