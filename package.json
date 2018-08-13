@@ -82,6 +82,7 @@
     "markdown-draft-js": "^1.0.0",
     "object-hash": "^1.3.0",
     "passport": "^0.4.0",
+    "passport-alipay2": "^0.1.0",
     "passport-github2": "^0.1.11",
     "pinyin": "^2.8.3",
     "query-string": "^6.1.0",
