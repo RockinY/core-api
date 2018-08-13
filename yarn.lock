@@ -4881,9 +4881,9 @@ pascalcase@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
 
-passport-alipay2@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/passport-alipay2/-/passport-alipay2-0.1.0.tgz#4b6c5e58c9b6697772569b7125b6e1d62d22361f"
+passport-alipay2@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/passport-alipay2/-/passport-alipay2-0.2.0.tgz#d6ff98f317711ee82236f838ee61372f1a67d9aa"
   dependencies:
     bluebird "^3.5.0"
     debug "^3.1.0"

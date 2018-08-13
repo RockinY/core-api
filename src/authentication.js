@@ -1,11 +1,13 @@
 const passport = require('passport')
 const { Strategy: GithubStrategy } = require('passport-github2')
+const { Strategy: AlipayStrategy } = require('passport-alipay2')
 const {
   getUser,
   createOrFindUser,
   saveUserProvider,
   getUserByIndex
 } = require('./models/user')
+const debug = require('debug')('api')
 
 const baseUrl = process.env.HOST_URL
 
@@ -132,6 +134,23 @@ const init = () => {
             done(err)
             return null
           })
+      }
+    )
+  )
+
+  // Alipay auth strategy
+  passport.use(
+    new AlipayStrategy(
+      {
+        app_id: process.env.ALIPAY_OAUTH_CLIENT_ID,
+        alipay_public_key: process.env.ALIPAY_OAUTH_PUBLIC_KEY,
+        private_key: process.env.ALIPAY_OAUTH_PRIVATE_KEY,
+        callbackURL: `${baseUrl}/auth/alipay/callback`,
+        scope: 'auth_user',
+        passReqToCallback: true
+      },
+      async (req, accessToken, refreshToken, profile, done) => {
+        
       }
     )
   )
