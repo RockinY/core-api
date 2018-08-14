@@ -143,8 +143,8 @@ const init = () => {
     new AlipayStrategy(
       {
         app_id: process.env.ALIPAY_OAUTH_CLIENT_ID,
-        alipay_public_key: process.env.ALIPAY_OAUTH_PUBLIC_KEY,
-        private_key: process.env.ALIPAY_OAUTH_PRIVATE_KEY,
+        alipay_public_key: process.env.ALIPAY_OAUTH_PUBLIC_KEY.replace(/\\n/g, "\n"),
+        private_key: process.env.ALIPAY_OAUTH_PRIVATE_KEY.replace(/\\n/g, "\n"),
         callbackURL: `${baseUrl}/auth/alipay/callback`,
         scope: 'auth_user',
         passReqToCallback: true
