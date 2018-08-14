@@ -1,6 +1,7 @@
 const passport = require('passport')
 const { Strategy: GithubStrategy } = require('passport-github2')
 const { Strategy: AlipayStrategy } = require('passport-alipay2')
+const WechatStrategy = require('passport-weixin')
 const {
   getUser,
   createOrFindUser,
@@ -237,6 +238,104 @@ const init = () => {
       }
     )
   )
+
+  // Wechat auth
+  passport.use('wechat',
+    new WechatStrategy(
+      {
+        clientID: process.env.WEIXIN_OAUTH_CLIENT_ID,
+        clientSecret: process.env.WEIXIN_OAUTH_CLIENT_SECRET,
+        callbackURL: `${baseUrl}/auth/wechat/callback`,
+        scope: 'snsapi_login',
+        requireState: false,
+        passReqToCallback: true
+      },
+      async (req, accessToken, refreshToken, profile, done) => {
+        debug(profile)
+        if (req.user) {
+
+          if (req.user.wechatProviderId) {
+            if (!req.user.wechatUsername) {
+              return saveUserProvider(
+                req.user.id,
+                'wechatProviderId',
+                profile.id,
+                { wechatUsername: profile.displayName }
+              )
+                .then(user => {
+                  done(null, user)
+                  return user
+                })
+            }
+
+            return done(null, req.user)
+          }
+
+          const existingUserWithProviderId = await getUserByIndex(
+            'wechatProviderId',
+            profile.id
+          )
+
+          // 2
+          // if no user exists with this provider id, it's safe to save on the req.user's object
+          if (!existingUserWithProviderId) {
+            return saveUserProvider(
+              req.user.id,
+              'wechatProviderId',
+              profile.id,
+              { wechatUsername: profile.displayName }
+            )
+              .then(user => {
+                done(null, user)
+                return user
+              })
+              .catch(err => {
+                done(err)
+                return null
+              })
+          }
+
+          // if a user exists with this provider id, don't do anything and return
+          if (existingUserWithProviderId) {
+            return done(null, req.user)
+          }
+        }
+
+        const user = {
+          providerId: null,
+          fbProviderId: null,
+          googleProviderId: null,
+          githubProviderId: null,
+          githubUsername: null,
+          alipayProviderId: null,
+          alipayUsername: null,
+          wechatProviderId: profile.id,
+          wechatUsername: profile.displayName,
+          username: null,
+          name: profile.displayName,
+          description: null,
+          website: null,
+          email: (profile.emails &&
+            profile.emails.length > 0 &&
+            profile.emails[0].value) || null,
+          profilePhoto: profile.profileUrl,
+          createdAt: new Date(),
+          lastSeen: new Date()
+        }
+
+        return createOrFindUser(user, 'wechatProviderId')
+          .then(user => {
+            done(null, user)
+            return user
+          })
+          .catch(err => {
+            done(err)
+            return null
+          })
+      }
+    )
+  )
+
 }
 
 module.exports = init

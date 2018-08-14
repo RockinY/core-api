@@ -85,6 +85,7 @@
     "passport": "^0.4.0",
     "passport-alipay2": "0.2.0",
     "passport-github2": "^0.1.11",
+    "passport-weixin": "^0.2.0",
     "pinyin": "^2.8.3",
     "query-string": "^6.1.0",
     "raven": "^2.6.0",

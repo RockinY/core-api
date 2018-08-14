@@ -5,7 +5,7 @@ import { signCookie, getCookies } from '../../utils/cookie'
 
 const FALLBACK_URL = process.env.WEB_CLIENT_URL
 
-type Strategy = 'github'
+type Strategy = 'github' | 'alipay' | 'wechat'
 
 export const createSigninRoutes = (
   strategy: Strategy,
