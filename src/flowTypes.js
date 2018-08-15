@@ -268,6 +268,13 @@ export type DBUsersCommunities = {
   userId: string,
 }
 
+export type DBPaymentPlan = {
+  id: string,
+  displayName: string,
+  price: number,
+  duration: number
+}
+
 /* ----------- Loader ----------- */
 export type Loader = {
   load: (key: string | Array<string>) => Promise<any>,
