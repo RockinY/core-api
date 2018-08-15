@@ -80,7 +80,7 @@ const User = /* GraphQL */`
 
   type PaymentPlan {
     id: ID
-    displayName: string
+    displayName: String
     price: Int
     duration: Int
   }
