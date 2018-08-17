@@ -272,7 +272,21 @@ export type DBPaymentPlan = {
   id: string,
   displayName: string,
   price: number,
-  duration: number
+  duration: number,
+  deletedAt?: Date
+}
+
+export type paymentmethod = 'alipay' | 'wechat'
+
+export type DBInvoice = {
+  id: string,
+  amount: number,
+  tradeNo: string,
+  paymentMethod: paymentmethod,
+  paymentPlanId: string,
+  customerId: string,
+  paid: boolean,
+  rawResponse?: string
 }
 
 /* ----------- Loader ----------- */
