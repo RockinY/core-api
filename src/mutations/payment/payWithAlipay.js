@@ -35,8 +35,9 @@ export default requireAuth(
     // Prepare the alipay form data
     const formData = new AlipayFormData()
     formData.setMethod('get')
-    formData.addField('notifyUrl', 'https://dev.krae.cn')
-    formData.addField('returnUrl', 'https://dev.krae.cn')
+    // $FlowFixMe
+    formData.addField('notifyUrl', `${process.env.HOST_URL}/api/webhook/alipay`)
+    formData.addField('returnUrl', process.env.HOST_URL)
     formData.addField('bizContent', {
       outTradeNo: invoice.tradeNo,
       productCode: 'FAST_INSTANT_TRADE_PAY',
