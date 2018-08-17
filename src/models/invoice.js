@@ -24,10 +24,19 @@ export const createInvoice = (
         customerId: customerId,
         paymentPlanId: plan.id,
         tradeNo: generateTradeNo(),
-        paid: false
+        paid: false,
+        createdAt: new Date()
       },
       { returnChanges: true }
     )
     .run()
     .then(result => result.changes[0].new_val)
+}
+
+export const getInvoiceByTradeNo = (tradeNo: string) => {
+  return db
+    .table('invoices')
+    .getAll(tradeNo, { index: 'tradeNo' })
+    .run()
+    .then(result => (result ? result[0] : null))
 }

@@ -286,7 +286,18 @@ export type DBInvoice = {
   paymentPlanId: string,
   customerId: string,
   paid: boolean,
+  createdAt: Date,
+  updatedAt: Date,
   rawResponse?: string
+}
+
+export type DBMemberSubscription = {
+  id: string,
+  userId: string,
+  invoiceId: string,
+  startAt: Date,
+  endAt: Date,
+  createdAt: Date
 }
 
 /* ----------- Loader ----------- */

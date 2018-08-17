@@ -62,6 +62,7 @@
     "cors": "^2.8.4",
     "cryptr": "^3.0.0",
     "dataloader": "^1.4.0",
+    "dayjs": "^1.7.5",
     "dotenv": "^5.0.1",
     "draft-js": "^0.10.0",
     "elasticsearch": "^15.1.1",
