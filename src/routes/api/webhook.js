@@ -11,9 +11,11 @@ const webhookRouter = Router()
 // $FlowFixMe
 webhookRouter.post('/alipay', async (req, res) => {
   // 异步通知验签
-  debug(JSON.stringify(req.query))
+  debug(req.query)
+  debug(req.originalUrl)
+  debug(req.body)
 
-  const body = req.query
+  const body = req.body
   
   if (!alipaySdk.checkNotifySign(body)) {
     debug('Alipay aign failed.')

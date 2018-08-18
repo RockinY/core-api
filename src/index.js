@@ -60,6 +60,8 @@ app.use(apolloUploadExpress({
 }))
 // *. JSON body parser
 app.use(bodyParser.json())
+// *. Form body parser
+app.use(bodyParser.urlencoded({ extended: false }))
 // *. Session
 app.use(session)
 // *. passport
