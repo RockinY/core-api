@@ -30,7 +30,7 @@ webhookRouter.post('/alipay', async (req, res) => {
   }
 
   // 判断total_amount是否确实为该订单的实际金额（即商户订单创建时的金额）
-  if (parseFloat(invoice.amount / 100).toFixed(2) !== body.total_fee) {
+  if (parseFloat(invoice.amount / 100).toFixed(2) !== body.total_amount) {
     debug('Invalid invoice amount.')
     return res.status(400).send('FAILED');
   }
