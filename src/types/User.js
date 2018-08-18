@@ -91,7 +91,7 @@ const User = /* GraphQL */`
     firstName: String
     description: String
     website: String
-    username: LowercaseString
+    username: String
     profilePhoto: String
     coverPhoto: String
     email: LowercaseString
@@ -119,7 +119,7 @@ const User = /* GraphQL */`
   }
 
   extend type Query {
-    user(id: ID, username: LowercaseString): User
+    user(id: ID, username: String): User
     currentUser: User
   }
 
@@ -129,7 +129,7 @@ const User = /* GraphQL */`
     name: String
     description: String
     website: String
-    username: LowercaseString
+    username: String
     timezone: Int
   }
 
