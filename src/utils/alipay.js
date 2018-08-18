@@ -10,7 +10,7 @@ const alipaySdk = new AlipaySdk(
   {
     appId: process.env.ALIPAY_OAUTH_CLIENT_ID,
     privateKey: process.env.ALIPAY_OAUTH_PRIVATE_KEY.replace(/\\n/g, "\n"),
-    alipayPublicKey: process.env.ALIPAY_OAUTH_PUBLIC_KEY.replace(/\\n/g, "\n"),
+    alipayPublicKey: process.env.ALIPAY_PUBLIC_KEY,
     keyType: 'PKCS8'
   }
 )
