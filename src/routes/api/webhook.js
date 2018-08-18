@@ -49,7 +49,7 @@ webhookRouter.post('/alipay', async (req, res) => {
     debug('Sign success.')
     createMemberSubscription(invoice)
       .then(() => {
-        return res.status(200).send('SUCCESS');
+        return res.status(200).send('success');
       })
   } else {
     return res.status(400).send('FAILED');
