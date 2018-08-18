@@ -11,7 +11,6 @@ const webhookRouter = Router()
 // $FlowFixMe
 webhookRouter.post('/alipay', async (req, res) => {
   // 异步通知验签
-  debug(JSON.stringify(req))
   debug(JSON.stringify(req.query))
 
   const body = req.query
