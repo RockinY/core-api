@@ -17,7 +17,7 @@ webhookRouter.post('/alipay', async (req, res) => {
 
   // 商户需要验证该通知数据中的out_trade_no是否为商户系统中创建的订单号
   const invoice = await getInvoiceByTradeNo(req.body.out_trade_no)
-  if (!invoice) {
+  if (!invoice || invoice.paid) {
     return
   }
 

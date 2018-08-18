@@ -3,8 +3,12 @@ import db from '../db'
 import type { DBMemberSubscription, DBInvoice } from '../flowTypes'
 import dayjs from 'dayjs'
 import { getPaymentPlanById } from './paymentPlans';
+import { invoicePaid } from './invoice'
 
 export const createMemberSubscription = async (invoice: DBInvoice) => {
+  if (invoice.paid) {
+    return null
+  }
   const memberSubscription = await getMemberSubscriptionByInvoiceId(invoice.id)
   if (memberSubscription) {
     return null
@@ -20,6 +24,7 @@ export const createMemberSubscription = async (invoice: DBInvoice) => {
 
   const paymentPlan = await getPaymentPlanById(invoice.paymentPlanId)
   const endAt = startAt.add(paymentPlan.duration, 'day')
+  await invoicePaid(invoice.id)
 
   return db
     .table('memberSubscriptions')

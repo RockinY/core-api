@@ -40,3 +40,23 @@ export const getInvoiceByTradeNo = (tradeNo: string) => {
     .run()
     .then(result => (result ? result[0] : null))
 }
+
+export const getInvoiceById = (id: string) => {
+  return db
+    .table('invoices')
+    .get(id)
+    .run()
+}
+
+export const invoicePaid = (invoiceId: string): Promise<DBInvoice> => {
+  return db
+    .table('invoices')
+    .get(invoiceId)
+    .update({
+      paid: true
+    })
+    .run()
+    .then(async () => {
+      return getInvoiceById(invoiceId)
+    })
+}
