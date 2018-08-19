@@ -53,8 +53,7 @@ export default requireAuth(
     }
 
     // check user permissions
-    const userIsPro = await isProUser(user)
-    if (!userIsPro && args.input.isPrivate) {
+    if (args.input.isPrivate && !(await isProUser(user))) {
       return new UserError('Permission denied.')
     }
 
