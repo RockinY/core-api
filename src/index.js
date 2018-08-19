@@ -69,44 +69,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 // *. redirect
 app.use(threadParamRedirect)
-// *. debug
-if (process.env.NODE_ENV === 'development') {
-
-  const queryLog = {}
-
-  // parses shortlinks and redirects to the GraphiQL editor
-  app.use('/goto', (req: express$Request, res: express$Response) => {
-    const { id } = req.query
-    // $FlowFixMe
-    if (!queryLog[id]) {
-      console.error('Failed to find a stored query')
-      return res.status(404).end()
-    }
-    return res.redirect(queryLog[id])
-  })
-
-  // peeks at incoming /graphql requests and builds shortlinks
-  app.use('/api', (req: express$Request, res: express$Response, next) => {
-    // $FlowFixMe
-    const { query, variables } = req.body
-    const queryParams = querystring.stringify({
-      query,
-      variables: JSON.stringify(variables)
-    })
-    // hash query into id so that identical queries occupy
-    // the same space in the queryLog map.
-    const id = hash({ query, variables })
-    // $FlowFixMe
-    queryLog[id] = `${process.env.HOST_URL}/api/playground?${queryParams}`
-    console.log(
-      'Query was made, inspect:',
-      // $FlowFixMe
-      `${process.env.HOST_URL}/goto?id=${id}`
-    )
-    // finally pass requests to the actual /graphql endpoint
-    next()
-  })
-}
 // *. Catch Error
 app.use(
   (
