@@ -5,6 +5,8 @@ import {
 } from './slugBlacklists'
 import type { GraphQLContext, DBCommunity, DBChannel, DBUser } from '../flowTypes'
 import UserError from '../utils/userError'
+import { getMemberSubscriptionsByuserId } from '../models/memberSubscription'
+import dayjs from 'dayjs'
 
 export const communitySlugIsBlacklisted = (slug: string): boolean => {
   return COMMUNITY_SLUG_BLACKLIST.indexOf(slug) > -1
@@ -39,6 +41,15 @@ const communityExists = async (
     return null
   }
   return community
+}
+
+export const isProUser = async (user: DBUser): Promise<boolean> => {
+  const userSubscriptions = await getMemberSubscriptionsByuserId(user.id)
+  const latestSubscription = userSubscriptions[0]
+  if (latestSubscription && dayjs(latestSubscription.endAt).isAfter(dayjs())) {
+    return true
+  }
+  return false
 }
 
 export const canAdministerChannel = async (userId: string, channelId: string, loaders: any) => {
