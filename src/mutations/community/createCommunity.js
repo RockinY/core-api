@@ -10,12 +10,6 @@ import { createOwnerInChannel } from '../../models/usersChannels'
 
 export default requireAuth(
   async (_: any, args: CreateCommunityInput, { user }: GraphQLContext) => {
-    if (!user.email) {
-      // TODO: track queue
-      return new UserError(
-        'You must have a working email address to create communities. Add an email address in your settings.'
-      )
-    }
 
     if (!args.input.slug || args.input.slug.length === 0) {
       // TODO: track queue
