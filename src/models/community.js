@@ -193,7 +193,8 @@ export type CreateCommunityInput = {
     description: string,
     website: string,
     file: Object,
-    coverFile: Object
+    coverFile: Object,
+    isPrivate: boolean
   }
 }
 
@@ -210,7 +211,7 @@ export type EditCommunityInput = {
 }
 
 export const createCommunity = ({ input }: CreateCommunityInput, user: DBUser): Promise<DBCommunity> => {
-  const { name, slug, description, website, file, coverFile } = input
+  const { name, slug, description, website, file, coverFile, isPrivate } = input
 
   return db
     .table('communities')
@@ -226,7 +227,7 @@ export const createCommunity = ({ input }: CreateCommunityInput, user: DBUser): 
         modifiedAt: null,
         creatorId: user.id,
         administratorEmail: user.email,
-        stripeCustomerId: null
+        isPrivate
       },
       { returnChanges: true }
     )
