@@ -44,6 +44,9 @@ import {
   __createSingleReactionLoader
 } from './reaction'
 import { __createThreadReactionLoader } from './threadReaction'
+import {
+  __createMemberSubscriptionLoader
+} from './memberSubscription'
 
 const createLoaders = (options?: DataLoaderOptions) => ({
   user: __createUserLoader(options),
@@ -55,6 +58,7 @@ const createLoaders = (options?: DataLoaderOptions) => ({
   userThreadNotificationStatus: __createUserThreadNotificationStatusLoader(
     options
   ),
+  memberSubscriptions: __createMemberSubscriptionLoader,
   thread: __createThreadLoader(options),
   threadParticipants: __createThreadParticipantsLoader(options),
   threadMessageCount: __createThreadMessageCountLoader(options),

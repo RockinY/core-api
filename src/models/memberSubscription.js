@@ -61,3 +61,17 @@ export const getMemberSubscriptionsByuserId = (
     .orderBy(db.desc('endAt'))
     .run()
 }
+
+export const getMemberSubscriptionsByUserIds = (
+  userIds: Array<string>
+): Promise<Array<DBMemberSubscription>> => {
+  return db
+    .table('memberSubscriptions')
+    .getAll(...userIds, { index: 'userId' })
+    .run()
+    .then(result => {
+      return userIds.map(userId => {
+        return result.filter(sub => sub.userId === userId)
+      })
+    })
+}
