@@ -74,24 +74,36 @@ export default requireAuth(async (_: any, args: Input, ctx: GraphQLContext) => {
   let urls
   try {
     urls = await Promise.all(
-      input.filesToUpload.map(file =>
-        uploadImage(file, 'threads', editedThread.id)
-      )
+      input.filesToUpload.map(file => {
+        if (file instanceof Promise) {
+          return uploadImage(file, 'threads', editedThread.id)
+        } else {
+          return ''
+        }
+      })
     )
   } catch (err) {
     return new UserError(err.message)
   }
 
   if (!urls || urls.length === 0) return editedThread
-
+  
   // Replace the local image srcs with the remote image src
-  const body =
-    editedThread.content.body && JSON.parse(editedThread.content.body)
+  const body = editedThread.content.body && JSON.parse(editedThread.content.body)
+
   const imageKeys = Object.keys(body.entityMap).filter(
-    key => body.entityMap[key].type.toLowerCase() === 'image'
+    key =>
+      body.entityMap[key].type.toLowerCase() === 'image' &&
+      body.entityMap[key].data.file
   )
+
   urls.forEach((url, index) => {
-    if (!body.entityMap[imageKeys[index]]) return
+    if (url === '') {
+      return
+    }
+    if (!body.entityMap[imageKeys[index]]) {
+      return
+    }
     body.entityMap[imageKeys[index]].data.src = url
   })
 

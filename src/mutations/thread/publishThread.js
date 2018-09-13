@@ -199,9 +199,13 @@ export default requireAuth(async (
   let urls
   try {
     urls = await Promise.all(
-      thread.filesToUpload.map(
-        file => file && uploadImage(file, 'threads', dbThread.id)
-      )
+      thread.filesToUpload.map(file => {
+        if (file instanceof Promise) {
+          return uploadImage(file, 'threads', dbThread.id)
+        } else {
+          return ''
+        }
+      })
     )
   } catch (err) {
     return new UserError(err.message)
@@ -210,9 +214,14 @@ export default requireAuth(async (
   if (dbThread.content.body) {
     const body = JSON.parse(dbThread.content.body)
     const imageKeys = Object.keys(body.entityMap).filter(
-      key => body.entityMap[key].type.toLowerCase() === 'image'
+      key =>
+        body.entityMap[key].type.toLowerCase() === 'image' &&
+        body.entityMap[key].data.file
     )
     urls.forEach((url, index) => {
+      if (url === '') {
+        return
+      }
       if (!body.entityMap[imageKeys[index]]) {
         return
       }
