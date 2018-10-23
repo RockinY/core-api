@@ -8,6 +8,13 @@ import UserError from '../utils/userError'
 import { getMemberSubscriptionsByuserId } from '../models/memberSubscription'
 import dayjs from 'dayjs'
 
+const admin_ids = process.env.ADMIN_IDS || ''
+
+export const isAdmin = (id: string): boolean => {
+  const admins = admin_ids.split(',')
+  return admins.indexOf(id) > -1
+}
+
 export const communitySlugIsBlacklisted = (slug: string): boolean => {
   return COMMUNITY_SLUG_BLACKLIST.indexOf(slug) > -1
 }
