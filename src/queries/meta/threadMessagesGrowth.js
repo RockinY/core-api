@@ -8,16 +8,16 @@ export default async (_: any, __: any, { user }: GraphQLContext) => {
 
   return {
     count: await getCount('messages', {
-      threadType: 'directMessageThread'
+      threadType: 'story'
     }),
     weeklyGrowth: await getGrowth('messages', 'weekly', 'timestamp', {
-      threadType: 'directMessageThread'
+      threadType: 'story'
     }),
     monthlyGrowth: await getGrowth('messages', 'monthly', 'timestamp', {
-      threadType: 'directMessageThread'
+      threadType: 'story'
     }),
     quarterlyGrowth: await getGrowth('messages', 'quarterly', 'timestamp', {
-      threadType: 'directMessageThread'
+      threadType: 'story'
     })
   }
 }
