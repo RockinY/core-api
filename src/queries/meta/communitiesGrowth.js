@@ -7,9 +7,9 @@ export default async (_: any, __: any, { user }: GraphQLContext) => {
   if (!isAdmin(user.id)) return null
 
   return {
-    count: await getCount('channels'),
-    weeklyGrowth: await getGrowth('channels', 'weekly', 'createdAt'),
-    monthlyGrowth: await getGrowth('channels', 'monthly', 'createdAt'),
-    quarterlyGrowth: await getGrowth('channels', 'quarterly', 'createdAt')
+    count: await getCount('communities'),
+    weeklyGrowth: await getGrowth('communities', 'weekly', 'createdAt'),
+    monthlyGrowth: await getGrowth('communities', 'monthly', 'createdAt'),
+    quarterlyGrowth: await getGrowth('communities', 'quarterly', 'createdAt')
   }
 }
