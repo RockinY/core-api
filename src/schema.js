@@ -53,6 +53,7 @@ const directMessageThreadMutations = require('./mutations/directMessageThread')
 const notificationMutations = require('./mutations/notification')
 const communityMemberMutations = require('./mutations/communityMember')
 const paymentMutations = require('./mutations/payment')
+const metaMutations = require('./mutations/meta')
 
 // Subscriptions
 const messageSubscriptions = require('./subscriptions/message')
@@ -106,6 +107,7 @@ const resolvers = merge(
   communityMemberMutations,
   messageMutations,
   paymentMutations,
+  metaMutations,
   // Subscriptions
   messageSubscriptions,
   notificationSubscriptions,
