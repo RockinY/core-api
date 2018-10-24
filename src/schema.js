@@ -27,6 +27,7 @@ const CommunityMember = require('./types/CommunityMember')
 const ThreadParticipant = require('./types/ThreadParticipant')
 const Search = require('./types/Search')
 const Payment = require('./types/Payment')
+const Meta = require('./types/Meta')
 
 // Queries
 const userQueries = require('./queries/user')
@@ -39,6 +40,7 @@ const reactionQueries = require('./queries/reaction')
 const notificationQueries = require('./queries/notification')
 const communityMemberQueries = require('./queries/communityMember')
 const searchQueries = require('./queries/search')
+const metaQueries = require('./queries/meta')
 
 // Mutations
 const userMutations = require('./mutations/user')
@@ -58,7 +60,7 @@ const notificationSubscriptions = require('./subscriptions/notification')
 const directMessageThreadSubscriptions = require('./subscriptions/directMessageThread')
 const threadSubscriptions = require('./subscriptions/thread')
 
-const Root = `
+const Root = /* GraphQL */ `
   type Query {
     dummy: String
   }
@@ -92,6 +94,7 @@ const resolvers = merge(
   notificationQueries,
   communityMemberQueries,
   searchQueries,
+  metaQueries,
   // Mutations
   userMutations,
   communityMutations,
@@ -130,7 +133,8 @@ const schema = makeExecutableSchema({
     Reaction,
     Notification,
     Search,
-    Payment
+    Payment,
+    Meta
   ],
   resolvers
 })
