@@ -52,7 +52,7 @@ export const getCount = (table: string, filter: mixed) => {
   }
 
   return db
-    .table()
+    .table(table)
     .count()
     .run()
 }
@@ -68,7 +68,7 @@ export const getGrowth = async (table: string, range: Timeframe, field: string, 
 
   const prevPeriodCount = await db
     .table(table)
-    .filter(db.now(field).during(db.now().sub(previous), db.now().sub(current)))
+    .filter(db.row(field).during(db.now().sub(previous), db.now().sub(current)))
     .filter(filter ? filter : '')
     .count()
     .run()
