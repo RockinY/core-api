@@ -17,7 +17,7 @@ const Meta = /* GraphQL */ `
     channelsGrowth: GrowthData
     threadsGrowth: GrowthData
     directMessageThreadsGrowth: GrowthData
-    threadMessageGrowth: GrowthData
+    threadMessagesGrowth: GrowthData
     directMessagesGrowth: GrowthData
     topThreads: [Thread]
   }
@@ -36,6 +36,8 @@ const Meta = /* GraphQL */ `
   }
 
   extend type Mutation {
-    SaveUserCommunityPermissionsInput(input: SaveUserCommunityPermissionsInput!): User
+    saveUserCommunityPermissions(input: SaveUserCommunityPermissionsInput!): User
   }
 `
+
+module.exports = Meta
