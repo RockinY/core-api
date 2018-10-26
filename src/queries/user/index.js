@@ -15,6 +15,7 @@ import settings from './settings'
 import totalReputation from './totalReputation'
 import githubProfile from './githubProfile'
 import isPro from './isPro'
+import isAdmin from './isAdmin';
 import contextPermissions from './contextPermissions'
 import paymentPlans from './paymentPlans'
 
@@ -37,6 +38,7 @@ module.exports = {
     totalReputation,
     githubProfile,
     isPro,
+    isAdmin,
     paymentPlans,
     contextPermissions
   }

@@ -100,6 +100,7 @@ const User = /* GraphQL */`
     lastSeen: Date!
     isOnline: Boolean
     isPro: Boolean
+    isAdmin: Boolean
     timezone: Int
     totalReputation: Int
     pendingEmail: LowercaseString
