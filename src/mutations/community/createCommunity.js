@@ -7,7 +7,6 @@ import { getCommunitiesBySlug, createCommunity } from '../../models/community'
 import { createOwnerInCommunity } from '../../models/usersCommunities'
 import { createGeneralChannel } from '../../models/channel'
 import { createOwnerInChannel } from '../../models/usersChannels'
-import { isProUser } from '../../utils/permissions'
 
 export default requireAuth(
   async (_: any, args: CreateCommunityInput, { user }: GraphQLContext) => {
@@ -50,11 +49,6 @@ export default requireAuth(
     if (communities.length > 0) {
       // TODO: track queue
       return new UserError('A community with this slug already exists.')
-    }
-
-    // check user permissions
-    if (args.input.isPrivate && !(await isProUser(user))) {
-      return new UserError('Permission denied.')
     }
 
     // all checks passed

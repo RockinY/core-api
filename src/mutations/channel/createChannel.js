@@ -7,8 +7,7 @@ import { createOwnerInChannel } from '../../models/usersChannels'
 import {
   isAuthedResolver as requireAuth,
   canModerateCommunity,
-  channelSlugIsBlacklisted,
-  isProUser
+  channelSlugIsBlacklisted
 } from '../../utils/permissions'
 
 export default requireAuth(
@@ -41,11 +40,6 @@ export default requireAuth(
       return new UserError(
         'A channel with this url already exists in this community - please try another name'
       )
-    }
-
-    // check user permissions
-    if (args.input.isPrivate && !(await isProUser(user))) {
-      return new UserError('Permission denied.')
     }
 
     const newChannel = await createChannel(args, user.id)
