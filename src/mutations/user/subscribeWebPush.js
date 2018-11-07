@@ -19,7 +19,7 @@ export default requireAuth(async (_: any, args: Input, ctx: GraphQLContext) => {
       return sendWebPushNotification(
         subscription,
         {
-          title: '一条新消息',
+          title: '新消息',
           body: '消息通知开启',
         },
         {
@@ -27,7 +27,7 @@ export default requireAuth(async (_: any, args: Input, ctx: GraphQLContext) => {
         }
       ).catch(err => {
         return new UserError(
-          "It seems like we can't send you web push notifications. Please ping @mxstbr with your browser and OS versions and he'll take a look!"
+          "It seems like we can't send you web push notifications."
         );
       });
     })
